@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./resources/css/style-account-setting.css">
+    <link rel="stylesheet" href="./resources/css/reusable.css">
+    <link rel="stylesheet" href="vendors/css/grid.css">
+    <link rel="icon" href="resources/images/j.svg">
+    <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header id="header">
+        <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
+        <div id="left-header">
+            <div id="search-div">
+                <img src="./resources/images/search.svg">
+                <input type="text">
+            </div>
+            <div id="search-icon-div">
+                <img src="./resources/images/search.svg">
+            </div>
+        </div>
+
+        <div id="right-header">
+            <nav id="nav-menu">
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        home
+                    </div>
+                    <h6>Home</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        people
+                    </div>
+                    <h6>My Network</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        work
+                    </div>
+                    <h6>Jobs</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        message
+                    </div>
+                    <h6>Messaging</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        notifications
+                    </div>
+                    <h6>Notifications</h6>
+                </div>
+                <div class="menu-icons" id="personal-icon">
+                    <div class="material-icons md-24 ">
+                        &#xe853
+                    </div>
+
+                    <div id="personal-dropdown">
+                        <div id="small-avatar">
+                            <img src="./resources/images/user.svg" style="height: 40px;width: 40px;">
+                        </div>
+
+                        <div id="short-info">
+                            <h5>Name</h5>
+                            <h5>Jobs</h5>
+                        </div>
+
+                        <div id="view-profile-btn">
+                            <a href="#">View profile</a>
+                        </div>
+                    </div>
+                    <h6>Me</h6>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="container">
+        <div class="row">
+            <div class="col span-1-of-5 sidemenu">
+                <nav>
+                    <a onclick="tabs(0)" class="tab">
+                        <i class="fas fa-user"></i>
+                        <span class="setting-title">My Account</span>
+                    </a>
+                    <a onclick="tabs(1)" class="tab">
+                        <i class="far fa-address-card"></i>
+                        <span class="setting-title">My CV</span>
+                    </a>
+                    <a onclick="tabs(2)" class="tab">
+                        <i class="fas fa-receipt"></i>
+                        <span class="setting-title">My Application</span>
+                    </a>
+                </nav>
+            </div>
+            <div class="col span-3-of-5 account-info">
+                <div class="profile tab-show">
+                    <h1>My account</h1>
+                    <h3>Manage and protect your account</h3>
+                    <div class="row">
+                        <div class="col span-1-of-4 title">
+                            <h5>Username</h5>
+                            <h5>Full Name</h5>
+                            <h5>Email</h5>
+                            <h5>Phone Number</h5>
+                            <h5>Date Of Birth</h5>
+                            <h5>Gender</h5>
+                            <h5>Password</h5>
+                        </div>
+                        <div class="col span-3-of-4 info">
+                            <input type="text" class="input" id="username" value="admin">
+                            <input type="text" class="input" id="fullname" value="Alex">
+                            <input type="text" class="input" id="email" value="Hieu@gmail.com">
+                            <input type="text" class="input" id="phone" value="0366951607">
+                            <div class="dob" data-="selectors">
+                                <select class="selector" aria-label="Day" name="birthday_day" id="day">
+                                    <option value="0">Day</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
+                                <select class="selector" aria-label="Month" name="birthday_month" id="month">
+                                    <option value="0">Month</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                </select>
+                                <select class="selector" aria-label="Year" name="birthday_year" id="year">
+                                    <option value="0">Year</option>
+                                    <option value="2005">2005</option>
+                                    <option value="2004">2004</option>
+                                    <option value="2003">2003</option>
+                                    <option value="2002">2002</option>
+                                    <option value="2001">2001</option>
+                                    <option value="2000">2000</option>
+                                    <option value="1999">1999</option>
+                                    <option value="1998">1998</option>
+                                    <option value="1997">1997</option>
+                                    <option value="1996">1996</option>
+                                    <option value="1995">1995</option>
+                                    <option value="1994">1994</option>
+                                    <option value="1993">1993</option>
+                                    <option value="1992">1992</option>
+                                    <option value="1991">1991</option>
+                                    <option value="1990">1990</option>
+                                    <option value="1989">1989</option>
+                                    <option value="1988">1988</option>
+                                    <option value="1987">1987</option>
+                                    <option value="1986">1986</option>
+                                    <option value="1985">1985</option>
+                                    <option value="1984">1984</option>
+                                    <option value="1983">1983</option>
+                                    <option value="1982">1982</option>
+                                </select>
+                            </div>
+                            <div class="gender" data-="radio">
+                                <span class="select">
+                                    <input type="radio" name="gender" id="fmale">
+                                    <label class="choose" for="fmale">Female</label>
+                                </span>
+                                <span class="select">
+                                    <input type="radio" name="gender" id="male">
+                                    <label class="choose" for="male">Male</label>
+                                </span>
+                                <span class="select">
+                                    <input type="radio" name="gender" id="other">
+                                    <label class="choose" for="other">Other</label>
+                                </span>
+                            </div>
+                            <input type="password" class="input" id="password" value="admin">
+                            <div class="update-btn">
+                                <button class="btn-post">Update</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="profile tab-show">
+                    <h1>My CV</h1>
+                    <h3>Fill these information to make your own CV</h3>
+                </div>
+                <div class="profile tab-show">
+                    <h1>My Application Forms</h1>
+                    <h3>You have 0 application forms</h3>
+                </div>
+            </div>
+            <div class="col span-1-of-5 avt-image">
+                <div id="main-avatar">
+                    <img src="./resources/images/avatar.png">
+                </div>
+                <div>
+                    <a class="btn-add" href="#">
+                        <i class="fas fa-camera"></i>
+                        Select Image
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <section class="footer-text">
+            <div class="row">
+                <div class="col span-1-of-3 col-footer">
+                    <p>About Us</p>
+                    <ul class="text-footer">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col span-1-of-3 col-footer">
+                    <p>Terms & Conditions</p>
+                    <ul class="text-footer">
+                        <li>
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#">Complaint Handling</a>
+                        </li>
+                        <li>
+                            <a href="#">Term & Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col span-1-of-3 col-footer">
+                    <p>Copyright &copy JobsGo</p>
+                    <p>Tax code: 0312192258</p>
+                    <div class="contact-detail">
+                        <ul class="information">
+                            <li><i class="fas fa-map-marker-alt small-icon"></i>Address: 21 Le Duan, Ha Noi</li>
+                            <li><i class="fas fa-envelope small-icon"></i>Email: jobsgo@gmail.com</li>
+                            <li><i class="fas fa-phone small-icon"></i>SĐT: (+084 )099-923-232-322</li>
+                        </ul>
+                    </div>
+                    <div class="social-contact">
+                        <ul class="social-icons">
+                            <li><i class="fab fa-facebook"></i></li>
+                            <li><i class="fab fa-twitter-square"></i></li>
+                            <li><i class="fab fa-instagram"></i></li>
+                            <li><i class="fab fa-google-plus-square"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+    <script type="text/javascript" src="./resources/js/account-settings.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    implementation 'io.dropwizard.metrics:metrics-core'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+
+    implementation project(':pm-security')
+    implementation project(':pm-personal-service')
+    implementation project(':pm-user-service')
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}

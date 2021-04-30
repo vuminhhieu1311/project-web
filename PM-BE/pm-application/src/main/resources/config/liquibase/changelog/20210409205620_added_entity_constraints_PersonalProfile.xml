@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity PersonalProfile.
+    -->
+    <changeSet id="20210409205620-3" author="HT">
+
+        <addColumn tableName="personal_profiles">
+            <column name="user_id" type="varchar(100)">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_personal_profiles__user_id" />
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="personal_profiles"
+                                 constraintName="fk_personal_profiles__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+</databaseChangeLog>

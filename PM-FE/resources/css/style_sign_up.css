@@ -1,0 +1,138 @@
+
+#sign-up-form {
+    background-color: #f4f4f4;
+    position: relative;
+    width: 50%;
+    /* min-width: 400px; */
+    height: 110%;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    line-height: 20px;
+    /* padding: 2%; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    vertical-align: center;
+    transform: translate(-55%, 0);
+    margin: -2%;
+}
+
+#sign-up-form h1 {
+    font-size: 200%;
+    font-weight: 500;
+    word-spacing: 5px;
+    line-height: 135%;
+    color: #265077;
+}
+
+#sign-up-form .input {
+    position: relative;
+    text-align: left;
+    margin: 10px 5px;
+    border: 1px solid darkgrey;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#sign-up-form div h5 {
+    position: absolute;
+    font-size: 17px;
+    color: gray;
+}
+
+#sign-up-form div input {
+    width: 80%;
+    line-height: 20px;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+#sign-in-form h5 {
+    line-height: 20px;
+    color: gray;
+    font-weight: lighter;
+}
+
+#sign-in-form h5 a {
+    text-decoration: none;
+    color: #265077;
+    font-weight: bolder;
+    word-spacing: 2px;
+}
+
+#sign-in-form h5 a:hover,
+#sign-in-form h5 a:active {
+    text-decoration: underline;
+}
+
+#link {
+    color: #265077;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#link:hover,
+#link:active {
+    text-decoration: underline;
+}
+
+.notes {
+    color: #777;
+    font-size: 14px;
+    padding-left: 4%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+.connect-socials {
+    transform: translate(15%, 0);
+}
+
+.connect-btn {
+    background-color: white;
+    border-radius: 20px;
+    width: 70%;
+    height: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+    border: 1px solid #265077;
+    transition: all .53s;
+}
+
+.connect-btn:hover {
+    border-color: #022140;
+    transform: scale(1.2);
+}
+
+.connect-btn a {
+    color: #265077;
+    text-decoration: none;
+    padding: 10px;
+    margin-left: 10px;
+    font-size: 0.8rem;
+    font-weight: bolder;
+}
+
+.invalid {
+    border-color: #be0000!important;
+    color: #be0000
+}
+
+.form-message {
+    font-size: small;
+    color: #be0000;
+}
+
+#sign-up-form .fas {
+    position: absolute;
+    padding-top: 4%;
+    color: #be0000;
+    display: none;
+} 
+
+.error-display {
+    display: inline !important;
+}

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="00000000000001" author="HT">
+        <createTable tableName="users">
+            <column name="id" type="varchar(100)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="login" type="varchar(50)">
+                <constraints unique="true" nullable="false" uniqueConstraintName="ux_user_login"/>
+            </column>
+            <column name="first_name" type="varchar(50)"/>
+            <column name="last_name" type="varchar(50)"/>
+            <column name="email" type="varchar(191)">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_user_email"/>
+            </column>
+            <column name="image_url" type="varchar(256)"/>
+            <column name="activated" type="boolean" valueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lang_key" type="varchar(10)"/>
+            <column name="created_by" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp"/>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+        </createTable>
+        <createTable tableName="authorities">
+            <column name="name" type="varchar(50)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="users_authorities">
+            <column name="user_id" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="users_authorities" columnNames="user_id, authority_name"/>
+
+        <addForeignKeyConstraint
+            baseColumnNames="authority_name"
+            baseTableName="users_authorities"
+            constraintName="fk_authority_name"
+            referencedColumnNames="name"
+            referencedTableName="authorities"
+        />
+        <addForeignKeyConstraint
+            baseColumnNames="user_id"
+            baseTableName="users_authorities"
+            constraintName="fk_user_id"
+            referencedColumnNames="id"
+            referencedTableName="users"
+        />
+
+        <loadData
+            tableName="users"
+            file="config/liquibase/data/users.csv"
+            separator=";"
+        >
+            <column name="activated" type="boolean"/>
+            <column name="created_date" type="timestamp"/>
+        </loadData>
+        <loadData
+            tableName="authorities"
+            file="config/liquibase/data/authorities.csv"
+            separator=";"
+        >
+            <column name="name" type="string"/>
+        </loadData>
+        <loadData
+            tableName="users_authorities"
+            file="config/liquibase/data/users_authorities.csv"
+            separator=";"
+        >
+            <column name="user_id" type="string"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

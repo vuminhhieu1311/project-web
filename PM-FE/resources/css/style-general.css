@@ -1,0 +1,262 @@
+/*--------------------------------------------------*/
+/*---------------------DEFAULT SETUP----------------*/
+/*--------------------------------------------------*/
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    color: #5a5a5a;
+    background-color: #ffffff;
+    text-rendering: optimizeLegibility;
+}
+
+/*--------------------------------------------------*/
+/*---------------------HEADER-----------------------*/
+/*--------------------------------------------------*/
+
+header {
+    background-image: linear-gradient(45deg,
+            rgba(2, 33, 64, 0.8) 55%,
+            rgba(45, 95, 93, 0.85));
+    background-size: cover;
+    background-position: center;
+    /* can giua */
+    height: 20vh;
+    /* view height */
+    margin-top: -2%;
+    background-attachment: fixed;
+}
+
+.logo {
+    width: 250px;
+    float: left;
+    margin-top: 2.5%;
+    margin-left: 2%;
+}
+
+.main-nav {
+    float: right;
+    list-style: none;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+.main-nav li {
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.main-nav li a {
+    text-decoration: none;
+    color: white;
+    font-size: 110%;
+    font-weight: 700;
+    transition: border-bottom 0.5s;
+    /* chuyen canh */
+}
+
+.main-nav li a:hover,
+.main-nav li a:active {
+    border-bottom: 2px solid #cccccc;
+    padding: 3px 0;
+}
+
+.heading-main-box {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-40%, -35%);
+    /* chinh vi tri */
+    width: 100%;
+}
+
+/*--------------------------------------------------*/
+/*------------------FOOTER--------------------------*/
+/*--------------------------------------------------*/
+
+footer {
+    background-image: linear-gradient(45deg,
+            rgba(2, 33, 64, 0.8) 55%,
+            rgba(45, 95, 93, 0.85)),
+        url(../images/background_footer.jpeg);
+    background-size: cover;
+    background-position: center;
+    /* can giua */
+    background-attachment: fixed;
+    color: #c5bebe;
+}
+
+.col-footer {
+    line-height: 160%;
+    margin-bottom: -1%;
+    margin-top: -1%;
+}
+
+.text-footer {
+    list-style-type: none;
+}
+
+.text-footer a {
+    color: #c5bebe;
+    font-weight: lighter;
+    text-decoration: none;
+    font-size: 80%;
+}
+
+.text-footer a:hover,
+.text-footer a:active {
+    text-decoration: underline;
+}
+
+.information {
+    list-style: none;
+    line-height: 200%;
+    word-spacing: 1px;
+    font-size: 80%;
+}
+
+.information .small-icon {
+    color: #94afc9;
+    padding-right: 5px;
+}
+
+.information .small-icon:hover,
+.information .small-icon:hover {
+    transform: scale(1.3);
+}
+
+.social-icons {
+    list-style: none;
+}
+
+.social-icons li {
+    display: inline-block;
+    font-size: 180%;
+    color: #94afc9;
+    margin-right: 15px;
+    margin-top: 15px;
+}
+
+.social-icons li i {
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.social-icons li:hover,
+.social-icons li:active {
+    transform: scale(1.3);
+    color: #e67e22;
+}
+
+
+/*--------------------------------------------------*/
+/*---------------------BUTTON STYLE-----------------*/
+/*--------------------------------------------------*/
+
+.btn {
+    text-decoration: none;
+    color: white;
+    background-color: #e67e22;
+    padding: 15px 30px;
+    border-radius: 20px;
+    margin: 0 30px;
+    display: inline-block;
+    width: 180px;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.btn:hover,
+.btn:active {
+    background-color: #d35400;
+}
+
+.btn-post {
+    text-decoration: none;
+    color: #265077;
+    padding: 15px 15px;
+    border-radius: 20px;
+    border: 2px solid #265077;
+    display: inline-block;
+    width: 155px;
+    text-align: center;
+    transition: all 0.3s;
+    margin-left: 23%;
+    font-weight: bold;
+}
+
+.btn-post:hover,
+.btn-post:active {
+    background-color: #e67e22;
+    color: white;
+    border-color: #e67e22;
+}
+
+#btn {
+    background-color: #265077;
+    margin-bottom: 20px;
+    width: 70%;
+    height: 40px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    
+    transition: all .3s;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 100%;
+    font-weight: bold;
+    color: white;
+}
+
+#btn:hover {
+    background-color: #022140;
+    transform: scale(1.2);
+}
+
+/*--------------------------------------------------*/
+/*---------------------REUSEABLE COMPONENTS---------*/
+/*--------------------------------------------------*/
+.form {
+    background-color: white;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin: 4%;
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.p-long {
+    text-align: center;
+    color: #265077;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 70%;
+    margin-left: 15%;
+    line-height: 140%;
+}
+
+section {
+    padding: 50px;
+}
+
+.clearfix::after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+
+
+
+

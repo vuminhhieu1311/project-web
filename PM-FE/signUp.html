@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobsGo Sign Up</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+    <link rel="icon" href="resources/images/j.svg">
+    <link rel="stylesheet" href="resources/css/style_sign_up.css">
+    <link rel="stylesheet" href="resources/css/style-general.css" />
+    <link rel="stylesheet" href="vendors/css/grid.css">
+    <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
+        <ul class="main-nav">
+            <li><a href="#">Sign Up</a></li>
+            <li><a href="#">Sign In</a></li>
+        </ul>
+    </header>
+
+    <div class="form">
+        <form action="/action_page.php" id="sign-up-form" method="POST">
+            <h1>SIGN UP</h1>
+            <div class="form-group">
+                <span class="form-message"></span>
+                <input class="input" type="text" id="name" name="name" placeholder="Full name">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+
+            <div class="form-group">
+                <span class="form-message"></span>
+                <input class="input" type="text" id="number" name="number" placeholder="Phone number">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+
+            <div class="form-group">
+                <span class="form-message"></span>
+                <input class="input" type="text" id="email" name="email" placeholder="Email">
+                <i class="fas fa-exclamation-circle"></i>
+            </div class="form-group">
+
+            <div class="form-group">
+                <span class="form-message"></span>
+                <input class="input" type="password" id="pass" name="pass" placeholder="Password">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+
+            <div class="form-group">
+                <span class="form-message"></span>
+                <input class="input" type="password" id="confirm-pass" name="pass" placeholder="Confirm Password">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+
+            <div class="notes">
+                <p class="notes">
+                    By clicking Agree & Join, you agree to the JobsGo
+                    <a href="/legal/terms/update" id="link">User Agreement,</a>
+                    <a href="/about/privacy/update" id="link">Privacy Policy</a>
+                    and
+                    <a href="/policies/cookies/" id="link">Cookie Policy.</a>
+                </p>
+            </div>
+
+            <div>
+                <button type="submit" id="btn">Agree & Join</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <section class="footer-text">
+            <div class="row">
+                <div class="col span-1-of-3 col-footer">
+                    <p>About Us</p>
+                    <ul class="text-footer">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col span-1-of-3 col-footer">
+                    <p>Terms & Conditions</p>
+                    <ul class="text-footer">
+                        <li>
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#">Complaint Handling</a>
+                        </li>
+                        <li>
+                            <a href="#">Term & Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col span-1-of-3 col-footer">
+                    <p>Copyright &copy JobsGo</p>
+                    <p>Tax code: 0312192258</p>
+                    <div class="contact-detail">
+                        <ul class="information">
+                            <li><i class="fas fa-map-marker-alt small-icon"></i>Address: 21 Le Duan, Ha Noi</li>
+                            <li><i class="fas fa-envelope small-icon"></i>Email: jobsgo@gmail.com</li>
+                            <li><i class="fas fa-phone small-icon"></i>SĐT: (+084 )099-923-232-322</li>
+                        </ul>
+                    </div>
+                    <div class="social-contact">
+                        <ul class="social-icons">
+                            <li><i class="fab fa-facebook"></i></li>
+                            <li><i class="fab fa-twitter-square"></i></li>
+                            <li><i class="fab fa-instagram"></i></li>
+                            <li><i class="fab fa-google-plus-square"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+
+    <script src='./resources/js/validator.js'></script>
+    <script>
+        Validator({
+            form: "#sign-up-form",
+            errorSelector: '.form-message',
+            rules: [
+                Validator.isRequired('#name', 'Please enter your full name!'),
+                Validator.isRequired('#number', 'Please enter your phone number!'),
+                Validator.isRequired('#pass'),
+                Validator.isPassword('#pass', 6),
+                Validator.isRequired('#confirm-pass'),
+                Validator.isConfirmed('#confirm-pass', function () {
+                    return document.querySelector('#sign-up-form #pass').value;
+                }),
+                Validator.isEmail('#email'),
+            ],
+            onSubmit: function (data) {
+                console.log(data);
+            }
+        });
+    </script>
+</body>
+
+</html>

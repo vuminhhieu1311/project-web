@@ -1,0 +1,63 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		mavenLocal()
+		jcenter()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+		gradlePluginPortal()
+	}
+	dependencies {
+		classpath "io.freefair.gradle:lombok-plugin:5.3.0"
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:2.4.4"
+		classpath "io.spring.gradle:dependency-management-plugin:1.0.11.RELEASE"
+	}
+}
+
+plugins {
+	id "com.github.ben-manes.versions" version "0.38.0"
+}
+
+subprojects {
+	apply plugin: "java-library"
+	apply plugin: "application"
+	apply plugin: "io.freefair.lombok"
+	apply plugin: "org.springframework.boot"
+	apply plugin: "io.spring.dependency-management"
+
+	group = "com.company"
+	version = '0.0.1.SNAPSHOT'
+	sourceCompatibility = '15'
+	targetCompatibility = '15'
+
+	configurations {
+		developmentOnly
+		runtimeClasspath {
+			extendsFrom developmentOnly
+		}
+		compileOnly {
+			extendsFrom annotationProcessor
+		}
+	}
+
+	jar {
+		enabled = true
+	}
+
+	dependencyManagement {
+		imports {
+			mavenBom "tech.jhipster:jhipster-dependencies:${jhipsterDependenciesVersion}"
+		}
+	}
+
+	repositories {
+		mavenCentral()
+		mavenLocal()
+		jcenter()
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+		gradlePluginPortal()
+	}
+}

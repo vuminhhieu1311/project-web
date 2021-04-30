@@ -1,0 +1,41 @@
+configurations.all {
+    exclude module: 'spring-boot-starter-web'
+}
+
+dependencies {
+    api 'org.springframework.boot:spring-boot-starter-hateoas'
+    api 'org.springframework.boot:spring-boot-starter-webflux'
+    api 'org.springframework.boot:spring-boot-starter-security'
+    api 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    api 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    api 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    api 'org.springframework.boot:spring-boot-starter-validation'
+
+    api 'io.springfox:springfox-oas'
+    api 'io.springfox:springfox-swagger2'
+    api 'io.springfox:springfox-bean-validators'
+
+    api group: "tech.jhipster", name: "jhipster-framework", {
+        exclude group: "org.springframework", module: "spring-webmvc"
+    }
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    api 'dev.miku:r2dbc-mysql'
+    api 'org.apache.commons:commons-lang3'
+    api 'org.modelmapper:modelmapper:2.4.0'
+    api 'org.zalando:problem-spring-webflux'
+    api 'commons-beanutils:commons-beanutils:1.9.4'
+    api 'org.liquibase:liquibase-core:4.3.2'
+    api 'com.zaxxer:HikariCP'
+    api 'org.hibernate:hibernate-core'
+
+    runtimeOnly 'mysql:mysql-connector-java'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+    useJUnitPlatform()
+}

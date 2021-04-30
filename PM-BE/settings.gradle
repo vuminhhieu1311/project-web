@@ -1,0 +1,11 @@
+rootProject.name = 'personal-management'
+
+include 'pm-application'
+
+include 'pm-common'
+include 'pm-domain'
+
+include 'pm-security'
+
+include 'pm-user-service'
+include 'pm-personal-service'
