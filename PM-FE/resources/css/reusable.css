@@ -54,24 +54,22 @@ header {
 }
 
 .logo {
-    width: 200px;
+    width: 190px;
+    height: 90%;
     float: left;
-    margin-top: 3%;
-    margin-left: 2%;
+    margin-top: 4%;
 }
 
 #left-header {
     flex: 1 0 350px;
     position: relative;
     display: flex;
-    margin-left: 2%;
 }
 
 #right-header {
     margin-top: -1%;
     flex: 0 0 auto;
     display: flex;
-    margin-left: -2%;
 }
 
 #nav-menu {
@@ -82,40 +80,23 @@ header {
     padding: 0 20px;
 }
 
-
-#search-div {
-    float: right;
-    position: absolute;
-    top: 50%;
-    left: 5%;
-    transform: translateY(-50%);
-    border: 1px solid rgb(160, 160, 160);
-    border-radius: 5px;
-    display: flex;
-    width: 300px;
-    background-color: #f4f4f4;
-}
-
-#search-div img {
-    display: block;
-    height: 20px;
-    width: 20px;
-    margin: 7px;
-}
-
-#search-div input {
-    display: block;
-    border: none;
-    outline: none;
-    width: 80%;
-    font-size: 14pt;
-    background-color: #f4f4f4;
-}
-
 .menu-icons {
     position: relative;
     width: 70px;
     height: 50px;
+    cursor: pointer;
+}
+
+/* .menu-icons-link{
+    color: black;
+} */
+
+.menu-icons:hover div{
+    color: #E99346;
+}
+
+.menu-icons:hover h6{
+    color: #E99346;
 }
 
 .material-icons {
@@ -145,74 +126,6 @@ header {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-#personal-dropdown {
-    display: none;
-    position: absolute;
-    background-color: white;
-    width: 160px;
-    height: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 0;
-    margin-top: 50px;
-    left: 10%;
-    transform: translateX(-50%);
-}
-
-#personal-icon:hover #personal-dropdown {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#small-avatar {
-    flex: 0 0 auto;
-    position: relative;
-    height: 50px;
-    width: 30%;
-    background-color: white;
-}
-
-#small-avatar img {
-    position: absolute;
-    top: 50%;
-    background-color: white;
-    border: 0.5px solid gray;
-    border-radius: 50%;
-}
-
-#short-info {
-    flex: 0 0 auto;
-    height: 50px;
-    width: 70%;
-    background-color: white;
-}
-
-#view-profile-btn {
-    height: 30px;
-    width: 100%;
-    background-color: white;
-    text-align: center;
-    position: relative;
-}
-
-#view-profile-btn a {
-    display: block;
-    position: absolute;
-    text-decoration: none;
-    color: black;
-    border: 0.1px solid black;
-    border-radius: 10px;
-    width: 70%;
-    text-align: center;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#view-profile-btn a:hover {
-    background-color: rgb(190, 190, 190);
 }
 
 /*--------------------------------------------------*/

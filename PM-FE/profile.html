@@ -9,6 +9,8 @@
     <link rel="icon" href="resources/images/j.svg">
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="./resources/css/reusable.css">
     <link rel="stylesheet" href="./resources/css/style_profile.css">
     <link rel="stylesheet" href="./vendors/css/grid.css">
     <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
@@ -17,99 +19,52 @@
 <body>
     <header id="header">
         <div id="left-header">
-            <div id="logo-div">
-                <img src="./resources/images/j.svg">
-            </div>
-            <div id="search-div">
-                <img src="./resources/images/search.svg">
-                <input type="text" id="search__input" class="search-input--expand" name="search__input">
-            </div>
-
+            <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
         </div>
-
         <div id="right-header">
             <nav id="nav-menu">
-                <a class="menu-icons-link" href="#">
-                    <div class="menu-icons">
-                        <div class="material-icons md-24">
-                            home
-                        </div>
-                        <h5>Home</h5>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        home
                     </div>
-                </a>
-
-                <a class="menu-icons-link" href="#">
-                    <div class="menu-icons">
-                        <div class="material-icons md-24">
-                            people
-                        </div>
-                        <h5>My Network</h5>
+                    <h6>Home</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        search
                     </div>
-                </a>
-
-                <a class="menu-icons-link" href="#">
-                    <div class="menu-icons">
-                        <div class="material-icons md-24">
-                            work
-                        </div>
-                        <h5>Jobs</h5>
+                    <h6>Search</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        people
                     </div>
-                </a>
-
-                <a class="menu-icons-link" href="#">
-                    <div class="menu-icons">
-                        <div class="material-icons md-24">
-                            message
-                        </div>
-                        <h5>Messaging</h5>
+                    <h6>My Network</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        work
                     </div>
-                </a>
-
-                <a class="menu-icons-link" href="#">
-                    <div class="menu-icons">
-                        <div class="material-icons md-24">
-                            notifications
-                        </div>
-                        <h5>Notifications</h5>
+                    <h6>Jobs</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        message
                     </div>
-                </a>
-
-                <a class="menu-icons-link" id="personal-icon-link" href="#">
-                    <div class="menu-icons" id="personal-icon">
-                        <div class="material-icons md-24 ">
-                            &#xe853
-                        </div>
-                        <!--div id="personal-dropdown">
-                                <div id="small-avatar">
-                                    <img src="./resources/images/user.svg" style="height: 40px;width: 40px;">
-                                </div>
-
-                                <div id="short-info">
-                                    <h5>Name</h5>
-                                    <h5>Jobs</h5>
-                                </div>
-                                
-                                <div id="view-profile-btn">
-                                    <a href="#">View profile</a>
-                                </div>
-                    </div-->
-
-                        <h5>Me</h5>
+                    <h6>Messaging</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        notifications
                     </div>
-
-                </a>
-
-                <!--div class="menu-icons" id="work-icon">
-                    <img src="dots-menu.svg" style="height: 25px; width: 25px;">
-                    <h6>Work</h6>
-
-                    <div id="work-dropdown">
-                        <div>
-
-                        </div>
+                    <h6>Notifications</h6>
+                </div>
+                <div class="menu-icons" id="personal-icon">
+                    <div class="material-icons md-24 ">
+                        &#xe853
                     </div>
-                </div-->
-
+                    <h6>Me</h6>
+                </div>
             </nav>
         </div>
     </header>
