@@ -22,19 +22,28 @@
         <div id="left-header">
             <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
         </div>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <button data-close-button class="close-button"><i class="fas fa-long-arrow-alt-left"></i></button>
+                <input class="search-input"type="text" placeholder="Search" autofocus>
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div id="overlay"></div>
         <div id="right-header">
             <nav id="nav-menu">
+                <div data-modal-target="#modal" class="menu-icons">
+                    <div class="material-icons md-24">
+                        search
+                    </div>
+                    <h6>Search</h6>
+                </div>
+
                 <div class="menu-icons">
                     <div class="material-icons md-24">
                         home
                     </div>
                     <h6>Home</h6>
-                </div>
-                <div class="menu-icons">
-                    <div class="material-icons md-24">
-                        search
-                    </div>
-                    <h6>Search</h6>
                 </div>
                 <div class="menu-icons">
                     <div class="material-icons md-24">
@@ -334,6 +343,7 @@
         </section>
     </footer>
     <div class="clearfix"></div>
+    <script type="text/javascript" src="./resources/js/reusable.js"></script>
     <script type="text/javascript" src="./resources/js/account-settings.js"></script>
 </body>
 

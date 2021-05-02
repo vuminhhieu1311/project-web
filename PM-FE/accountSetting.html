@@ -22,19 +22,28 @@
         <div id="left-header">
             <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
         </div>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <button data-close-button class="close-button"><i class="fas fa-long-arrow-alt-left"></i></button>
+                <input class="search-input" type="text" placeholder="Search">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div id="overlay"></div>
         <div id="right-header">
             <nav id="nav-menu">
+                <div data-modal-target="#modal" class="menu-icons">
+                    <div class="material-icons md-24">
+                        search
+                    </div>
+                    <h6>Search</h6>
+                </div>
+
                 <div class="menu-icons">
                     <div class="material-icons md-24">
                         home
                     </div>
                     <h6>Home</h6>
-                </div>
-                <div class="menu-icons">
-                    <div class="material-icons md-24">
-                        search
-                    </div>
-                    <h6>Search</h6>
                 </div>
                 <div class="menu-icons">
                     <div class="material-icons md-24">
@@ -71,6 +80,21 @@
     </header>
 
     <section class="container">
+        <div class="avt-modal" id="avt-modal">
+            <div data-close-button id="close-button"><i class="fas fa-times"></i></div>
+            <div class="wrapper">
+                <div class="image"><img src="./resources//images/avatar.png" alt=""></div>
+                <div class="content">
+                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                    <div class="text">No file chosen</div>
+                </div>
+            </div>
+            <input type="file" id="default-btn" hidden>
+            <button onclick="defaultBtnActive()" id="custom-btn">CHOOSE A FILE</button>
+            <button class="cancel-btn">CANCEL</button>
+            <button onclick="saveImg()" class="close-button">SAVE</button>
+        </div>
+        <div id="overlay"></div>
         <div class="row">
             <div class="col span-1-of-5 sidemenu">
                 <nav>
@@ -79,10 +103,18 @@
                         <span class="setting-title">My Account</span>
                     </a>
                     <a onclick="tabs(1)" class="tab">
+                        <i class="fas fa-lock"></i>
+                        <span class="setting-title">Change Password</span>
+                    </a>
+                    <a onclick="tabs(2)" class="tab">
+                        <i class="fas fa-lock"></i>
+                        <span class="setting-title">Sessions</span>
+                    </a>
+                    <a onclick="tabs(3)" class="tab">
                         <i class="far fa-address-card"></i>
                         <span class="setting-title">My CV</span>
                     </a>
-                    <a onclick="tabs(2)" class="tab">
+                    <a onclick="tabs(4)" class="tab">
                         <i class="fas fa-receipt"></i>
                         <span class="setting-title">My Application</span>
                     </a>
@@ -100,7 +132,6 @@
                             <h5>Phone Number</h5>
                             <h5>Date Of Birth</h5>
                             <h5>Gender</h5>
-                            <h5>Password</h5>
                         </div>
                         <div class="col span-3-of-4 info">
                             <input type="text" class="input" id="username" value="admin">
@@ -199,18 +230,84 @@
                                     <label class="choose" for="other">Other</label>
                                 </span>
                             </div>
-                            <input type="password" class="input" id="password" value="admin">
                             <div class="update-btn">
-                                <button class="btn-post">Update</button>
+                                <button class="btn-save">Save</button>
+                                <button class="btn-cancel">Cancel</button>
                             </div>
                         </div>
 
                     </div>
                 </div>
+
+                <div class="profile tab-show">
+                    <h1>Change Password</h1>
+                    <div class="row">
+                        <div class="col span-1-of-4 title">
+                            <h5>Password</h5>
+                            <h5>Confirm password</h5>
+                        </div>
+                        <div class="col span-3-of-4 info">
+                            <input type="password" class="input" id="password" value="admin">
+                            <input type="password" class="input" id="confirm-password" value="admin">
+                            <div class="update-btn">
+                                <button class="btn-save">Save</button>
+                                <button class="btn-cancel">Cancel</button>
+                            </div>
+                        </div>         
+                    </div>       
+                </div>
+
+                <div class="profile tab-show">
+                    <h1>Sessions</h1>
+                    <div class="limiter">
+                        <div class="container-table100">
+                            <div class="wrap-table100">
+                                <div class="table100">
+                                    <table>
+                                        <thead>
+                                            <tr class="table100-head">
+                                                <th class="column1">IP</th>
+                                                <th class="column2">Started</th>
+                                                <th class="column3">Last Access</th>
+                                                <th class="column4">Expires</th>
+                                                <th class="column5">Clients</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="column1">127.0.0.1</td>
+                                                <td class="column2">May 1, 2021, 10:01:20 PM</td>
+                                                <td class="column3">May 1, 2021, 10:01:20 PM</td>
+                                                <td class="column4">May 1, 2021, 10:01:20 PM</td>
+                                                <td class="column5">security-admin-console account</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="column1">127.0.0.1</td>
+                                                <td class="column2">May 1, 2021, 10:01:20 PM</td>
+                                                <td class="column3">May 1, 2021, 10:01:20 PM</td>
+                                                <td class="column4">May 1, 2021, 10:01:20 PM</td>
+                                                <td class="column5">security-admin-console account</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="column1">127.0.0.1</td>
+                                                <td class="column2">May 1, 2021, 10:01:20 PM</td>
+                                                <td class="column3">May 1, 2021, 10:01:20 PM</td>
+                                                <td class="column4">May 1, 2021, 10:01:20 PM</td>
+                                                <td class="column5">security-admin-console account</td>
+                                            </tr>							
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="profile tab-show">
                     <h1>My CV</h1>
                     <h3>Fill these information to make your own CV</h3>
                 </div>
+
                 <div class="profile tab-show">
                     <h1>My Application Forms</h1>
                     <h3>You have 0 application forms</h3>
@@ -221,7 +318,7 @@
                     <img src="./resources/images/avatar.png">
                 </div>
                 <div>
-                    <a class="btn-add" href="#">
+                    <a data-modal-target="#avt-modal" class="btn-add" href="#">
                         <i class="fas fa-camera"></i>
                         Select Image
                     </a>
@@ -283,6 +380,7 @@
             </div>
         </section>
     </footer>
+    <script type="text/javascript" src="./resources/js/reusable.js"></script>
     <script type="text/javascript" src="./resources/js/account-settings.js"></script>
 </body>
 

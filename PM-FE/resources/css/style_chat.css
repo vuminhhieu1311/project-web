@@ -94,6 +94,10 @@ input:focus,
     overflow-y: auto;
 }
 
+:is(.users-list, .chat-box)::-webkit-scrollbar{
+    width: 0px;
+  }
+
 .users-list a {
     text-decoration: none;
     color: #272c30;
@@ -175,6 +179,7 @@ input:focus,
     background-color: hsl(203, 49%, 23%, 0.95);
     color: #fff;
     border-radius: 12px 12px 0 12px;
+    font-size: 0.85rem;
 }
 
 .incoming img {
@@ -188,6 +193,7 @@ input:focus,
     background-color: #fff;
     color: #022140;
     border-radius: 12px 12px 12px 0;
+    font-size: 0.85rem;
 }
 
 .typing-area {
