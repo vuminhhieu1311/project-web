@@ -132,6 +132,10 @@ input:focus,
    
 }
 
+.chat-header .status-dot {
+    margin: 1% 2% -3% -3.5%;
+}
+
 .offline {
     color: rgb(150, 149, 149);
 }

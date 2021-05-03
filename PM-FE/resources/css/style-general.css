@@ -25,17 +25,15 @@ header {
             rgba(45, 95, 93, 0.85));
     background-size: cover;
     background-position: center;
-    /* can giua */
-    height: 20vh;
-    /* view height */
+    height: 15vh;
     margin-top: -2%;
     background-attachment: fixed;
 }
 
 .logo {
-    width: 250px;
+    width: 20%;
     float: left;
-    margin-top: 2.5%;
+    margin-top: 2%;
     margin-left: 2%;
 }
 
@@ -43,7 +41,7 @@ header {
     float: right;
     list-style: none;
     margin-right: 50px;
-    margin-top: 50px;
+    margin-top: 3.5%;
 }
 
 .main-nav li {

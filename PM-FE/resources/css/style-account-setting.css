@@ -75,7 +75,7 @@ input:focus {
     margin-left: 6%;
 }
 
-nav a {
+.sidemenu nav a {
     list-style: none;
     display: block;
     padding: 9%;
@@ -83,8 +83,8 @@ nav a {
     transition: all .3;
 }
 
-nav a:hover,
-nav a:active {
+.sidemenu nav a:hover,
+.sidemenu nav a:active {
     transform: scale(1.1);
     cursor: pointer;
     color: #2d6187;
@@ -101,11 +101,11 @@ nav a:active {
     margin-left: 10px;
 }
 
-.profile {
+.account-info .profile {
     background-color: white;
-    padding-left: 5%;
-    padding-top: 20px;
+    padding: 2% 5%;
     line-height: 40px;
+    margin-bottom: 4%;
 }
 
 .avt-image {
@@ -125,8 +125,8 @@ nav a:active {
 
 #main-avatar img {
     display: block;
-    height: 80%;
     width: 80%;
+    height: 150px;
     background-color: white;
     border: 1px solid #2d6187;
     border-radius: 50%;
@@ -150,13 +150,17 @@ nav a:active {
     transition: all 0.3s;
     font-weight: bold;
     margin-left: 20%;
-    font-size: smaller;
+    font-size: 80%;
+    transition: 0.3s;
 }
 
 .btn-add:hover,
 .btn-add:active {
     background: linear-gradient(135deg, #1597bb 0%, #203949f2 100%);
+    transform: scale(1.2);
 }
+
+/*--------------------------UPLOAD IMAGE POPUP CSS--------------------------------*/
 
 .avt-modal {
     z-index: 10;
@@ -314,7 +318,7 @@ nav a:active {
     color: #fff;
 }
 
-/*-----------------TABLE STYLE --------------------*/
+/*-----------------TABLE CSS--------------------*/
 
 .limiter {
     width: 100%;
@@ -345,7 +349,8 @@ table {
     border-radius: 10px;
     overflow: hidden;
     width: 100%;
-    margin-left: -5%;
+    margin-left: -3.5%;
+    margin-top: -4%;
     position: relative;
 }
 
@@ -507,4 +512,3 @@ tbody tr:hover {
     }
 }
 
-/*-------------------------------------------------*/

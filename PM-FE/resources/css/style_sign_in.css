@@ -25,7 +25,7 @@ body {
 #sign-in-form {
     background-color: #f4f4f4;
     position: relative;
-    width: 40%;
+    width: 35%;
     min-width: 400px;
     height: 110%;
     top: 50%;
@@ -55,18 +55,15 @@ body {
     border-bottom: 1px solid darkgrey;
 }
 
-#sign-in-form div h5 {
-    position: absolute;
-    font-size: 17px;
-    color: gray;
-}
-
 #sign-in-form div input {
     width: 100%;
     line-height: 20px;
     background: transparent;
     border: none;
     outline: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem;
+    color: rgb(99, 92, 92);
 }
 
 #icon-div {

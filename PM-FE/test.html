@@ -1,65 +1,81 @@
 <!DOCTYPE html>
-<!-- Created By CodingNepal -->
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
-    <!-- <title>Preview Image Before Upload | CodingNepal</title> -->
-    <link rel="stylesheet" href="./test.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-  </head>
-  <body>
-    <div class="container">
-      <div class="wrapper">
-        <div class="image">
-          <img src="" alt="">
-        </div>
-<div class="content">
-          <div class="icon">
-<i class="fas fa-cloud-upload-alt"></i></div>
-<div class="text">
-No file chosen, yet!</div>
-</div>
-<div id="cancel-btn">
-<i class="fas fa-times"></i></div>
-<div class="file-name">
-File name here</div>
-</div>
-<button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
-      <input id="default-btn" type="file" hidden>
-    </div>
-<script>
-      const wrapper = document.querySelector(".wrapper");
-      const fileName = document.querySelector(".file-name");
-      const defaultBtn = document.querySelector("#default-btn");
-      const customBtn = document.querySelector("#custom-btn");
-      const cancelBtn = document.querySelector("#cancel-btn i");
-      const img = document.querySelector("img");
-      let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
-      function defaultBtnActive(){
-        defaultBtn.click();
-      }
-      defaultBtn.addEventListener("change", function(){
-        const file = this.files[0];
-        if(file){
-          const reader = new FileReader();
-          reader.onload = function(){
-            const result = reader.result;
-            img.src = result;
-            wrapper.classList.add("active");
-          }
-          cancelBtn.addEventListener("click", function(){
-            img.src = "";
-            wrapper.classList.remove("active");
-          })
-          reader.readAsDataURL(file);
-        }
-        if(this.value){
-          let valueStore = this.value.match(regExp);
-          fileName.textContent = valueStore;
-        }
-      });
-    </script>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
 
-  </body>
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+</style>
+</head>
+<body>
+
+<h2>Clickable Dropdown</h2>
+<p>Click on the button to open the dropdown menu.</p>
+
+<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdown = document.querySelector(".dropdown-content");
+
+      if (dropdown.classList.contains('show')) {
+        dropdown.classList.remove('show');
+      }
+    
+  }
+}
+</script>
+
+</body>
 </html>

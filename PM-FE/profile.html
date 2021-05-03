@@ -24,7 +24,7 @@
         <div class="modal" id="modal">
             <div class="modal-header">
                 <button data-close-button class="close-button"><i class="fas fa-long-arrow-alt-left"></i></button>
-                <input class="search-input"type="text" placeholder="Search" autofocus>
+                <input class="search-input" type="text" placeholder="Search">
                 <i class="fas fa-search"></i>
             </div>
         </div>
@@ -68,11 +68,30 @@
                     </div>
                     <h6>Notifications</h6>
                 </div>
-                <div class="menu-icons" id="personal-icon">
-                    <div class="material-icons md-24 ">
-                        &#xe853
+
+                <div class=" menu-icons dropbtn" onclick="menuToggle()" id="personal-icon">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
                     </div>
-                    <h6>Me</h6>
+                    <div>
+                        <h6>Me <i class="fas fa-caret-down"></i></h6>
+                    </div>
+                </div>
+                
+                <!-- user account dropdown menu -->
+                <div class="dropdown-menu">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
+                        <h3>Hieu Vu Minh <br> <span>Student at Hanoi University of Science and Technology</span></h3>
+                    </div>
+                    <div class="setting-list">
+                        <ul>
+                            <li><i class="fas fa-user-circle"></i><a href="#">View Profile</a></li>
+                            <li><i class="fas fa-edit"></i><a href="#">Edit Profile</a></li>
+                            <li><i class="fas fa-users-cog"></i><a href="#">Account Settings</a></li>
+                            <li><i class="fas fa-sign-out-alt"></i><a href="#">Sign Out</a></li>                        
+                        </ul>
+                    </div>     
                 </div>
             </nav>
         </div>

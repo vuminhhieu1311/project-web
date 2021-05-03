@@ -40,3 +40,20 @@ function closeModal(modal) {
   modal.classList.remove('active')
   overlay.classList.remove('active')
 }
+
+/*----------------DROPDOWN MENU----------------*/
+
+const toggleMenu = document.querySelector('.dropdown-menu');
+var dropdownBtn = document.querySelector('.dropbtn');
+
+window.addEventListener("click", function () {
+    if (toggleMenu.classList.contains('active')) {
+        toggleMenu.classList.remove('active');
+    }
+}, false);
+dropdownBtn.addEventListener("click", function (ev) {
+    toggleMenu.classList.toggle('active');
+    ev.stopPropagation(); 
+}, false);
+
+
