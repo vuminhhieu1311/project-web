@@ -43,6 +43,7 @@ public class Publication implements Serializable {
 
     @Transient
     @JsonIgnoreProperties(value = { "publication" }, allowSetters = true)
+    @Builder.Default
     private Set<Author> authors = new HashSet<>();
 
     @JsonIgnoreProperties(

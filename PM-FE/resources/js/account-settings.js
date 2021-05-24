@@ -4,21 +4,21 @@ const tab = document.querySelectorAll(".tab-show");
 const tabMenus = document.querySelectorAll('.tab');
 
 function tabs(panelIndex) {
-    tab.forEach(function (node) {
-        node.style.display = "none";
-    });
-    tab[panelIndex].style.display = "block";
+  tab.forEach(function (node) {
+    node.style.display = "none";
+  });
+  tab[panelIndex].style.display = "block";
 
-    tabMenus.forEach(tabMenu => {
-        tabMenu.classList.remove('tab-active');
-    })
+  tabMenus.forEach(tabMenu => {
+    tabMenu.classList.remove('tab-active');
+  })
 }
 tabs(0);
 
 tabMenus.forEach(tab => {
-    tab.addEventListener('click', () => {
-        tab.classList.add('tab-active');
-    })
+  tab.addEventListener('click', () => {
+    tab.classList.add('tab-active');
+  })
 })
 
 /*-----------------SEARCH POPUP-------------*/
@@ -79,39 +79,56 @@ const profileImgs = document.querySelectorAll(".profile img");
 let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
 
 function defaultBtnActive() {
-    defaultBtn.click();
+  defaultBtn.click();
 }
 
 defaultBtn.addEventListener("change", function () {
-    const file = this.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function () {
-            const result = reader.result;
-            img.src = result;
-        }
-
-        cancelBtn.addEventListener("click", function () {
-            img.src = "";
-        })
-
-        reader.readAsDataURL(file);
+  const file = this.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function () {
+      const result = reader.result;
+      img.src = result;
     }
-    if (this.value) {
-        let valueStore = this.value.match(regExp);
-    }
+
+    cancelBtn.addEventListener("click", function () {
+      img.src = "";
+    })
+
+    reader.readAsDataURL(file);
+  }
+  if (this.value) {
+    let valueStore = this.value.match(regExp);
+  }
 });
 
 function saveImg() {
-    avtImage.src = img.src;
-    profileImgs.forEach(image => {
-        image.src = img.src;
-    })
+  avtImage.src = img.src;
+  profileImgs.forEach(image => {
+    image.src = img.src;
+  })
+
+  // loading profile image 
+  const spinner = document.querySelector('.sk-chase');
+  spinner.classList.add('showSpinner');
+  wrapper.classList.add('loading');
+
+  // When finish loading
+
+  setTimeout(function () {
+    spinner.classList.remove('showSpinner');
+    wrapper.classList.remove('loading');
+
     const modal = document.querySelector('.avt-modal');
+
     // Close the modal
     if (modal == null) return;
     modal.classList.remove('active');
     overlay.classList.remove('active');
+  }, 2000);
+
+
+
 }
 
 /*----------------DROPDOWN MENU----------------*/
@@ -120,11 +137,11 @@ const toggleMenu = document.querySelector('.dropdown-menu');
 var dropdownBtn = document.querySelector('.dropbtn');
 
 window.addEventListener("click", function () {
-    if (toggleMenu.classList.contains('active')) {
-        toggleMenu.classList.remove('active');
-    }
+  if (toggleMenu.classList.contains('active')) {
+    toggleMenu.classList.remove('active');
+  }
 }, false);
 dropdownBtn.addEventListener("click", function (ev) {
-    toggleMenu.classList.toggle('active');
-    ev.stopPropagation(); 
+  toggleMenu.classList.toggle('active');
+  ev.stopPropagation();
 }, false);

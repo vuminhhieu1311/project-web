@@ -1,11 +1,21 @@
 package com.company.pm.personalservice.domain.repositories;
 
+import static org.springframework.data.relational.core.query.Criteria.where;
+import static org.springframework.data.relational.core.query.Query.query;
+
 import com.company.pm.common.services.EntityManager;
 import com.company.pm.domain.personalservice.Project;
 import com.company.pm.personalservice.domain.repositories.rowmapper.PersonalProfileRowMapper;
 import com.company.pm.personalservice.domain.repositories.rowmapper.ProjectRowMapper;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.function.BiFunction;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.data.relational.core.query.Criteria;
@@ -18,12 +28,6 @@ import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.r2dbc.core.RowsFetchSpec;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.springframework.data.relational.core.query.Criteria.where;
 
 /**
  * Spring Data SQL reactive custom repository implementation for the Project entity.
@@ -66,8 +70,7 @@ class ProjectRepositoryInternalImpl implements ProjectRepositoryInternal {
 
     RowsFetchSpec<Project> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = ProjectSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
-        columns.addAll(
-            PersonalProfileSqlHelper.getColumns(personalProfileTable, "personalProfile"));
+        columns.addAll(PersonalProfileSqlHelper.getColumns(personalProfileTable, "personalProfile"));
         SelectFromAndJoinCondition selectFrom = Select
             .builder()
             .select(columns)

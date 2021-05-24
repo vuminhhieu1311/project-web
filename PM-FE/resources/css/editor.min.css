@@ -1,0 +1,101 @@
+div#editor {
+    box-sizing:border-box;
+    min-width:20rem;
+    width:100%;
+    padding:1rem;
+    margin-bottom: -10%;
+}
+
+div#editor>textarea#output {
+    visibility:collapse
+}
+
+div#editor>div#input {
+    padding:.5rem;
+    min-height:100%;
+    background:#F0F2EF;
+    border: 1px solid #265077;
+    color: #5a5a5a;
+    outline: none;
+}
+
+div#editor>div#input:focus {
+    border: 1px solid #1597bb;
+}
+
+div#editor>div#counter {
+    color: #5a5a5a;
+}
+
+div#editor>div#input>div {
+    margin-bottom: 1rem
+}
+
+div#editor>div#tools {
+    display:flex;
+    flex-direction:row;
+    align-items:stretch;
+    flex-wrap:wrap;
+    margin-bottom:4px;
+    margin-left:-1px;
+    margin-right:-1px
+}
+div#editor>div#tools>hr {
+    width:3px;
+    margin:0;
+    border:none
+}
+div#editor>div#tools>button {
+    box-sizing:border-box;
+    padding:6px;
+    flex-grow:1;
+    background:#1e4157f2;
+    border:1px solid #b4b3b9;
+    color:#f1f1f1;
+    cursor:pointer
+}
+
+div#editor>div#tools>button:hover{
+    background:#1597bb;
+    border:1px solid #3b3944
+}
+
+div#editor>div#tools>button.active {
+    background-color:#1597bb
+}
+
+div#editor>div#tools>button#italics {
+    font-style:italic
+}
+
+div#editor>div#tools>button#bold {
+    font-weight:700
+}
+
+div#editor>div#tools>button#underline {
+    text-decoration:underline
+}
+
+div#editor>div#tools>button#strikethrough {
+    text-decoration:line-through
+}
+
+div#editor>div#input .embed {
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    margin:5rem 0
+}
+
+div#editor>div#input .embed>iframe,div#editor>div#input .embed>img {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%
+}
+
+div#editor>div#input .embed>img {
+    -o-object-fit:contain;
+    object-fit:contain
+}

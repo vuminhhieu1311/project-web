@@ -32,12 +32,6 @@
             <column name="about" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="work_experience_id" type="bigint">
-                <constraints nullable="true" unique="true" uniqueConstraintName="ux_personal_profiles__work_experience_id" />
-            </column>
-            <column name="education_id" type="bigint">
-                <constraints nullable="true" unique="true" uniqueConstraintName="ux_personal_profiles__education_id" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="personal_profiles" columnName="birthday" columnDataType="${datetimeType}"/>

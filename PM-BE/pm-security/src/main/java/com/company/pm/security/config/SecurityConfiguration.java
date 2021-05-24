@@ -91,7 +91,8 @@ public class SecurityConfiguration {
                 .pathMatchers("/management/health/**").permitAll()
                 .pathMatchers("/management/info").permitAll()
                 .pathMatchers("/management/prometheus").permitAll()
-                .pathMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN);
+                .pathMatchers("/management/**").hasAuthority(AuthoritiesConstants.ADMIN)
+                .pathMatchers("/websocket/**").authenticated();
     
         http.oauth2Login()
             .and()

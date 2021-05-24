@@ -1,0 +1,9 @@
+dependencies {
+    api project(':pm-domain')
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}

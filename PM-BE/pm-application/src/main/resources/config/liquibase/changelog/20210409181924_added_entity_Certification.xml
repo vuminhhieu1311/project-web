@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <!--
@@ -17,11 +17,28 @@
             <column name="name" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="iss_organization" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="iss_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="exp_date" type="${datetimeType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="credential_id" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="credential_url" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <column name="personal_profile_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+        <dropDefaultValue tableName="certifications" columnName="iss_date" columnDataType="${datetimeType}"/>
+        <dropDefaultValue tableName="certifications" columnName="exp_date" columnDataType="${datetimeType}"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -36,11 +53,16 @@
     -->
     <changeSet id="20210409181924-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/certifications.csv"
-                  separator=";"
-                  tableName="certifications">
+                file="config/liquibase/fake-data/certifications.csv"
+                separator=";"
+                tableName="certifications">
             <column name="id" type="numeric"/>
             <column name="name" type="string"/>
+            <column name="iss_organization" type="string"/>
+            <column name="iss_date" type="${datetimeType}"/>
+            <column name="exp_date" type="${datetimeType}"/>
+            <column name="credential_id" type="string"/>
+            <column name="credential_url" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

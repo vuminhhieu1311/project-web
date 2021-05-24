@@ -1,5 +1,6 @@
 package com.company.pm.domain.personalservice;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -46,7 +47,14 @@ public class Education implements Serializable {
 
     @Column("description")
     private String description;
-
+    
+    @JsonIgnoreProperties(
+        value = { "certifications", "skills", "projects", "publications", "workExperiences", "educations" },
+        allowSetters = true
+    )
     @Transient
     private PersonalProfile personalProfile;
+    
+    @Column("personal_profile_id")
+    private Long personalProfileId;
 }

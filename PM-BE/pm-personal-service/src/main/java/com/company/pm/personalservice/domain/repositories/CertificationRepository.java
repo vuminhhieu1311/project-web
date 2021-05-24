@@ -20,6 +20,9 @@ public interface CertificationRepository extends R2dbcRepository<Certification, 
 
     @Query("SELECT * FROM certifications entity WHERE entity.personal_profile_id IS NULL")
     Flux<Certification> findAllWherePersonalProfileIsNull();
+    
+    @Query("SELECT * FROM certifications entity WHERE entity.id = :certId AND entity.personal_profile_id = :profileId")
+    Mono<Certification> findByIdAndPersonalProfile(Long certId, Long profileId);
 
     // just to avoid having unambigous methods
     @Override

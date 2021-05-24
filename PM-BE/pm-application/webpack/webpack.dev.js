@@ -57,6 +57,11 @@ module.exports = options =>
                     secure: false,
                     changeOrigin: options.tls,
                 },
+                {
+                    context: ['/websocket'],
+                    target: `ws${options.tls ? 's' : ''}://127.0.0.1:8080`,
+                    ws: true
+                }
             ],
             watchOptions: {
                 ignore: [/node_modules/, utils.root('src/test')],
@@ -103,7 +108,7 @@ module.exports = options =>
             new webpack.HotModuleReplacementPlugin(),
             new WebpackNotifierPlugin({
                 title: 'JobsGo',
-                contentImage: path.join(__dirname, 'logo-jhipster.png'),
+                contentImage: path.join(__dirname, 'Logo_official.png'),
             }),
         ].filter(Boolean),
     });

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Post A Job</title>
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./resources/css/style_post_job.css">
+    <link rel="stylesheet" href="./resources/css/demo.min.css">
+    <link rel="stylesheet" href="./resources/css/editor.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div>
+
+        </div>
+        <div class="wrapper">
+            <ul class="steps">
+                <li class="is-active">Step 1</li>
+                <li>Step 2</li>
+                <li>Step 3</li>
+            </ul>
+            <form class="form-wrapper">
+                <fieldset class="section is-active">
+                    <h3>Start Posting A Job</h3>
+                    <input type="text" name="job-title" id="job-title" placeholder="Job Title">
+                    <input type="text" name="company-name" id="company-name" placeholder="Company">
+                    <input type="text" name="location" id="location" placeholder="Location">
+                    <input type="text" name="contact" id="contact" placeholder="Contact Email">
+                    <div class="next-button">Next</div>
+                </fieldset>
+
+                <fieldset class="section">
+                    <h3>Employment Type</h3>
+                    <div class="row cf">
+                        <div class="three col">
+                            <input type="radio" name="r1" id="r1" checked>
+                            <label for="r1">
+                                <h4>Full-time</h4>
+                            </label>
+                        </div>
+                        <div class="three col">
+                            <input type="radio" name="r1" id="r2"><label for="r2">
+                                <h4>Part-time</h4>
+                            </label>
+                        </div>
+                        <div class="three col">
+                            <input type="radio" name="r1" id="r3"><label for="r3">
+                                <h4>Internship</h4>
+                            </label>
+                        </div>
+                        <div class="three col">
+                            <input type="radio" name="r1" id="r4"><label for="r4">
+                                <h4>Temporary</h4>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="back-button">Back</div>
+                    <div class="next-button">Next</div>
+                </fieldset>
+                <fieldset class="section">
+                    <h3>Job Description</h3>
+                    <div class="container">
+                        <div id="editor">
+                            <div id="tools">
+                                <button title="Clear formatting" id="clear">C</button>
+                                <button title="Insert header" id="heading">H</button>
+                                <hr>
+                                <button title="Italic" id="italics">I</button>
+                                <button title="Bold" id="bold">B</button>
+                                <button title="Underline" id="underline">U</button>
+                                <button title="Strikethrough" id="strikethrough">S</button>
+                                <hr>
+                                <button title="Unordered list" id="ul">ul</button>
+                                <button title="Ordered list" id="ol">ol</button>
+                                <hr>
+                                <button title="Insert video" id="video">vid</button>
+                                <button title="Insert image" id="image">img</button>
+                                <button title="Insert Gfycat" id="gfy">gfy</button>
+                                <hr>
+                                <button title="Insert horizontal line" id="hr">hr</button>
+                            </div>
+                            <div id="input" contenteditable="true"></div>
+                            <textarea name="editor" id="output" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="back-button">Back</div>
+                    <input class="submit next-button" type="submit" value="Post Job">
+                </fieldset>
+                <fieldset class="section post-finish">
+                    <h3>Job Created!</h3>
+                    <p>Your job has now been posted.</p>
+                    <Button class="button">View Your Post</Button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src="./resources/js/postJob.js"></script>
+    <script src="./resources/js/editor.min.js"></script>
+</body>
+
+</html>

@@ -112,21 +112,3 @@ class UserRepositoryInternalImpl implements UserRepositoryInternal {
         return user;
     }
 }
-
-class UserSqlHelper {
-    
-    static List<Expression> getColumns(Table table, String columnPrefix) {
-        List<Expression> columns = new ArrayList<>();
-        
-        columns.add(Column.aliased("id", table, columnPrefix + "_id"));
-        columns.add(Column.aliased("login", table, columnPrefix + "_login"));
-        columns.add(Column.aliased("first_name", table, columnPrefix + "_first_name"));
-        columns.add(Column.aliased("last_name", table, columnPrefix + "_last_name"));
-        columns.add(Column.aliased("email", table, columnPrefix + "_email"));
-        columns.add(Column.aliased("activated", table, columnPrefix + "_activated"));
-        columns.add(Column.aliased("lang_key", table, columnPrefix + "_lang_key"));
-        columns.add(Column.aliased("image_url", table, columnPrefix + "_image_url"));
-        
-        return columns;
-    }
-}

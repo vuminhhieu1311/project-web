@@ -5,6 +5,7 @@ import com.company.pm.domain.personalservice.Certification;
 import io.r2dbc.spi.Row;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.function.BiFunction;
 
 /**
@@ -26,11 +27,14 @@ public class CertificationRowMapper implements BiFunction<Row, String, Certifica
     @Override
     public Certification apply(Row row, String prefix) {
         Certification entity = Certification.builder().build();
-        
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
+        entity.setIssOrganization(converter.fromRow(row, prefix + "_iss_organization", String.class));
+        entity.setIssDate(converter.fromRow(row, prefix + "_iss_date", Instant.class));
+        entity.setExpDate(converter.fromRow(row, prefix + "_exp_date", Instant.class));
+        entity.setCredentialID(converter.fromRow(row, prefix + "_credential_id", String.class));
+        entity.setCredentialURL(converter.fromRow(row, prefix + "_credential_url", String.class));
         entity.setPersonalProfileId(converter.fromRow(row, prefix + "_personal_profile_id", Long.class));
-        
         return entity;
     }
 }

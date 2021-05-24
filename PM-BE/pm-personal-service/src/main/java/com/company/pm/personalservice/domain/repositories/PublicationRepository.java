@@ -20,6 +20,9 @@ public interface PublicationRepository extends R2dbcRepository<Publication, Long
 
     @Query("SELECT * FROM publications entity WHERE entity.personal_profile_id IS NULL")
     Flux<Publication> findAllWherePersonalProfileIsNull();
+    
+    @Query("SELECT * FROM publications entity WHERE entity.id = :pubId AND entity.personal_profile_id = :profileId")
+    Mono<Publication> findByIdAndPersonalProfile(Long pubId, Long profileId);
 
     // just to avoid having unambigous methods
     @Override

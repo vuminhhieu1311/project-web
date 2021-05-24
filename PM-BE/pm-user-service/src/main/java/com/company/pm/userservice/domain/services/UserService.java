@@ -1,8 +1,10 @@
 package com.company.pm.userservice.domain.services;
 
 import com.company.pm.common.config.Constants;
+import com.company.pm.domain.searchservice.UserSearch;
 import com.company.pm.domain.userservice.Authority;
 import com.company.pm.domain.userservice.User;
+import com.company.pm.searchservice.domain.repositories.UserSearchRepository;
 import com.company.pm.security.utils.SecurityUtils;
 import com.company.pm.userservice.domain.services.dto.AdminUserDTO;
 import com.company.pm.userservice.domain.services.dto.UserDTO;
@@ -11,6 +13,7 @@ import com.company.pm.userservice.domain.repositories.AuthorityRepository;
 import com.company.pm.userservice.domain.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
@@ -34,6 +37,9 @@ public class UserService {
     private final UserMapper userMapper;
     
     private final UserRepository userRepository;
+    
+    private final UserSearchRepository userSearchRepository;
+    
     private final AuthorityRepository authorityRepository;
     
     @Transactional
@@ -54,6 +60,7 @@ public class UserService {
                 
                 return saveUser(user);
             })
+            .flatMap(this::saveUserSearch)
             .doOnNext(user -> log.debug("Changed information of user: {}", user))
             .then();
     }
@@ -263,5 +270,41 @@ public class UserService {
                 }
             )
             .thenReturn(user);
+    }
+    
+    private Mono<User> saveUserSearch(User user) {
+        return userSearchRepository.save(
+            new UserSearch(user.getId(), user.getFirstName(), user.getLastName())
+        ).thenReturn(user);
+    }
+    
+    /**
+     * Sync with Elasticsearch
+     * <p>
+     * This is scheduled to get fired everyday, at 02:00 (am).
+     */
+    @Scheduled(cron = "0 0 2 * * ?", zone = "Asia/Ho_Chi_Minh")
+    public void syncUserSearch() {
+        syncUserSearchReactively().blockLast();
+    }
+    
+    @Transactional
+    public Flux<UserSearch> syncUserSearchReactively() {
+        return userRepository.findAll()
+            .flatMap(this::updateUserSearch);
+    }
+    
+    private Mono<UserSearch> updateUserSearch(User user) {
+        return userSearchRepository.findById(user.getId())
+            .flatMap(userSearch -> {
+                userSearch.setFirstName(user.getFirstName());
+                userSearch.setLastName(user.getLastName());
+                
+                return userSearchRepository.save(userSearch);
+            })
+            .switchIfEmpty(userSearchRepository.save(
+                new UserSearch(user.getId(), user.getFirstName(), user.getLastName())
+            ))
+            .doOnNext(saved -> log.debug("Saved user to elasticsearch: {}", saved));
     }
 }

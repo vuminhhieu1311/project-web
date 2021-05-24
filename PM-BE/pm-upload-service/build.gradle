@@ -1,0 +1,10 @@
+dependencies {
+    api project(':pm-common')
+    api project(':pm-user-service')
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}

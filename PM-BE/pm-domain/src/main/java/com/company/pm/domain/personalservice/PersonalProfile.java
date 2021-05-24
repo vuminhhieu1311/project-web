@@ -2,6 +2,7 @@ package com.company.pm.domain.personalservice;
 
 import com.company.pm.common.config.Constants;
 import com.company.pm.domain.userservice.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.data.annotation.Id;
@@ -47,33 +48,48 @@ public class PersonalProfile implements Serializable {
 
     @Column("about")
     private String about;
-
-    private Long workExperienceId;
-
+    
+    @Column("headline")
+    private String headline;
+    
+    @Column("industry")
+    private String industry;
+    
+    @Column("bg_image_url")
+    private String bgImageUrl;
+    
     @Transient
-    private WorkExperience workExperience;
-
-    private Long educationId;
-
+    @JsonIgnoreProperties(value = { "personalProfile" }, allowSetters = true)
+    @JsonIgnore
+    @Builder.Default
+    private Set<WorkExperience> workExperiences = new HashSet<>();
+    
     @Transient
-    private Education education;
+    @JsonIgnoreProperties(value = { "personalProfile" }, allowSetters = true)
+    @Builder.Default
+    private Set<Education> educations = new HashSet<>();
 
     @Transient
     @JsonIgnoreProperties(value = { "personalProfile" }, allowSetters = true)
+    @Builder.Default
     private Set<Certification> certifications = new HashSet<>();
 
     @Transient
     @JsonIgnoreProperties(value = { "personalProfile" }, allowSetters = true)
+    @Builder.Default
     private Set<Skill> skills = new HashSet<>();
 
     @Transient
     @JsonIgnoreProperties(value = { "creators", "personalProfile" }, allowSetters = true)
+    @Builder.Default
     private Set<Project> projects = new HashSet<>();
 
     @Transient
     @JsonIgnoreProperties(value = { "authors", "personalProfile" }, allowSetters = true)
+    @Builder.Default
     private Set<Publication> publications = new HashSet<>();
     
+    @Column("user_id")
     private String userId;
     
     @Transient

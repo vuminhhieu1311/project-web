@@ -43,6 +43,7 @@ public class Project implements Serializable {
 
     @Transient
     @JsonIgnoreProperties(value = { "project" }, allowSetters = true)
+    @Builder.Default
     private Set<Creator> creators = new HashSet<>();
 
     @JsonIgnoreProperties(

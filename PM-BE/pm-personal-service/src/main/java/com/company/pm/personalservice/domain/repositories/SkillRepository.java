@@ -20,6 +20,9 @@ public interface SkillRepository extends R2dbcRepository<Skill, Long>, SkillRepo
 
     @Query("SELECT * FROM skills entity WHERE entity.personal_profile_id IS NULL")
     Flux<Skill> findAllWherePersonalProfileIsNull();
+    
+    @Query("SELECT * FROM skills entity WHERE entity.id = :skillId AND entity.personal_profile_id = :profileId")
+    Mono<Skill> findByIdAndPersonalProfile(Long skillId, Long profileId);
 
     // just to avoid having unambigous methods
     @Override

@@ -3,10 +3,9 @@ package com.company.pm.personalservice.domain.repositories.rowmapper;
 import com.company.pm.common.services.ColumnConverter;
 import com.company.pm.domain.personalservice.PersonalProfile;
 import io.r2dbc.spi.Row;
-import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 import java.util.function.BiFunction;
+import org.springframework.stereotype.Service;
 
 /**
  * Converter between {@link Row} to {@link PersonalProfile}, with proper type conversions.
@@ -27,7 +26,6 @@ public class PersonalProfileRowMapper implements BiFunction<Row, String, Persona
     @Override
     public PersonalProfile apply(Row row, String prefix) {
         PersonalProfile entity = PersonalProfile.builder().build();
-        
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setBirthday(converter.fromRow(row, prefix + "_birthday", Instant.class));
         entity.setCountry(converter.fromRow(row, prefix + "_country", String.class));
@@ -35,10 +33,10 @@ public class PersonalProfileRowMapper implements BiFunction<Row, String, Persona
         entity.setPhoneNumber(converter.fromRow(row, prefix + "_phone_number", String.class));
         entity.setAddress(converter.fromRow(row, prefix + "_address", String.class));
         entity.setAbout(converter.fromRow(row, prefix + "_about", String.class));
-        entity.setWorkExperienceId(converter.fromRow(row, prefix + "_work_experience_id", Long.class));
-        entity.setEducationId(converter.fromRow(row, prefix + "_education_id", Long.class));
+        entity.setHeadline(converter.fromRow(row, prefix + "_headline", String.class));
+        entity.setBgImageUrl(converter.fromRow(row, prefix + "_bg_image_url", String.class));
+        entity.setIndustry(converter.fromRow(row, prefix + "_industry", String.class));
         entity.setUserId(converter.fromRow(row, prefix + "_user_id", String.class));
-        
         return entity;
     }
 }

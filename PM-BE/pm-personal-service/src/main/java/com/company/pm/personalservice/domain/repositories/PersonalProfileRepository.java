@@ -1,5 +1,6 @@
 package com.company.pm.personalservice.domain.repositories;
 
+import com.company.pm.domain.personalservice.Certification;
 import com.company.pm.domain.personalservice.PersonalProfile;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.r2dbc.repository.Query;
@@ -15,28 +16,16 @@ import reactor.core.publisher.Mono;
 @SuppressWarnings("unused")
 @Repository
 public interface PersonalProfileRepository extends R2dbcRepository<PersonalProfile, Long>, PersonalProfileRepositoryInternal {
-    @Query("SELECT * FROM personal_profiles entity WHERE entity.work_experience_id = :id")
-    Flux<PersonalProfile> findByWorkExperience(Long id);
-
-    @Query("SELECT * FROM personal_profiles entity WHERE entity.work_experience_id IS NULL")
-    Flux<PersonalProfile> findAllWhereWorkExperienceIsNull();
-
-    @Query("SELECT * FROM personal_profiles entity WHERE entity.education_id = :id")
-    Flux<PersonalProfile> findByEducation(Long id);
-
-    @Query("SELECT * FROM personal_profiles entity WHERE entity.education_id IS NULL")
-    Flux<PersonalProfile> findAllWhereEducationIsNull();
-    
-    @Query("SELECT * FROM personal_profiles entity WHERE entity.user_id = :userId")
-    Mono<PersonalProfile> findByUser(String userId);
-
     // just to avoid having unambigous methods
     @Override
     Flux<PersonalProfile> findAll();
 
     @Override
     Mono<PersonalProfile> findById(Long id);
-
+    
+    @Query("SELECT * FROM personal_profiles entity WHERE entity.user_id = :userId")
+    Mono<PersonalProfile> findByUser(String userId);
+    
     @Override
     <S extends PersonalProfile> Mono<S> save(S entity);
 }

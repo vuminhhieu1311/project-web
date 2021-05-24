@@ -9,6 +9,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.Instant;
 
 @Data
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
@@ -25,6 +26,21 @@ public class Certification implements Serializable {
 
     @Column("name")
     private String name;
+    
+    @Column("iss_organization")
+    private String issOrganization;
+    
+    @Column("iss_date")
+    private Instant issDate;
+    
+    @Column("exp_date")
+    private Instant expDate;
+    
+    @Column("credential_id")
+    private String credentialID;
+    
+    @Column("credential_url")
+    private String credentialURL;
 
     @JsonIgnoreProperties(
         value = { "workExperience", "education", "certifications", "skills", "projects", "publications" },

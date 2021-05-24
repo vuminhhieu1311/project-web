@@ -15,8 +15,14 @@ import reactor.core.publisher.Mono;
 @SuppressWarnings("unused")
 @Repository
 public interface EducationRepository extends R2dbcRepository<Education, Long>, EducationRepositoryInternal {
-    @Query("SELECT * FROM educations entity WHERE entity.id not in (select education_id from personal_profiles)")
+    @Query("SELECT * FROM educations entity WHERE entity.personal_profile_id = :id")
+    Flux<Education> findByPersonalProfile(Long id);
+
+    @Query("SELECT * FROM educations entity WHERE entity.personal_profile_id IS NULL")
     Flux<Education> findAllWherePersonalProfileIsNull();
+    
+    @Query("SELECT * FROM educations entity WHERE entity.id = :educationId AND entity.personal_profile_id = :profileId")
+    Mono<Education> findByIdAndPersonalProfile(Long educationId, Long profileId);
 
     // just to avoid having unambigous methods
     @Override

@@ -3,16 +3,16 @@ package com.company.pm.userservice.web;
 import com.company.pm.userservice.domain.services.dto.AdminUserDTO;
 import com.company.pm.userservice.domain.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import springfox.documentation.annotations.ApiIgnore;
-
-import java.io.Serial;
 
 @RestController
 @RequestMapping(
@@ -31,18 +31,8 @@ public class AccountController {
                 if (principal instanceof AbstractAuthenticationToken) {
                     return userService.getUserFromAuthentication((AbstractAuthenticationToken) principal);
                 } else {
-                    return Mono.error(new AccountResourceException("Could not find user"));
+                    return Mono.error(new ResponseStatusException(HttpStatus.NOT_FOUND));
                 }
             });
-    }
-
-    private static class AccountResourceException extends RuntimeException {
-
-        @Serial
-        private static final long serialVersionUID = 1L;
-
-        private AccountResourceException(String message) {
-            super(message);
-        }
     }
 }

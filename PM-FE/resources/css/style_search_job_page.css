@@ -1,0 +1,152 @@
+body{
+    overflow: hidden;
+}
+
+.search__filter{
+  margin-top: 70px;
+  width: 100%;
+  height: 60px;
+  padding: 10px;
+  background-color: white;
+  display: flex;
+  border-bottom: 0.5px solid rgb(180, 180, 180);
+}
+
+.search__filter div{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 18px;
+  background-color: royalblue;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+.search__filter input{
+  display: block;
+  border: 2px solid rgb(136, 136, 136);
+  border-radius: 20px;
+  outline: none;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.main{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 100%;
+}
+
+.main__left{
+    background-color: rgb(196, 221, 255);
+    min-width: 400px;
+    height: 80vh;
+    margin-left: 10px;
+    margin-right: 10px;
+    overflow-y: scroll;
+}
+
+.main__right{
+    height: 80vh;
+    overflow-y: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(211, 211, 211); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(172, 172, 172); 
+  }
+
+  #overlay__jobtype{
+    display: none;
+    position: fixed;
+    left: 200px;
+    border-radius: 8px;
+    width: 300px;
+    height: 180px;
+    background-color: white;
+    border: 1px solid black;
+  }
+
+  .overlay{
+    display: block !important;
+  }
+
+
+  .overlay__jobtype__checkbox{
+    margin: 10px;
+
+  }
+
+  .overlay__jobtype__checkbox input{
+    margin: 10px;
+  }
+
+  .overlay__jobtype__checkbox div{
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .overlay__jobtype__checkbox button{
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: royalblue;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+
+  #overlay__createdat{
+    display: none;
+    position: fixed;
+    left: 200px;
+    border-radius: 8px;
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    border: 1px solid black;
+  }
+
+  .overlay__createdat__checkbox input{
+    margin: 10px;
+  }
+
+  .overlay__createdat__checkbox div{
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .overlay__createdat__checkbox button{
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: royalblue;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-left: 20px;
+    cursor: pointer;
+  }

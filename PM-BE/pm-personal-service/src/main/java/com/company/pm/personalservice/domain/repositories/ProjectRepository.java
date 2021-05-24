@@ -20,6 +20,9 @@ public interface ProjectRepository extends R2dbcRepository<Project, Long>, Proje
 
     @Query("SELECT * FROM projects entity WHERE entity.personal_profile_id IS NULL")
     Flux<Project> findAllWherePersonalProfileIsNull();
+    
+    @Query("SELECT * FROM projects entity WHERE entity.id = :projectId AND entity.personal_profile_id = :profileId")
+    Mono<Project> findByIdAndPersonalProfile(Long projectId, Long profileId);
 
     // just to avoid having unambigous methods
     @Override

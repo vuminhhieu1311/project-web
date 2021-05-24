@@ -1,11 +1,11 @@
 package com.company.pm.common.config;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -28,7 +28,9 @@ import org.zalando.problem.violations.ConstraintViolationProblemModule;
     DateTimeFormatConfiguration.class,
     LoggingConfiguration.class,
     ReactorConfiguration.class,
-    OpenApiConfiguration.class
+    OpenApiConfiguration.class,
+    ElasticsearchConfiguration.class,
+    CloudinaryConfiguration.class
 })
 public class CommonConfiguration {
     
@@ -36,8 +38,6 @@ public class CommonConfiguration {
     @Primary
     public ObjectMapper objectMapper() {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         
         mapper.registerModule(new JavaTimeModule())
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
@@ -50,6 +50,9 @@ public class CommonConfiguration {
     
     @Bean
     public ModelMapper modelMapper() {
-        return new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        
+        return modelMapper;
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity WorkExperience.
+    -->
+    <changeSet id="20210409181926-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="personal_profile_id"
+                                 baseTableName="work_experiences"
+                                 constraintName="fk_work_experiences__personal_profile_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="personal_profiles"/>
+    </changeSet>
+</databaseChangeLog>

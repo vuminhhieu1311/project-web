@@ -50,6 +50,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     private String email;
     
     @NotNull
+    @Builder.Default
     private boolean activated = false;
     
     @Size(min = 2, max = 10)
@@ -62,5 +63,6 @@ public class User extends AbstractAuditingEntity implements Serializable {
     
     @JsonIgnore
     @Transient
+    @Builder.Default
     private Set<Authority> authorities = new HashSet<>();
 }

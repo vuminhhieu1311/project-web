@@ -28,7 +28,7 @@ public class OpenApiConfiguration {
 
     @Bean
     public SpringfoxCustomizer noApiFirstCustomizer() {
-        return docket -> docket.select().apis(RequestHandlerSelectors.basePackage("com.company.pm").negate());
+        return docket -> docket.select().apis(RequestHandlerSelectors.basePackage("com.company.pm.web.api").negate());
     }
 
     @Bean
@@ -58,7 +58,7 @@ public class OpenApiConfiguration {
             .genericModelSubstitutes(ResponseEntity.class)
             .ignoredParameterTypes(Pageable.class, ServerWebExchange.class)
             .select()
-            .apis(RequestHandlerSelectors.basePackage("com.company.pm"))
+            .apis(RequestHandlerSelectors.basePackage("com.company.pm.web.api"))
             .paths(regex(properties.getDefaultIncludePattern()))
             .build();
     }

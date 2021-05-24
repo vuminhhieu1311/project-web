@@ -25,6 +25,9 @@ public class Skill implements Serializable {
 
     @Column("name")
     private String name;
+    
+    @Column("category")
+    private String category;
 
     @JsonIgnoreProperties(
         value = { "workExperience", "education", "certifications", "skills", "projects", "publications" },

@@ -26,11 +26,9 @@ public class CreatorRowMapper implements BiFunction<Row, String, Creator> {
     @Override
     public Creator apply(Row row, String prefix) {
         Creator entity = Creator.builder().build();
-        
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
         entity.setProjectId(converter.fromRow(row, prefix + "_project_id", Long.class));
-        
         return entity;
     }
 }

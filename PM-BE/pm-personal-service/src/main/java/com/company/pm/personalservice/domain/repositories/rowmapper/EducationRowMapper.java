@@ -3,10 +3,10 @@ package com.company.pm.personalservice.domain.repositories.rowmapper;
 import com.company.pm.common.services.ColumnConverter;
 import com.company.pm.domain.personalservice.Education;
 import io.r2dbc.spi.Row;
-import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 import java.util.function.BiFunction;
+
+import org.springframework.stereotype.Service;
 
 /**
  * Converter between {@link Row} to {@link Education}, with proper type conversions.
@@ -27,7 +27,6 @@ public class EducationRowMapper implements BiFunction<Row, String, Education> {
     @Override
     public Education apply(Row row, String prefix) {
         Education entity = Education.builder().build();
-        
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setSchool(converter.fromRow(row, prefix + "_school", String.class));
         entity.setDegree(converter.fromRow(row, prefix + "_degree", String.class));
@@ -37,7 +36,7 @@ public class EducationRowMapper implements BiFunction<Row, String, Education> {
         entity.setGrade(converter.fromRow(row, prefix + "_grade", String.class));
         entity.setActivities(converter.fromRow(row, prefix + "_activities", String.class));
         entity.setDescription(converter.fromRow(row, prefix + "_description", String.class));
-        
+        entity.setPersonalProfileId(converter.fromRow(row, prefix + "_personal_profile_id", Long.class));
         return entity;
     }
 }

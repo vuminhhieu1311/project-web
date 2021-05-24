@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Job</title>
+    <link rel="icon" href="resources/images/j.svg">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="./resources/css/reusable.css">
+    <link rel="stylesheet" href="./resources/css/style_search_job_page.css">
+    <link rel="stylesheet" href="./vendors/css/grid.css">
+    <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="header">
+        <div id="left-header">
+            <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
+        </div>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <button data-close-button class="close-button"><i class="fas fa-long-arrow-alt-left"></i></button>
+                <input class="search-input" type="text" placeholder="Search">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div id="overlay"></div>
+        <div id="right-header">
+            <nav id="nav-menu">
+                <div data-modal-target="#modal" class="menu-icons">
+                    <div class="material-icons md-24">
+                        search
+                    </div>
+                    <h6>Search</h6>
+                </div>
+
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        home
+                    </div>
+                    <h6>Home</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        people
+                    </div>
+                    <h6>My Network</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        work
+                    </div>
+                    <h6>Jobs</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        message
+                    </div>
+                    <h6>Messaging</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        notifications
+                    </div>
+                    <h6>Notifications</h6>
+                </div>
+
+                <div class=" menu-icons dropbtn" onclick="menuToggle()" id="personal-icon">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
+                    </div>
+                    <div>
+                        <h6>Me <i class="fas fa-caret-down"></i></h6>
+                    </div>
+                </div>
+                
+                <!-- user account dropdown menu -->
+                <div class="dropdown-menu">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
+                        <h3>Hieu Vu Minh <br> <span>Student at Hanoi University of Science and Technology</span></h3>
+                    </div>
+                    <div class="setting-list">
+                        <ul>
+                            <li><i class="fas fa-user-circle"></i><a href="#">View Profile</a></li>
+                            <li><i class="fas fa-edit"></i><a href="#">Edit Profile</a></li>
+                            <li><i class="fas fa-users-cog"></i><a href="#">Account Settings</a></li>
+                            <li><i class="fas fa-sign-out-alt"></i><a href="#">Sign Out</a></li>                        
+                        </ul>
+                    </div>     
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div>
+        <div class="search__filter">
+            <input type="text" name="keywords">
+            <div id="search__filter__jobtype">Job type <i class="fas fa-sort-down"></i></div>
+            <div id="search__filter__createdat">Created at <i class="fas fa-sort-down"></i></div>
+            <div>Search</div>
+        </div>
+ 
+        <div id="overlay__jobtype">
+            <div class="overlay__jobtype__header">
+            </div>
+            <div class="overlay__jobtype__checkbox">
+                <form>
+                    <input type="checkbox" name="fulltime" value="fulltime">
+                        <label for="fulltime">Full time</label></br>
+                    <input type="checkbox" name="contract" value="contract">
+                        <label for="contract">Contract</label></br>
+                    <input type="checkbox" name="internship" value="internship">
+                        <label for="internship">Internship</label></br>
+                    <div>
+                        <button>Cancel</button>
+                        <button type="submit">Show result</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="overlay__createdat">
+            <div class="overlay__createdat__header">
+            </div>
+
+            <div class="overlay__createdat__checkbox">
+                <form>
+                    <input type="checkbox" name="anytime" value="fulltime">
+                        <label for="anytime">Any time</label></br>
+                    <input type="checkbox" name="passmonth" value="contract">
+                        <label for="passmonth">Pass month</label></br>
+                    <input type="checkbox" name="passweek" value="internship">
+                        <label for="passweek">Pass week</label></br>
+                    <input type="checkbox" name="passday" value="internship">
+                        <label for="passday">Pass 24 hours</label></br>
+                    <div>
+                        <button>Cancel</button>
+                        <button type="submit">Show result</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+        <div class="main">
+            <div class="main__left">
+                <brief-job-card 
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="jobName">XYZ</div>
+                    <div slot="companyName">ABC</div>
+                    <div slot="address">VietNam</div>
+                    <span slot="time">2 days ago</span>
+                    <span slot="applicant">8 applicants</span>
+                </brief-job-card>
+
+                <brief-job-card 
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="jobName">XYZ</div>
+                    <div slot="companyName">ABC</div>
+                    <div slot="address">VietNam</div>
+                    <span slot="time">2 days ago</span>
+                    <span slot="applicant">8 applicants</span>
+                </brief-job-card>
+
+                <brief-job-card 
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="jobName">XYZ</div>
+                    <div slot="companyName">ABC</div>
+                    <div slot="address">VietNam</div>
+                    <span slot="time">2 days ago</span>
+                    <span slot="applicant">8 applicants</span>
+                </brief-job-card>
+
+                <brief-job-card 
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="jobName">XYZ</div>
+                    <div slot="companyName">ABC</div>
+                    <div slot="address">VietNam</div>
+                    <span slot="time">2 days ago</span>
+                    <span slot="applicant">8 applicants</span>
+                </brief-job-card>
+
+                <brief-job-card 
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="jobName">XYZ</div>
+                    <div slot="companyName">ABC</div>
+                    <div slot="address">VietNam</div>
+                    <span slot="time">2 days ago</span>
+                    <span slot="applicant">8 applicants</span>
+                </brief-job-card>
+
+                <brief-job-card 
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="jobName">XYZ</div>
+                    <div slot="companyName">ABC</div>
+                    <div slot="address">VietNam</div>
+                    <span slot="time">2 days ago</span>
+                    <span slot="applicant">8 applicants</span>
+                </brief-job-card>
+
+                <brief-job-card 
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="jobName">XYZ</div>
+                    <div slot="companyName">ABC</div>
+                    <div slot="address">VietNam</div>
+                    <span slot="time">2 days ago</span>
+                    <span slot="applicant">8 applicants</span>
+                </brief-job-card>
+
+                <brief-job-card 
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="jobName">XYZ</div>
+                    <div slot="companyName">ABC</div>
+                    <div slot="address">VietNam</div>
+                    <span slot="time">2 days ago</span>
+                    <span slot="applicant">8 applicants</span>
+                </brief-job-card>
+
+                <brief-job-card 
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="jobName">XYZ</div>
+                    <div slot="companyName">ABC</div>
+                    <div slot="address">VietNam</div>
+                    <span slot="time">2 days ago</span>
+                    <span slot="applicant">8 applicants</span>
+                </brief-job-card>
+            </div>
+
+            <div class="main__right">
+                <recruit-detail-card
+                    avatar="https://i.pinimg.com/originals/d5/7e/f5/d57ef5d4d6bae63dce5b5c8a14f200e7.jpg">
+                    <div slot="description">
+                        Quality in higher education is not a simple one-dimensional 
+                        notion about academic quality. In view of the varied needs 
+                        and expectations of stakeholders, quality in higher education 
+                        can be said to be a multi-dimensional concept which should embrace
+                        all its functions and activities. It is related to teaching and 
+                        academic programs, research and scholarship, staffing, students, 
+                        buildings, facilities, equipment, services to the community and 
+                        the academic environment. In general, quality assurance in higher 
+                        education is a systematic management and assessment procedures to 
+                        monitor performance of higher education institutions.
+
+                        Quality in higher education is not a simple one-dimensional 
+                        notion about academic quality. In view of the varied needs 
+                        and expectations of stakeholders, quality in higher education 
+                        can be said to be a multi-dimensional concept which should embrace
+                        all its functions and activities. It is related to teaching and 
+                        academic programs, research and scholarship, staffing, students, 
+                        buildings, facilities, equipment, services to the community and 
+                        the academic environment. In general, quality assurance in higher 
+                        education is a systematic management and assessment procedures to 
+                        monitor performance of higher education institutions.
+                    </div>
+                    <div slot="address">District Hai Ba Trung, Ha Noi City</div>
+                    <div slot="time">2 days ago</div>
+                    <div slot="requirement">Degree in Electrical Engineering</div>
+                    <div slot="level"> Entry level</div>
+                    <div slot="type"> Full-time </div>
+                    <div slot="industry"> Electrical & Electronic Manufactoring</div>
+                    <div slot="jobFunction">Engineering</div>
+                </recruit-detail-card>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="./resources/js/reusable.js"></script>
+    <script type="text/javascript" src="./resources/js/main_search_job.js"></script>
+
+</body>
+
+</html>

@@ -1,15 +1,1103 @@
 # API-first development with OpenAPI
 # This file will be used at compile time to generate Spring-MVC endpoint stubs using openapi-generator
+
 openapi: '3.0.1'
 info:
-  title: 'PMApp'
+  title: 'JobsGo API'
+  description: JobsGo API documentation
+  contact: {}
   version: 0.0.1
 servers:
-  - url: http://localhost:8080/api
+  - url: http://localhost:8080/api/v1
     description: Development server
-  - url: https://localhost:8080/api
+  - url: https://localhost:8080/api/v1
     description: Development server with TLS Profile
-paths: {}
+tags:
+  - name: account-controller
+    description: Account Controller
+  - name: certification-controller
+    description: Certification Controller
+  - name: education-controller
+    description: Education Controller
+  - name: logout-controller
+    description: Logout Controller
+  - name: personal-profile-controller
+    description: Personal Profile Controller
+  - name: project-controller
+    description: Project Controller
+  - name: public-user-controller
+    description: Public User Controller
+  - name: publication-controller
+    description: Publication Controller
+  - name: skill-controller
+    description: Skill Controller
+  - name: upload-controller
+    description: Upload Controller
+  - name: user-controller
+    description: User Controller
+  - name: work-experience-controller
+    description: Work Experience Controller
+paths:
+  /api/v1/account:
+    get:
+      tags:
+        - account-controller
+      summary: getAccount
+      operationId: getAccountUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminUserDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/profile/certs:
+    get:
+      tags:
+        - certification-controller
+      summary: getCerts
+      operationId: getCertsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfCertification'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - certification-controller
+      summary: createCert
+      operationId: createCertUsingPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CertificationDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfCertification'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  '/api/v1/profile/certs/{certId}':
+    get:
+      tags:
+        - certification-controller
+      summary: getCert
+      operationId: getCertUsingGET
+      parameters:
+        - name: certId
+          in: path
+          description: certId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfCertification'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - certification-controller
+      summary: deleteCert
+      operationId: deleteCertUsingDELETE
+      parameters:
+        - name: certId
+          in: path
+          description: certId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+        - certification-controller
+      summary: updateCert
+      operationId: updateCertUsingPATCH
+      parameters:
+        - name: certId
+          in: path
+          description: certId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CertificationDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfCertification'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/v1/profile/educations:
+    get:
+      tags:
+        - education-controller
+      summary: getEdus
+      operationId: getEdusUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfEducation'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - education-controller
+      summary: createEdu
+      operationId: createEduUsingPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EducationDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfEducation'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  '/api/v1/profile/educations/{eduId}':
+    get:
+      tags:
+        - education-controller
+      summary: getEdu
+      operationId: getEduUsingGET
+      parameters:
+        - name: eduId
+          in: path
+          description: eduId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfEducation'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - education-controller
+      summary: deleteEdu
+      operationId: deleteEduUsingDELETE
+      parameters:
+        - name: eduId
+          in: path
+          description: eduId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+        - education-controller
+      summary: updateEdu
+      operationId: updateEduUsingPATCH
+      parameters:
+        - name: eduId
+          in: path
+          description: eduId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/EducationDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfEducation'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/v1/logout:
+    post:
+      tags:
+        - logout-controller
+      summary: logout
+      operationId: logoutUsingPOST
+      parameters:
+        - name: attributes
+          in: query
+          required: false
+          style: form
+          schema:
+            type: object
+        - name: claims
+          in: query
+          required: false
+          style: form
+          schema:
+            type: object
+        - name: creationTime
+          in: query
+          required: false
+          style: form
+          schema:
+            type: string
+            format: date-time
+        - name: expired
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: id
+          in: query
+          required: false
+          style: form
+          schema:
+            type: string
+        - name: lastAccessTime
+          in: query
+          required: false
+          style: form
+          schema:
+            type: string
+            format: date-time
+        - name: maxIdleTime.nano
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int32
+        - name: maxIdleTime.negative
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: maxIdleTime.seconds
+          in: query
+          required: false
+          style: form
+          schema:
+            type: integer
+            format: int64
+        - name: 'maxIdleTime.units[0].dateBased'
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: 'maxIdleTime.units[0].durationEstimated'
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: 'maxIdleTime.units[0].timeBased'
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: maxIdleTime.zero
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: started
+          in: query
+          required: false
+          style: form
+          schema:
+            type: boolean
+        - name: tokenValue
+          in: query
+          required: false
+          style: form
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/profile:
+    get:
+      tags:
+        - personal-profile-controller
+      summary: getPersonalProfile
+      operationId: getPersonalProfileUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalProfile'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - personal-profile-controller
+      summary: createProfile
+      operationId: createProfileUsingPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PersonalProfileDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalProfile'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    patch:
+      tags:
+        - personal-profile-controller
+      summary: updateProfile
+      operationId: updateProfileUsingPATCH
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PersonalProfileDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalProfile'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/v1/profile/projects:
+    get:
+      tags:
+        - project-controller
+      summary: getProjects
+      operationId: getProjectsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfProject'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - project-controller
+      summary: createProject
+      operationId: createProjectUsingPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfProject'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  '/api/v1/profile/projects/{projectId}':
+    get:
+      tags:
+        - project-controller
+      summary: getProject
+      operationId: getProjectUsingGET
+      parameters:
+        - name: projectId
+          in: path
+          description: projectId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfProject'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - project-controller
+      summary: deleteProject
+      operationId: deleteProjectUsingDELETE
+      parameters:
+        - name: projectId
+          in: path
+          description: projectId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+        - project-controller
+      summary: updateProject
+      operationId: updateProjectUsingPATCH
+      parameters:
+        - name: projectId
+          in: path
+          description: projectId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfProject'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/v1/authorities:
+    get:
+      tags:
+        - public-user-controller
+      summary: getAuthorities
+      operationId: getAuthoritiesUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/users:
+    get:
+      tags:
+        - public-user-controller
+      summary: getAllUsers
+      operationId: getAllUsersUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfUserDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/profile/pubs:
+    get:
+      tags:
+        - publication-controller
+      summary: getPubs
+      operationId: getPubsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfPublication'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - publication-controller
+      summary: createPub
+      operationId: createPubUsingPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PublicationDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfPublication'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  '/api/v1/profile/pubs/{pubId}':
+    get:
+      tags:
+        - publication-controller
+      summary: getPub
+      operationId: getPubUsingGET
+      parameters:
+        - name: pubId
+          in: path
+          description: pubId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfPublication'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - publication-controller
+      summary: deletePub
+      operationId: deletePubUsingDELETE
+      parameters:
+        - name: pubId
+          in: path
+          description: pubId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+        - publication-controller
+      summary: updatePub
+      operationId: updatePubUsingPATCH
+      parameters:
+        - name: pubId
+          in: path
+          description: pubId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PublicationDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfPublication'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/v1/profile/skills:
+    get:
+      tags:
+        - skill-controller
+      summary: getSkills
+      operationId: getSkillsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfSkill'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - skill-controller
+      summary: createSkill
+      operationId: createSkillUsingPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SkillDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfSkill'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  '/api/v1/profile/skills/{skillId}':
+    delete:
+      tags:
+        - skill-controller
+      summary: deleteSkill
+      operationId: deleteSkillUsingDELETE
+      parameters:
+        - name: skillId
+          in: path
+          description: skillId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+        - skill-controller
+      summary: updateSkill
+      operationId: updateSkillUsingPATCH
+      parameters:
+        - name: skillId
+          in: path
+          description: skillId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SkillDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfSkill'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /api/v1/upload/bg:
+    post:
+      tags:
+        - upload-controller
+      summary: uploadBgImg
+      operationId: uploadBgImgUsingPOST
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              required:
+                - bgImg
+              type: object
+              properties:
+                bgImg:
+                  type: string
+                  description: bgImg
+                  format: binary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/admin/v1/users:
+    get:
+      tags:
+        - user-controller
+      summary: getAllUsers
+      operationId: getAllUsersUsingGET_1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfAdminUserDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  '/api/admin/v1/users/{login}':
+    get:
+      tags:
+        - user-controller
+      summary: getUser
+      operationId: getUserUsingGET
+      parameters:
+        - name: login
+          in: path
+          description: login
+          required: true
+          style: simple
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfAdminUserDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  /api/v1/profile/experiences:
+    get:
+      tags:
+        - work-experience-controller
+      summary: getExps
+      operationId: getExpsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfWorkExperience'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - work-experience-controller
+      summary: createExp
+      operationId: createExpUsingPOST
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkExperienceDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkExperience'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+  '/api/v1/profile/experiences/{expId}':
+    get:
+      tags:
+        - work-experience-controller
+      summary: getExp
+      operationId: getExpUsingGET
+      parameters:
+        - name: expId
+          in: path
+          description: expId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkExperience'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - work-experience-controller
+      summary: deleteExp
+      operationId: deleteExpUsingDELETE
+      parameters:
+        - name: expId
+          in: path
+          description: expId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    patch:
+      tags:
+        - work-experience-controller
+      summary: updateExp
+      operationId: updateExpUsingPATCH
+      parameters:
+        - name: expId
+          in: path
+          description: expId
+          required: true
+          style: simple
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/WorkExperienceDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkExperience'
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
 components:
   responses:
     Problem:
@@ -35,6 +1123,832 @@ components:
       type: openIdConnect
       description: OpenID Connect authentication with KeyCloak
       openIdConnectUrl: http://localhost:8090/auth/realms/personal-management/.well-known/openid-configuration
+
+  schemas:
+    AdminUserDTO:
+      title: AdminUserDTO
+      required:
+        - login
+      type: object
+      properties:
+        activated:
+          type: boolean
+        authorities:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        email:
+          maxLength: 254
+          minLength: 5
+          type: string
+        firstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        id:
+          type: string
+        imageUrl:
+          maxLength: 256
+          minLength: 0
+          type: string
+        langKey:
+          maxLength: 10
+          minLength: 2
+          type: string
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        lastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        login:
+          maxLength: 50
+          minLength: 1
+          pattern: '^(?>[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)|(?>[_.@A-Za-z0-9-]+)$'
+          type: string
+    Author:
+      title: Author
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        publication:
+          $ref: '#/components/schemas/Publication'
+        publicationId:
+          type: integer
+          format: int64
+    Certification:
+      title: Certification
+      type: object
+      properties:
+        credentialID:
+          type: string
+        credentialURL:
+          type: string
+        expDate:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        issDate:
+          type: string
+          format: date-time
+        issOrganization:
+          type: string
+        name:
+          type: string
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+    CollectionModelOfEntityModelOfAdminUserDTO:
+      title: CollectionModelOfEntityModelOfAdminUserDTO
+      type: object
+      properties:
+        _embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelOfAdminUserDTO'
+        _links:
+          $ref: '#/components/schemas/Links'
+    CollectionModelOfEntityModelOfCertification:
+      title: CollectionModelOfEntityModelOfCertification
+      type: object
+      properties:
+        _embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelOfCertification'
+        _links:
+          $ref: '#/components/schemas/Links'
+    CollectionModelOfEntityModelOfEducation:
+      title: CollectionModelOfEntityModelOfEducation
+      type: object
+      properties:
+        _embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelOfEducation'
+        _links:
+          $ref: '#/components/schemas/Links'
+    CollectionModelOfEntityModelOfProject:
+      title: CollectionModelOfEntityModelOfProject
+      type: object
+      properties:
+        _embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelOfProject'
+        _links:
+          $ref: '#/components/schemas/Links'
+    CollectionModelOfEntityModelOfPublication:
+      title: CollectionModelOfEntityModelOfPublication
+      type: object
+      properties:
+        _embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelOfPublication'
+        _links:
+          $ref: '#/components/schemas/Links'
+    CollectionModelOfEntityModelOfSkill:
+      title: CollectionModelOfEntityModelOfSkill
+      type: object
+      properties:
+        _embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelOfSkill'
+        _links:
+          $ref: '#/components/schemas/Links'
+    CollectionModelOfEntityModelOfUserDTO:
+      title: CollectionModelOfEntityModelOfUserDTO
+      type: object
+      properties:
+        _embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelOfUserDTO'
+        _links:
+          $ref: '#/components/schemas/Links'
+    CollectionModelOfEntityModelOfWorkExperience:
+      title: CollectionModelOfEntityModelOfWorkExperience
+      type: object
+      properties:
+        _embedded:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelOfWorkExperience'
+        _links:
+          $ref: '#/components/schemas/Links'
+    Creator:
+      title: Creator
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        project:
+          $ref: '#/components/schemas/Project'
+        projectId:
+          type: integer
+          format: int64
+    Education:
+      title: Education
+      type: object
+      properties:
+        activities:
+          type: string
+        degree:
+          type: string
+        description:
+          type: string
+        endDate:
+          type: string
+          format: date-time
+        fieldOfStudy:
+          type: string
+        grade:
+          type: string
+        id:
+          type: integer
+          format: int64
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+        school:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+    EntityModelOfAdminUserDTO:
+      title: EntityModelOfAdminUserDTO
+      required:
+        - login
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        activated:
+          type: boolean
+        authorities:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        email:
+          maxLength: 254
+          minLength: 5
+          type: string
+        firstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        id:
+          type: string
+        imageUrl:
+          maxLength: 256
+          minLength: 0
+          type: string
+        langKey:
+          maxLength: 10
+          minLength: 2
+          type: string
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        lastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        login:
+          maxLength: 50
+          minLength: 1
+          pattern: '^(?>[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)|(?>[_.@A-Za-z0-9-]+)$'
+          type: string
+    EntityModelOfCertification:
+      title: EntityModelOfCertification
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        credentialID:
+          type: string
+        credentialURL:
+          type: string
+        expDate:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        issDate:
+          type: string
+          format: date-time
+        issOrganization:
+          type: string
+        name:
+          type: string
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+    EntityModelOfEducation:
+      title: EntityModelOfEducation
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        activities:
+          type: string
+        degree:
+          type: string
+        description:
+          type: string
+        endDate:
+          type: string
+          format: date-time
+        fieldOfStudy:
+          type: string
+        grade:
+          type: string
+        id:
+          type: integer
+          format: int64
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+        school:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+    EntityModelOfProject:
+      title: EntityModelOfProject
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        creators:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Creator'
+        description:
+          type: string
+        endDate:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+        startDate:
+          type: string
+          format: date-time
+        url:
+          type: string
+    EntityModelOfPublication:
+      title: EntityModelOfPublication
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        authors:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Author'
+        description:
+          type: string
+        id:
+          type: integer
+          format: int64
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+        publicationDate:
+          type: string
+          format: date-time
+        publisher:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+    EntityModelOfSkill:
+      title: EntityModelOfSkill
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        category:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+    EntityModelOfUserDTO:
+      title: EntityModelOfUserDTO
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        id:
+          type: string
+        login:
+          type: string
+    EntityModelOfWorkExperience:
+      title: EntityModelOfWorkExperience
+      type: object
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        company:
+          type: string
+        employmentType:
+          type: string
+          enum:
+            - FREE_LANCE
+            - FULL_TIME
+            - INTERNSHIP
+            - PART_TIME
+            - SELF_EMPLOYED
+        endDate:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        location:
+          type: string
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+        startDate:
+          type: string
+          format: date-time
+        title:
+          type: string
+    Links:
+      title: Links
+      type: object
+      properties:
+        empty:
+          type: boolean
+    PersonalProfile:
+      title: PersonalProfile
+      type: object
+      properties:
+        about:
+          type: string
+        address:
+          type: string
+        bgImageUrl:
+          type: string
+        birthday:
+          type: string
+          format: date-time
+        certifications:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Certification'
+        country:
+          type: string
+        educations:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Education'
+        headline:
+          type: string
+        id:
+          type: integer
+          format: int64
+        industry:
+          type: string
+        location:
+          type: string
+        phoneNumber:
+          pattern: '^\+(?:[0-9]){6,14}[0-9]$'
+          type: string
+        projects:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Project'
+        publications:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Publication'
+        skills:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Skill'
+        user:
+          $ref: '#/components/schemas/User'
+        userId:
+          type: string
+        workExperiences:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkExperience'
+    Project:
+      title: Project
+      type: object
+      properties:
+        creators:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Creator'
+        description:
+          type: string
+        endDate:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+        startDate:
+          type: string
+          format: date-time
+        url:
+          type: string
+    Publication:
+      title: Publication
+      type: object
+      properties:
+        authors:
+          uniqueItems: true
+          type: array
+          items:
+            $ref: '#/components/schemas/Author'
+        description:
+          type: string
+        id:
+          type: integer
+          format: int64
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+        publicationDate:
+          type: string
+          format: date-time
+        publisher:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+    Skill:
+      title: Skill
+      type: object
+      properties:
+        category:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+    User:
+      title: User
+      required:
+        - activated
+        - login
+      type: object
+      properties:
+        activated:
+          type: boolean
+        email:
+          maxLength: 254
+          minLength: 5
+          type: string
+        firstName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        id:
+          type: string
+        imageUrl:
+          maxLength: 256
+          minLength: 0
+          type: string
+        langKey:
+          maxLength: 10
+          minLength: 2
+          type: string
+        lastName:
+          maxLength: 50
+          minLength: 0
+          type: string
+        login:
+          maxLength: 50
+          minLength: 1
+          pattern: '^(?>[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)|(?>[_.@A-Za-z0-9-]+)$'
+          type: string
+    UserDTO:
+      title: UserDTO
+      type: object
+      properties:
+        id:
+          type: string
+        login:
+          type: string
+    WorkExperience:
+      title: WorkExperience
+      type: object
+      properties:
+        company:
+          type: string
+        employmentType:
+          type: string
+          enum:
+            - FREE_LANCE
+            - FULL_TIME
+            - INTERNSHIP
+            - PART_TIME
+            - SELF_EMPLOYED
+        endDate:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int64
+        location:
+          type: string
+        personalProfile:
+          $ref: '#/components/schemas/PersonalProfile'
+        personalProfileId:
+          type: integer
+          format: int64
+        startDate:
+          type: string
+          format: date-time
+        title:
+          type: string
+    CertificationDTO:
+      title: CertificationDTO
+      type: object
+      required:
+        - name
+        - issOrganization
+        - issMonth
+        - issYear
+      properties:
+        name:
+          type: string
+        issOrganization:
+          type: string
+        issMonth:
+          type: string
+          pattern: '^0[1-9]$|^1[0-2]$'
+        issYear:
+          type: string
+        expMonth:
+          type: string
+          pattern: '^0[1-9]$|^1[0-2]$'
+        expYear:
+          type: string
+        credentialID:
+          type: string
+        credentialURL:
+          type: string
+    EducationDTO:
+      title: EducationDTO
+      type: object
+      required:
+        - school
+      properties:
+        school:
+          type: string
+        degree:
+          type: string
+        fieldOfStudy:
+          type: string
+        startYear:
+          type: string
+        endYear:
+          type: string
+        grade:
+          type: string
+        activities:
+          type: string
+        description:
+          type: string
+    PersonalProfileDTO:
+      title: PersonalProfileDTO
+      type: object
+      required:
+        - country
+        - location
+      properties:
+        headline:
+          type: string
+        country:
+          type: string
+        location:
+          type: string
+        industry:
+          type: string
+        birthday:
+          type: string
+          pattern: '^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$'
+        phoneNumber:
+          type: string
+          pattern: '^\+(?:[0-9]){6,14}[0-9]$'
+        address:
+          type: string
+        about:
+          type: string
+        bgImageUrl:
+          type: string
+    ProjectDTO:
+      title: ProjectDTO
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        startMonth:
+          type: string
+          pattern: '^0[1-9]$|^1[0-2]$'
+        startYear:
+          type: string
+        endMonth:
+          type: string
+          pattern: '^0[1-9]$|^1[0-2]$'
+        endYear:
+          type: string
+        creators:
+          type: string
+        description:
+          type: string
+        url:
+          type: string
+    PublicationDTO:
+      title: PublicationDTO
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+        publisher:
+          type: string
+        publicationDate:
+          type: string
+          pattern: '^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$'
+        authors:
+          type: string
+        url:
+          type: string
+        description:
+          type: string
+    SkillDTO:
+      title: SkillDTO
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+    WorkExperienceDTO:
+      title: WorkExperienceDTO
+      type: object
+      required:
+        - title
+        - company
+        - startMonth
+      properties:
+        title:
+          type: string
+        employmentType:
+          type: string
+        company:
+          type: string
+        location:
+          type: string
+        startMonth:
+          type: string
+          pattern: '^0[1-9]$|^1[0-2]$'
+        startYear:
+          type: string
+        endMonth:
+          type: string
+          pattern: '^0[1-9]$|^1[0-2]$'
+        endYear:
+          type: string
+        industry:
+          type: string
+        headline:
+          type: string
 security:
   - oauth: [jhipster, email, profile]
   - openId: [jhipster, email, profile]

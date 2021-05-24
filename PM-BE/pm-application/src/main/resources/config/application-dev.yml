@@ -31,6 +31,9 @@ spring:
     serialization:
       indent-output: false
 
+  elasticsearch:
+    rest:
+      uris: http://127.0.0.1:9200
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker

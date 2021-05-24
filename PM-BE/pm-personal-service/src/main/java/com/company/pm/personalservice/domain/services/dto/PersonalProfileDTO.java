@@ -12,13 +12,20 @@ import javax.validation.constraints.Size;
 @RequiredArgsConstructor
 public class PersonalProfileDTO {
     
-    private final String birthday;
+    private final String headline;
     
     @NotNull
     @Size(min = 1)
     private final String country;
     
+    @NotNull
+    @Size(min = 1)
     private final String location;
+    
+    private final String industry;
+    
+    @Pattern(regexp = Constants.DATE_REGEX)
+    private final String birthday;
     
     @Pattern(regexp = Constants.PHONE_REGEX)
     private final String phoneNumber;
@@ -26,4 +33,6 @@ public class PersonalProfileDTO {
     private final String address;
     
     private final String about;
+    
+    private final String bgImageUrl;
 }

@@ -12,10 +12,10 @@
     "webapp:dev": "npm run webpack-dev-server -- --config webpack/webpack.dev.js --inline --port=9060 --env stats=minimal",
     "webpack-dev-server": "npm run webpack -- serve",
     "webpack": "node --max_old_space_size=4096 node_modules/webpack/bin/webpack.js",
-    "backend:info": "./gradlew -v",
-    "backend:start": "./gradlew -x webapp",
-    "java:jar": "./gradlew bootJar -x test -x integrationTest",
-    "java:war": "./gradlew bootWar -Pwar -x test -x integrationTest",
+    "backend:info": "cd .. && gradlew -v",
+    "backend:start": "cd .. && gradlew :pm-application:bootRun",
+    "java:jar": "cd .. && gradlew :pm-application:bootJar -x test",
+    "java:war": "cd .. && gradlew :pm-application:bootWar -Pwar -x test",
     "java:jar:dev": "npm run java:jar -- -Pdev,webapp",
     "java:jar:prod": "npm run java:jar -- -Pprod",
     "java:war:dev": "npm run java:war -- -Pdev,webapp",
@@ -28,7 +28,6 @@
     "default_environment": "prod",
     "packaging": "jar"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.13.15",
     "@babel/plugin-proposal-class-properties": "^7.13.0",

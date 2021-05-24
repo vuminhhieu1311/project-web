@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company</title>
+    <link rel="icon" href="resources/images/j.svg">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="./resources/css/reusable.css">
+    <link rel="stylesheet" href="./resources/css/style_company_page.css">
+    <link rel="stylesheet" href="./vendors/css/grid.css">
+    <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="header">
+        <div id="left-header">
+            <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
+        </div>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <button data-close-button class="close-button"><i class="fas fa-long-arrow-alt-left"></i></button>
+                <input class="search-input" type="text" placeholder="Search">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div id="overlay"></div>
+        <div id="right-header">
+            <nav id="nav-menu">
+                <div data-modal-target="#modal" class="menu-icons">
+                    <div class="material-icons md-24">
+                        search
+                    </div>
+                    <h6>Search</h6>
+                </div>
+
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        home
+                    </div>
+                    <h6>Home</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        people
+                    </div>
+                    <h6>My Network</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        work
+                    </div>
+                    <h6>Jobs</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        message
+                    </div>
+                    <h6>Messaging</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        notifications
+                    </div>
+                    <h6>Notifications</h6>
+                </div>
+
+                <div class=" menu-icons dropbtn" onclick="menuToggle()" id="personal-icon">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
+                    </div>
+                    <div>
+                        <h6>Me <i class="fas fa-caret-down"></i></h6>
+                    </div>
+                </div>
+                
+                <!-- user account dropdown menu -->
+                <div class="dropdown-menu">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
+                        <h3>Hieu Vu Minh <br> <span>Student at Hanoi University of Science and Technology</span></h3>
+                    </div>
+                    <div class="setting-list">
+                        <ul>
+                            <li><i class="fas fa-user-circle"></i><a href="#">View Profile</a></li>
+                            <li><i class="fas fa-edit"></i><a href="#">Edit Profile</a></li>
+                            <li><i class="fas fa-users-cog"></i><a href="#">Account Settings</a></li>
+                            <li><i class="fas fa-sign-out-alt"></i><a href="#">Sign Out</a></li>                        
+                        </ul>
+                    </div>     
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div id="main-content">
+            <div class="main-content-div" id="basic-info-div">
+                <div id="background-avatar">
+                    <img src="./resources/images/4853433.jpg">
+                </div>
+
+                <div id="main-avatar">
+                    <img src="./resources/images/user.svg" style="height: 90px;width: 90px;">
+                </div>
+
+                <div id="info">
+                    <div id="company-info">
+                        <h1>Name</h1>
+                        <p>Slogan</p>
+                        <span>Address</span>
+                        <span>Followers</span>
+                        <a href="#">Employees</a>
+                    </div>
+                </div>
+
+                <div id="basic-info-follow">
+                    <i class="fas fa-plus"></i>Follow
+                </div>
+
+                <div id="basic-info-nav">
+                    <div><a href="#">Home</a></div>
+                    <div><a href="#about">About</a></div>
+                    <div><a href="#post">Posts</a></div>
+                </div>
+            </div>
+
+            <div class="main-content-div" id="about">
+                <h2>About</h2>
+                <!--div class="main-content-div-expand">
+                    <a href="#">See all details</a>
+                </div-->
+                <div id="about__detail">
+                    <div id="about__detail__overview">
+                        
+                            <h3>Overview</h3>
+                            <p>Quality in higher education is not a simple one-dimensional 
+                                notion about academic quality. In view of the varied needs 
+                                and expectations of stakeholders, quality in higher education 
+                                can be said to be a multi-dimensional concept which should embrace
+                                 all its functions and activities. It is related to teaching and 
+                                 academic programs, research and scholarship, staffing, students, 
+                                 buildings, facilities, equipment, services to the community and 
+                                 the academic environment. In general, quality assurance in higher 
+                                 education is a systematic management and assessment procedures to 
+                                 monitor performance of higher education institutions.</p>
+                        
+                    </div>
+                    <div id="about__detail__specified">
+                        <div class="about__detail__specified__tag">
+                            Website
+                        </div>
+                        <div class="about__detail__specified__content">
+                            <a href="#">https://google.com</a>
+                        </div>
+
+                        <div class="about__detail__specified__tag">
+                            Industry
+                        </div>
+                        <div class="about__detail__specified__content">
+                            Human resources
+                        </div>
+
+                        <div class="about__detail__specified__tag">
+                            Company size
+                        </div>
+                        <div class="about__detail__specified__content">
+                            300 employees
+                        </div>
+
+                        <div class="about__detail__specified__tag">
+                            Headquarters
+                        </div>
+                        <div class="about__detail__specified__content">
+                            District Hai Ba Trung, Ha Noi City
+                        </div>
+
+                        <div class="about__detail__specified__tag">
+                            Type
+                        </div>
+                        <div class="about__detail__specified__content">
+                            Public Company
+                        </div>
+
+                        <div class="about__detail__specified__tag">
+                            Founded
+                        </div>
+                        <div class="about__detail__specified__content">
+                            2000
+                        </div>
+
+                        <div class="about__detail__specified__tag">
+                            Specialties
+                        </div>
+                        <div class="about__detail__specified__content">
+                            Recruitment Solutions
+                        </div>
+                    </div>
+                </div>
+
+                <div id="about__location">
+                    <h3>Location</h3>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.6408192902422!2d105.840947314245!3d21.007030293897216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac76ccab6dd7%3A0x55e92a5b07a97d03!2sHanoi%20University%20of%20Science%20%26%20Technology%20(HUST)!5e0!3m2!1sen!2s!4v1621399599154!5m2!1sen!2s" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+
+            <div class="main-content-div" id="post">
+                <h2>Page posts</h2>
+                <div id="page-post">
+                    <news-card
+                avatar="https://cdn.theculturetrip.com/wp-content/uploads/2018/05/shutterstock_89159080.jpg"
+                recruitImage="https://store-images.s-microsoft.com/image/apps.23032.13608622719434797.30372fd8-b4bd-41c0-beea-1c2a61e087c1.a8347bb5-9305-48e8-b668-08df54c5a91a?w=672&h=378&q=80&mode=letterbox&background=%23FFE4E4E4&format=jpg">
+                    <div slot="name">Travel</div>
+                    <div slot="followers">10000 followers</div>
+                    <div slot="time">2hr <i class="fas fa-globe"></i></div>
+                    <div slot="recruit-text">Example of recruitment announcement</div>
+                    <div slot="react-like"><i class="fas fa-thumbs-up"></i></div>
+                    <div slot="react-comment"><i class="far fa-comment-dots"></i></div>
+                    <div slot="react-share"><i class="fas fa-share"></i></div>
+                    </news-card>
+                </div>
+        </aside>
+    </main>
+
+    <footer class="big-footer">
+        <div class="footer-text">
+            <div class="row">
+                <div class="col span-1-of-3 col-footer row__info">
+                    <p>About Us</p>
+                    <ul class="text-footer">
+                        <li>
+                            <a href="#">Home</a>
+                        </li>
+                        <li>
+                            <a href="#">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col span-1-of-3 col-footer row__policy">
+                    <p>Terms & Conditions</p>
+                    <ul class="text-footer">
+                        <li>
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#">Complaint Handling</a>
+                        </li>
+                        <li>
+                            <a href="#">Term & Conditions</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col span-1-of-3 col-footer row__contact">
+                    <p>Copyright &copy JobsGo</p>
+                    <p>Tax code: 0312192258</p>
+                    <div class="contact-detail">
+                        <ul class="information">
+                            <li><i class="fas fa-map-marker-alt small-icon"></i>Address: 21 Le Duan, Ha Noi</li>
+                            <li><i class="fas fa-envelope small-icon"></i>Email: jobsgo@gmail.com</li>
+                            <li><i class="fas fa-phone small-icon"></i>SĐT: (+084 )099-923-232-322</li>
+                        </ul>
+                    </div>
+                    <div class="social-contact">
+                        <ul class="social-icons">
+                            <li><i class="fab fa-facebook"></i></li>
+                            <li><i class="fab fa-twitter-square"></i></li>
+                            <li><i class="fab fa-instagram"></i></li>
+                            <li><i class="fab fa-google-plus-square"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript" src="./resources/js/reusable.js"></script>
+    <script type="text/javascript" src="./resources/js/main_home_page.js"></script>
+</body>
+
+</html>

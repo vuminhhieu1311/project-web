@@ -5,7 +5,7 @@ main{
     display: flex;
     justify-content: center;
     background-color: rgb(245, 245, 245);
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
 #main-content{
@@ -305,14 +305,46 @@ aside > div{
 .quote{
     background-color: white;
 }
-
+/*------------------------------*/
 #experience > div{
     background-color: rgb(245, 244, 244);
     margin: 10px;
     border-radius: 8px;
     padding: 10px;
+    position: relative;
+    color: black;
 }
-
+.experience__title{
+    cursor: pointer;
+    background-color: brown white;
+}
+.experience__list{
+    display:none;
+    background-color: blueviolet white;
+    padding: 20px 20px 20px 30px;
+}
+.experience__close{
+    width: 100%;
+    background-color: cadetblue white;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+.experience__btn__close{
+    display: block;
+    font-size: 20px;
+    height: 30px;
+    width: 30px;
+    border: 1px solid white;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 40%);
+}
+/*-------------------------------*/
 .interest{
     display: flex;
 }
@@ -516,5 +548,93 @@ footer {
     color: #e67e22;
 }
 
+
+/*edit popup-------------------------------------------------*/
+#edit__overlay{
+    position:fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    display: none;
+}
+#edit__overlay__form{
+    width:700px;
+    height: 270px;
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 8px;
+}
+#edit__overlay__form__header{
+    border-bottom: 1px solid black;
+    height: 50px;
+    font-size: 25px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+#edit__overlay__form__header div{
+    margin-right: 10px;
+    border-radius: 50%;
+    width: 33px;
+    height: 33px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+#edit__overlay__form__header div:hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
+#edit__overlay__form__header div i{
+    display: block;
+    margin: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+#edit__overlay__form__main form{
+    margin: 10px;
+}
+#edit__overlay__form__main form div{
+    display: flex;
+    margin: 10px;
+    font-size: 20px;
+    font-weight: lighter;
+}
+#edit__overlay__form__main label{
+    width: 100px;
+    display: block;
+}
+#edit__overlay__form__main input{
+    width: 600px;
+    outline: none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+    border: white;
+    border-radius: 2px;
+    height: 30px;
+    font-size: 20px;
+}
+#edit__overlay__form__main button{
+    float: right;
+    height: 30px;
+    width: 50px;
+    border-radius: 4px;
+    background-color: white;
+    border: none;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+#edit__overlay__form__main button:hover{
+    background-color: whitesmoke;
+    cursor: pointer;
+}
 
 

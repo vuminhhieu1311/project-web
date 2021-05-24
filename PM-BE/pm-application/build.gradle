@@ -1,3 +1,17 @@
+openApiGenerate {
+    generatorName = "spring"
+    inputSpec = "$projectDir/src/main/resources/swagger/api.yml".toString()
+    outputDir = "$buildDir/generated".toString()
+    apiPackage = "com.company.pm.web.api"
+    modelPackage = "com.company.pm.web.api.model"
+    configOptions = [
+        dateLibrary: "java8",
+        useTags: "true",
+        delegatePattern: "true",
+        supportingFilesToGenerate: "ApiUtil.java"
+    ]
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
@@ -6,8 +20,13 @@ dependencies {
     implementation 'io.micrometer:micrometer-registry-prometheus'
 
     implementation project(':pm-security')
+    implementation project(':pm-upload-service')
     implementation project(':pm-personal-service')
     implementation project(':pm-user-service')
+    implementation project(':pm-social-service')
+    implementation project(':pm-company-service')
+    implementation project(':pm-search-service')
+    implementation project(':pm-chat-service')
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 

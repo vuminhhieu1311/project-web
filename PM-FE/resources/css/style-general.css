@@ -22,7 +22,7 @@ html {
 header {
     background-image: linear-gradient(45deg,
             rgba(2, 33, 64, 0.8) 55%,
-            rgba(45, 95, 93, 0.85));
+            hsl(205, 50%, 35%));
     background-size: cover;
     background-position: center;
     height: 15vh;
@@ -80,19 +80,17 @@ header {
 footer {
     background-image: linear-gradient(45deg,
             rgba(2, 33, 64, 0.8) 55%,
-            rgba(45, 95, 93, 0.85)),
+            hsl(205, 50%, 35%)),
         url(../images/background_footer.jpeg);
     background-size: cover;
     background-position: center;
-    /* can giua */
     background-attachment: fixed;
     color: #c5bebe;
+    padding: 3%;
 }
 
 .col-footer {
     line-height: 160%;
-    margin-bottom: -1%;
-    margin-top: -1%;
 }
 
 .text-footer {

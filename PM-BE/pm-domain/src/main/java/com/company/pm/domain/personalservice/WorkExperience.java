@@ -1,6 +1,7 @@
 package com.company.pm.domain.personalservice;
 
-import com.company.pm.common.EmploymentType;
+import com.company.pm.common.enumeration.EmploymentType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -30,6 +31,9 @@ public class WorkExperience implements Serializable {
     @Column("employment_type")
     private EmploymentType employmentType;
 
+    @Column("company")
+    private String company;
+    
     @Column("location")
     private String location;
 
@@ -38,10 +42,14 @@ public class WorkExperience implements Serializable {
 
     @Column("end_date")
     private Instant endDate;
-
-    @Column("industry")
-    private String industry;
-
+    
+    @JsonIgnoreProperties(
+        value = { "certifications", "skills", "projects", "publications", "workExperiences", "educations" },
+        allowSetters = true
+    )
     @Transient
     private PersonalProfile personalProfile;
+    
+    @Column("personal_profile_id")
+    private Long personalProfileId;
 }

@@ -3,9 +3,8 @@ package com.company.pm.personalservice.domain.repositories.rowmapper;
 import com.company.pm.common.services.ColumnConverter;
 import com.company.pm.domain.personalservice.Author;
 import io.r2dbc.spi.Row;
-import org.springframework.stereotype.Service;
-
 import java.util.function.BiFunction;
+import org.springframework.stereotype.Service;
 
 /**
  * Converter between {@link Row} to {@link Author}, with proper type conversions.
@@ -26,11 +25,9 @@ public class AuthorRowMapper implements BiFunction<Row, String, Author> {
     @Override
     public Author apply(Row row, String prefix) {
         Author entity = Author.builder().build();
-        
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
         entity.setName(converter.fromRow(row, prefix + "_name", String.class));
         entity.setPublicationId(converter.fromRow(row, prefix + "_publication_id", Long.class));
-        
         return entity;
     }
 }

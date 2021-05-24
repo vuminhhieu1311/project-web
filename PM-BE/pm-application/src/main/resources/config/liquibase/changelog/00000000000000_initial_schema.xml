@@ -6,7 +6,12 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd
                         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="00000000000001" author="HT">
+
+    <!--
+        JHipster core tables.
+        The initial schema has the '00000000000001' id, so that it is over-written if we re-generate it.
+    -->
+    <changeSet id="00000000000001" author="jhipster">
         <createTable tableName="users">
             <column name="id" type="varchar(100)">
                 <constraints primaryKey="true" nullable="false"/>
@@ -21,7 +26,7 @@
             </column>
             <column name="image_url" type="varchar(256)"/>
             <column name="activated" type="boolean" valueBoolean="false">
-                <constraints nullable="false"/>
+                <constraints nullable="false" />
             </column>
             <column name="lang_key" type="varchar(10)"/>
             <column name="created_by" type="varchar(50)">
@@ -31,11 +36,13 @@
             <column name="last_modified_by" type="varchar(50)"/>
             <column name="last_modified_date" type="timestamp"/>
         </createTable>
+
         <createTable tableName="authorities">
             <column name="name" type="varchar(50)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
         </createTable>
+
         <createTable tableName="users_authorities">
             <column name="user_id" type="varchar(100)">
                 <constraints nullable="false"/>
@@ -45,44 +52,55 @@
             </column>
         </createTable>
 
-        <addPrimaryKey tableName="users_authorities" columnNames="user_id, authority_name"/>
+        <addPrimaryKey columnNames="user_id, authority_name" tableName="users_authorities"/>
 
-        <addForeignKeyConstraint
-            baseColumnNames="authority_name"
-            baseTableName="users_authorities"
-            constraintName="fk_authority_name"
-            referencedColumnNames="name"
-            referencedTableName="authorities"
-        />
-        <addForeignKeyConstraint
-            baseColumnNames="user_id"
-            baseTableName="users_authorities"
-            constraintName="fk_user_id"
-            referencedColumnNames="id"
-            referencedTableName="users"
-        />
+        <addForeignKeyConstraint baseColumnNames="authority_name"
+                                 baseTableName="users_authorities"
+                                 constraintName="fk_authority_name"
+                                 referencedColumnNames="name"
+                                 referencedTableName="authorities"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="users_authorities"
+                                 constraintName="fk_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
 
         <loadData
-            tableName="users"
-            file="config/liquibase/data/users.csv"
-            separator=";"
-        >
+                  file="config/liquibase/data/users.csv"
+                  separator=";"
+                  tableName="users">
             <column name="activated" type="boolean"/>
             <column name="created_date" type="timestamp"/>
         </loadData>
+        <dropDefaultValue tableName="users" columnName="created_date" columnDataType="${datetimeType}"/>
         <loadData
-            tableName="authorities"
-            file="config/liquibase/data/authorities.csv"
-            separator=";"
-        >
+                  file="config/liquibase/data/authorities.csv"
+                  separator=";"
+                  tableName="authorities">
             <column name="name" type="string"/>
         </loadData>
+
         <loadData
-            tableName="users_authorities"
-            file="config/liquibase/data/users_authorities.csv"
-            separator=";"
-        >
+                  file="config/liquibase/data/users_authorities.csv"
+                  separator=";"
+                  tableName="users_authorities">
             <column name="user_id" type="string"/>
         </loadData>
+    </changeSet>
+
+    <changeSet author="jhipster" id="00000000000002" context="test">
+        <createTable tableName="date_time_wrapper">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="date_time_wrapperPK"/>
+            </column>
+            <column name="instant" type="timestamp"/>
+            <column name="local_date_time" type="timestamp"/>
+            <column name="offset_date_time" type="timestamp"/>
+            <column name="zoned_date_time" type="timestamp"/>
+            <column name="local_time" type="time"/>
+            <column name="offset_time" type="time"/>
+            <column name="local_date" type="date"/>
+        </createTable>
     </changeSet>
 </databaseChangeLog>

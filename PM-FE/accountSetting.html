@@ -70,7 +70,7 @@
                     <h6>Notifications</h6>
                 </div>
 
-                <div class=" menu-icons dropbtn" onclick="menuToggle()" id="personal-icon">
+                <div class=" menu-icons dropbtn" id="personal-icon">
                     <div class="profile">
                         <img src="./resources//images//avatar.png" alt="">
                     </div>
@@ -78,7 +78,7 @@
                         <h6>Me <i class="fas fa-caret-down"></i></h6>
                     </div>
                 </div>
-                
+
                 <!-- user account dropdown menu -->
                 <div class="dropdown-menu">
                     <div class="profile">
@@ -90,9 +90,9 @@
                             <li><i class="fas fa-user-circle"></i><a href="#">View Profile</a></li>
                             <li><i class="fas fa-edit"></i><a href="#">Edit Profile</a></li>
                             <li><i class="fas fa-users-cog"></i><a href="#">Account Settings</a></li>
-                            <li><i class="fas fa-sign-out-alt"></i><a href="#">Sign Out</a></li>                        
+                            <li><i class="fas fa-sign-out-alt"></i><a href="#">Sign Out</a></li>
                         </ul>
-                    </div>     
+                    </div>
                 </div>
             </nav>
         </div>
@@ -112,6 +112,14 @@
             <button onclick="defaultBtnActive()" id="custom-btn">CHOOSE A FILE</button>
             <button class="cancel-btn">CANCEL</button>
             <button onclick="saveImg()" class="close-button">SAVE</button>
+            <div class="sk-chase">
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+                <div class="sk-chase-dot"></div>
+            </div>
         </div>
         <div id="overlay"></div>
         <div class="row">
@@ -250,8 +258,8 @@
                                 </span>
                             </div>
                             <div class="update-btn">
-                                <button class="btn-save">Save</button>
-                                <button class="btn-cancel">Cancel</button>
+                                <button class="btn-save"><a>Save</a></button>
+                                <button class="btn-cancel"><a>Cancel</a></button>
                             </div>
                         </div>
 
@@ -269,11 +277,11 @@
                             <input type="password" class="input" id="password" value="admin">
                             <input type="password" class="input" id="confirm-password" value="admin">
                             <div class="update-btn">
-                                <button class="btn-save">Save</button>
-                                <button class="btn-cancel">Cancel</button>
+                                <button class="btn-save"><a>Save</a></button>
+                                <button class="btn-cancel"><a>Cancel</a></button>
                             </div>
-                        </div>         
-                    </div>       
+                        </div>
+                    </div>
                 </div>
 
                 <div class="profile tab-show">
@@ -313,8 +321,8 @@
                                                 <td class="column3">May 1, 2021, 10:01:20 PM</td>
                                                 <td class="column4">May 1, 2021, 10:01:20 PM</td>
                                                 <td class="column5">security-admin-console account</td>
-                                            </tr>							
-                                    </tbody>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -346,59 +354,31 @@
         </div>
     </section>
 
-    <footer>
-        <section class="footer-text">
-            <div class="row">
-                <div class="col span-1-of-3 col-footer">
-                    <p>About Us</p>
-                    <ul class="text-footer">
-                        <li>
-                            <a href="#">Home</a>
-                        </li>
-                        <li>
-                            <a href="#">About Us</a>
-                        </li>
-                        <li>
-                            <a href="#">Contact Us</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col span-1-of-3 col-footer">
-                    <p>Terms & Conditions</p>
-                    <ul class="text-footer">
-                        <li>
-                            <a href="#">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a href="#">Complaint Handling</a>
-                        </li>
-                        <li>
-                            <a href="#">Term & Conditions</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col span-1-of-3 col-footer">
-                    <p>Copyright &copy JobsGo</p>
-                    <p>Tax code: 0312192258</p>
-                    <div class="contact-detail">
-                        <ul class="information">
-                            <li><i class="fas fa-map-marker-alt small-icon"></i>Address: 21 Le Duan, Ha Noi</li>
-                            <li><i class="fas fa-envelope small-icon"></i>Email: jobsgo@gmail.com</li>
-                            <li><i class="fas fa-phone small-icon"></i>SĐT: (+084 )099-923-232-322</li>
-                        </ul>
-                    </div>
-                    <div class="social-contact">
-                        <ul class="social-icons">
-                            <li><i class="fab fa-facebook"></i></li>
-                            <li><i class="fab fa-twitter-square"></i></li>
-                            <li><i class="fab fa-instagram"></i></li>
-                            <li><i class="fab fa-google-plus-square"></i></li>
-                        </ul>
-                    </div>
-                </div>
+    <footer class="small-footer">
+        <div class="small-footer-text">
+            <div>
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Complaint Handling</a>
+                <a href="#">Term & Conditions</a>
+                <a href="#">Copyright &copy JobsGo</a>
+                <a href="#" style = "border: none">Update your account</a>
             </div>
-        </section>
-    </footer>
+           <div>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Send Feedback</a>
+            <a href="#">Language</a>
+            <a href="#">Advertising</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">JobsGo Careers</a>
+            <a href="#">Ad Choices</a>
+            <a href="#">Pro Finder</a>
+            <a href="#" style = "border: none">Sales Solutions</a>
+           </div>  
+        </div>
+    </footer> 
     <script type="text/javascript" src="./resources/js/account-settings.js"></script>
 </body>
 

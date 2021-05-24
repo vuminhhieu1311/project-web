@@ -14,6 +14,11 @@ html {
   background-color: #ffffff;
   text-rendering: optimizeLegibility;
 }
+body {
+  height: 100%;
+  width: 100%;
+}
+
 /*--------------------------------------------------*/
 /*---------------------REUSABLE COMPONENTS----------*/
 /*--------------------------------------------------*/
@@ -162,10 +167,13 @@ header {
 
 .heading-main-box {
   position: absolute;
-  top: 50%;
-  left: 45%;
-  transform: translate(-40%, -35%); /* chinh vi tri */
-  width: 100%;
+  top: 30%;
+  left: 4.5%;
+  width: 95%;
+}
+
+.heading-main-box .hot-tags {
+    margin-left: -2.5%;
 }
 
 /*--------------------------------------------------*/
@@ -234,6 +242,7 @@ footer {
   background-position: center; /* can giua */
   background-attachment: fixed;
   color: #c5bebe;
+  padding: 3%;
 }
 
 .col-footer {

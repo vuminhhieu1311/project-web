@@ -1,11 +1,20 @@
 package com.company.pm.personalservice.domain.repositories;
 
+import static org.springframework.data.relational.core.query.Criteria.where;
+import static org.springframework.data.relational.core.query.Query.query;
+
 import com.company.pm.common.services.EntityManager;
 import com.company.pm.domain.personalservice.Creator;
 import com.company.pm.personalservice.domain.repositories.rowmapper.CreatorRowMapper;
 import com.company.pm.personalservice.domain.repositories.rowmapper.ProjectRowMapper;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.function.BiFunction;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.data.relational.core.query.Criteria;
@@ -18,12 +27,6 @@ import org.springframework.r2dbc.core.DatabaseClient;
 import org.springframework.r2dbc.core.RowsFetchSpec;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import static org.springframework.data.relational.core.query.Criteria.where;
 
 /**
  * Spring Data SQL reactive custom repository implementation for the Creator entity.

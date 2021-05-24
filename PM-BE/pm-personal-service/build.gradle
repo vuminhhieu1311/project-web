@@ -1,4 +1,5 @@
 dependencies {
+    api project(':pm-upload-service')
     api project(':pm-domain')
     api project(':pm-user-service')
 
