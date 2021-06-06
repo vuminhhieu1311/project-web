@@ -2,6 +2,8 @@ package com.company.pm.socialservice.domain.services;
 
 import com.company.pm.common.enumeration.RelStatus;
 import com.company.pm.common.web.errors.BadRequestAlertException;
+import com.company.pm.companyservice.domain.repositories.CompanyRepository;
+import com.company.pm.domain.companyservice.Company;
 import com.company.pm.domain.socialservice.Follow;
 import com.company.pm.domain.socialservice.Relationship;
 import com.company.pm.socialservice.domain.repositories.FollowRepository;
@@ -29,6 +31,8 @@ public class FollowService {
     private final RelationshipRepository relationshipRepository;
     
     private final UserRepository userRepository;
+    
+    private final CompanyRepository companyRepository;
     
     @Transactional(readOnly = true)
     public Flux<UserDTO> getFollowersByUser(String userId) {
@@ -71,6 +75,39 @@ public class FollowService {
         return userRepository.findById(userId)
             .switchIfEmpty(Mono.error(new BadRequestAlertException("Entity not found", "user", "idnotfound")))
             .flatMap(user -> followRepository.countByFollowerId(user.getId()));
+    }
+    
+    @Transactional(readOnly = true)
+    public Flux<Company> getFollowingCompanyByUser(String userId) {
+        return userRepository.findById(userId)
+            .switchIfEmpty(Mono.error(new BadRequestAlertException("Entity not found", "user", "idnotfound")))
+            .flatMapMany(user -> followRepository.findAllByFollowerId(user.getId())
+                .flatMap(following -> companyRepository.findById(
+                    Long.parseLong(following.getFollowedId()))
+                )
+            );
+    }
+    
+    @Transactional(readOnly = true)
+    public Flux<UserDTO> getFollowersOfCompany(String userId, Long companyId) {
+        return companyRepository.findByAdminAndId(userId, companyId)
+            .switchIfEmpty(Mono.error(new BadRequestAlertException("Entity not found", "company", "idnotfound")))
+            .flatMapMany(company -> followRepository.findAllByFollowedId(company.getId().toString())
+                .flatMap(follow -> userRepository.findById(follow.getFollowerId())
+                    .map(follower -> new UserDTO(
+                        follower.getId(), follower.getLogin(),
+                        follower.getFirstName(), follower.getLastName(),
+                        follower.getImageUrl())
+                    )
+                )
+            );
+    }
+    
+    @Transactional(readOnly = true)
+    public Mono<Long> countFollowersOfCompany(Long companyId) {
+        return companyRepository.findById(companyId)
+            .switchIfEmpty(Mono.error(new BadRequestAlertException("Entity not found", "company", "idnotfound")))
+            .flatMap(company -> followRepository.countByFollowedId(companyId.toString()));
     }
     
     @Transactional

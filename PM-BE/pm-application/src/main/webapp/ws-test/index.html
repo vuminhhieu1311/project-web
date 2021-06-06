@@ -19,79 +19,10 @@
         </form>
     </body>
     <script type="text/javascript">
-        const wsUri = `ws://localhost:8080/websocket/messages`;
-        let output;
-        let interval;
-        let tryReconnect = 0;
-        
-        function init() {
-            output = document.getElementById('output');
-            testWebSocket();
-        }
-        
-        function testWebSocket() {
-            window.websocket = new WebSocket(wsUri);
-            window.websocket.onopen = (evt) => { onOpen(evt) };
-            window.websocket.onclose = (evt) => { onClose(evt) };
-            window.websocket.onmessage = (evt) => { onMessage(evt) };
-            window.websocket.onerror = (evt) => { onError(evt) };
-        }
-        
-        function onOpen(evt) {
-            writeToScreen('CONNECTED');
-            interval = setInterval(() => {
-                doSend({
-                    command: 'ping'
-                });
-            }, 2000);
-            
-            document.getElementById('form-message').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const content = document.getElementById('form-input').value;
-                doSend({
-                    senderId: '81d72e27-4a77-415b-8ba0-da76d5299933',
-                    content,
-                    conversationId: 12
-                });
-                
-                return false;
-            });
-        }
-        
-        function onClose(evt) {
-            writeToScreen('DISCONNECTED');
-            console.log(evt);
-            clearInterval(interval);
-            if (tryReconnect < 4) {
-                setTimeout(() => {
-                    testWebSocket();
-                    tryReconnect++;
-                }, 2000);
-            }
-        }
-        
-        function onMessage(evt) {
-            // writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data + '</span>');
-        }
-        
-        function onError(evt) {
-            writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
-            clearInterval(interval);
-        }
-        
-        function doSend(message) {
-            // writeToScreen('SENT: ' + JSON.stringify(message));
-            window.websocket.send(JSON.stringify(message));
-        }
-        
-        function writeToScreen(message) {
-            const pre = document.createElement('p');
-            pre.style.wordWrap = 'break-word';
-            pre.innerHTML = message;
-            output.appendChild(pre);
-        }
-        
-        window.addEventListener('load', init, false);
+        const ws = new WebSocket('ws://localhost:8000/rsocket');
+        ws.onopen = (e) => {
+            console.log('open');
+        };
     </script>
 </html>
 

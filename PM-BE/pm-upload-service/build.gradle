@@ -1,6 +1,7 @@
 dependencies {
     api project(':pm-common')
     api project(':pm-user-service')
+    api project(':pm-company-service')
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

@@ -35,7 +35,7 @@ public class ProfileSearchRepresentationModelAssembler
         Map<String, String> attributes = exchange.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         assert attributes != null;
         
-        return linkTo(methodOn(ProfileSearchController.class).getSearchResults(
+        return linkTo(methodOn(ProfileSearchController.class).getProfileSearchResults(
             attributes.get("query"), exchange
         ), exchange);
     }

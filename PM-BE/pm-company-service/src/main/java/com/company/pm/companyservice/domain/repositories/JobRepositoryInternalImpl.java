@@ -73,6 +73,11 @@ class JobRepositoryInternalImpl implements JobRepositoryInternal {
         return createQuery(pageable, criteria).all();
     }
     
+    @Override
+    public Mono<Job> findOneBy(Criteria criteria) {
+        return createQuery(null, criteria).one();
+    }
+    
     RowsFetchSpec<Job> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = JobSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
         columns.addAll(CompanySqlHelper.getColumns(companyTable, "company"));

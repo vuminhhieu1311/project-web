@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My CV</title>
+
+    <!-- Library -->
+    <link href="./resources/bootstrap.min.css" rel="stylesheet" />
+    <script src="./resources/popper.min.js"></script>
+    <script src="./resources/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css">
+    <script src="./resources/grapes.min.js"></script>
+    <script src="./resources/grapesjs-preset-newsletter.min.js"></script>
+    <script src="./resources/html2pdf.bundle.js"></script>
+
+    <link rel="stylesheet" href="./style_cv.css" />
+    <link rel="stylesheet" href="./resources/css/reusable.css" />
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="navbar" class="sidenav d-flex flex-column overflow-scroll">
+        <nav class="navbar navbar-light">
+            <div class="container-fluid">
+                <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
+            </div>
+        </nav>
+        <div class="my-2 d-flex flex- btn-download">
+            <button type="button" id="download-cv" class="btn btn-outline-secondary btn-sm mb-2 mx-2"
+                onclick="HTMLtoPDF()">
+                <i class="fas fa-download"></i> Download CV
+            </button>
+        </div>
+        <div class="">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#block"
+                        type="button" role="tab" aria-controls="block" aria-selected="true">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="style-tab" data-bs-toggle="tab" data-bs-target="#style" type="button"
+                        role="tab" aria-controls="style" aria-selected="false">
+                        <i class="fa fa-paint-brush"></i>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="layer-tab" data-bs-toggle="tab" data-bs-target="#layer" type="button"
+                        role="tab" aria-controls="layer" aria-selected="false">
+                        <i class="fa fa-tasks"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="block" role="tabpanel" aria-labelledby="block-tab">
+                    <div id="blocks"></div>
+                </div>
+                <div class="tab-pane fade" id="style" role="tabpanel" aria-labelledby="style-tab">
+                    <div id="styles-container"></div>
+                </div>
+                <div class="tab-pane fade" id="layer" role="tabpanel" aria-labelledby="layer-tab">
+                    <div id="layers-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <nav class="navbar navbar-light">
+            <div class="container-fluid">
+                <div class="panel__devices"></div>
+                <div class="panel__basic-actions"></div>
+            </div>
+        </nav>
+        <div id="editor" class="tab-show">
+            <html lang="en">
+
+            <head>
+                <meta charset="UTF-8">
+                <title>Resume/CV Design</title>
+                <link rel="stylesheet" href="./cv-template/style_CV_template_2.css">
+                <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
+            </head>
+
+            <body>
+                <div class="resume">
+                    <div class="resume_left">
+                        <div class="resume_profile">
+                            <img src="./resources/images/profile.png" alt="profile_pic">
+                        </div>
+                        <div class="resume_content">
+                            <div class="resume_item resume_info">
+                                <div class="title">
+                                    <p class="bold">vu minh hieu</p>
+                                    <p class="regular">Front end Developer</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="icon">
+                                            <img src="./resources/images/maps-and-flags.png" alt="">
+                                        </div>
+                                        <div class="data">
+                                            Ha Noi <br /> Viet Nam
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <img src="./resources/images/phone-call.png" alt="">
+                                        </div>
+                                        <div class="data">
+                                            +324 4445678
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <img src="./resources/images/email.png" alt="">
+                                        </div>
+                                        <div class="data">
+                                            hieu@gmail.com
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="resume_item resume_skills">
+                                <div class="title">
+                                    <p class="bold">skill's</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="skill_name">
+                                            HTML
+                                        </div>
+                                        <div class="skill_progress">
+                                            <span style="width: 80%;"></span>
+                                        </div>
+                                        <div class="skill_per">80%</div>
+                                    </li>
+                                    <li>
+                                        <div class="skill_name">
+                                            CSS
+                                        </div>
+                                        <div class="skill_progress">
+                                            <span style="width: 70%;"></span>
+                                        </div>
+                                        <div class="skill_per">70%</div>
+                                    </li>
+                                    <li>
+                                        <div class="skill_name">
+                                            JS
+                                        </div>
+                                        <div class="skill_progress">
+                                            <span style="width: 60%;"></span>
+                                        </div>
+                                        <div class="skill_per">60%</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="resume_item resume_social">
+                                <div class="title">
+                                    <p class="bold">Social</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="icon">
+                                            <img src="./resources/images/facebook.png" alt="">
+                                        </div>
+                                        <div class="data">
+                                            <p class="semi-bold">Facebook</p>
+                                            <p>hieu@facebook</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="icon">
+                                            <img src="./resources/images/linkedin.png" alt="">
+                                        </div>
+                                        <div class="data">
+                                            <p class="semi-bold">Linkedin</p>
+                                            <p>hieu@linkedin</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resume_right">
+                        <div class="resume_item resume_about">
+                            <div class="title">
+                                <p class="bold">About me</p>
+                            </div>
+                            <p>I love coocking</p>
+                        </div>
+                        <div class="resume_item resume_work">
+                            <div class="title">
+                                <p class="bold">Work Experience</p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="date">2/2018 - 2/2020</div>
+                                    <div class="info">
+                                        <p class="semi-bold">Personal Manager</p>
+                                        <p>FPT Software</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="resume_item resume_education">
+                            <div class="title">
+                                <p class="bold">Education</p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="date">1981 - 1987</div>
+                                    <div class="info">
+                                        <p class="semi-bold">Marketing</p>
+                                        <p>National Economic University</p>
+                                        <p>Bachelor's degree</p>
+                                        <p>Excellent</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="date">1980 - 1987</div>
+                                    <div class="info">
+                                        <p class="semi-bold">Information Technology</p>
+                                        <p>Ha Noi University of Science and Technology</p>
+                                        <p>Island Indiana</p>
+                                        <p>3.9/4.0</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="resume_item resume_education">
+                            <div class="title">
+                                <p class="bold">Certification</p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="date">11/2020 - 12/2022</div>
+                                    <div class="info">
+                                        <p class="semi-bold">Network Security</p>
+                                        <p>Microsoft</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="date">5/2018</div>
+                                    <div class="info">
+                                        <p class="semi-bold">Network</p>
+                                        <p>British Council</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="date">3/1998</div>
+                                    <div class="info">
+                                        <p class="semi-bold">IELTS</p>
+                                        <p>British Council</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </body>
+
+            </html>
+        </div>
+    </div>
+    <script type="text/javascript" src="./my-cv.js"></script>
+</body>
+
+</html>

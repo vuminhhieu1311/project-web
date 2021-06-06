@@ -28,7 +28,7 @@ public interface MessageRepository extends R2dbcRepository<Message, Long>, Messa
     Flux<Message> findAllWhereSenderIsNull();
     
     @Query("SELECT * FROM messages entity WHERE entity.conversation_id = :id AND entity.deleted_at IS NULL")
-    Flux<Message> findAllByConversationAndDeletedAtIsNull(String id);
+    Flux<Message> findAllByConversationAndDeletedAtIsNull(Long id);
 
     // just to avoid having unambigous methods
     @Override

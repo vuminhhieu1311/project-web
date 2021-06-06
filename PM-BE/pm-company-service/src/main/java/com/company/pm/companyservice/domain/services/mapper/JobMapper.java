@@ -16,7 +16,10 @@ public class JobMapper {
     public Job jobDTOToJob(JobDTO jobDTO) {
         Job job = mapper.map(jobDTO, Job.class);
         job.setJobType(JobType.valueOf(jobDTO.getJobType()));
-        job.setActivated(Boolean.valueOf(jobDTO.getActivated()));
+        
+        if (job.getActivated() != null) {
+            job.setActivated(Boolean.valueOf(jobDTO.getActivated()));
+        }
         
         return job;
     }

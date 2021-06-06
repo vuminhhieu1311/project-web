@@ -1,5 +1,6 @@
 package com.company.pm.searchservice.domain.repositories;
 
+import com.company.pm.common.enumeration.JobType;
 import com.company.pm.domain.searchservice.JobSearch;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.springframework.data.elasticsearch.core.ReactiveElasticsearchTemplate;
@@ -50,7 +51,7 @@ class JobSearchRepositoryInternalImpl implements JobSearchRepositoryInternal {
         
         if (keyword != null) {
             boolQueryBuilder = boolQueryBuilder.must(
-                multiMatchQuery(keyword, "title, title._2gram", "title._3gram",
+                multiMatchQuery(keyword, "title", "title._2gram", "title._3gram",
                     "company", "company._2gram", "company._3gram",
                     "location", "location._2gram", "location._3gram"
                 ).type(Type.BOOL_PREFIX)
@@ -58,12 +59,12 @@ class JobSearchRepositoryInternalImpl implements JobSearchRepositoryInternal {
         }
         if (postedFrom != null) {
             boolQueryBuilder = boolQueryBuilder.must(
-                rangeQuery("created_at").gte("now-" + postedFrom + "d/d").lt("now/d")
+                rangeQuery("created_at").gte("now-" + postedFrom + "d/d").lte("now/d")
             );
         }
         if (jobType != null) {
             boolQueryBuilder = boolQueryBuilder.must(
-                matchQuery("job_type", jobType.toUpperCase())
+                matchQuery("job_type", JobType.valueOf(jobType.toUpperCase()))
             );
         }
         

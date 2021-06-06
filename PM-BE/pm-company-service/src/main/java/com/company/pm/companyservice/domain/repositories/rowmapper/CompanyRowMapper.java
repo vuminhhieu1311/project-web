@@ -34,6 +34,7 @@ public class CompanyRowMapper implements BiFunction<Row, String, Company> {
         entity.setCompanyType(converter.fromRow(row, prefix + "_company_type", CompanyType.class));
         entity.setLogoUrl(converter.fromRow(row, prefix + "_logo_url", String.class));
         entity.setTagline(converter.fromRow(row, prefix + "_tagline", String.class));
+        entity.setBgImageUrl(converter.fromRow(row, prefix + "_bg_image_url", String.class));
         entity.setAdminId(converter.fromRow(row, prefix + "_admin_id", String.class));
         return entity;
     }

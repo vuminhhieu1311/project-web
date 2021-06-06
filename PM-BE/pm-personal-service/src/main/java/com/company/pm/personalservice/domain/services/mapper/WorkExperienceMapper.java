@@ -30,8 +30,10 @@ public class WorkExperienceMapper {
         String startDate = workExperienceDTO.getStartYear() + "-" + workExperienceDTO.getStartMonth();
         
         workExperience.setStartDate(df.parse(startDate).toInstant());
-        workExperience.setEmploymentType(EmploymentType.valueOf(workExperienceDTO.getEmploymentType()));
-    
+        
+        if (workExperienceDTO.getEmploymentType() != null) {
+            workExperience.setEmploymentType(EmploymentType.valueOf(workExperienceDTO.getEmploymentType()));
+        }
         if (workExperienceDTO.getEndYear() != null && workExperienceDTO.getStartYear() != null) {
             String endDate = workExperienceDTO.getEndYear() + "-" + workExperienceDTO.getEndMonth();
             workExperience.setEndDate(df.parse(endDate).toInstant());

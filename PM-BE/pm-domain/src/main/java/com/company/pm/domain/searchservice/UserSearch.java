@@ -27,4 +27,7 @@ public class UserSearch implements Serializable {
     
     @Field(type = FieldType.Search_As_You_Type, name = "last_name")
     private String lastName;
+    
+    @Field(type = FieldType.Text, name = "avatar_url")
+    private String avatarUrl;
 }

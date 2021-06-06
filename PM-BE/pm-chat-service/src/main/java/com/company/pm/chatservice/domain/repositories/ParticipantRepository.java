@@ -31,10 +31,8 @@ public interface ParticipantRepository extends R2dbcRepository<Participant, Long
     Flux<Participant> findAllWhereConversationIsNull();
     
     default Mono<Participant> findByUserAndConversation(String userId, Long conversationId) {
-        return findAllBy(null, Criteria.where("user_id").is(userId)
-            .and("conversation_id").is(conversationId))
-            .switchIfEmpty(Mono.error(new RuntimeException("Source had 0 elements")))
-            .elementAt(0);
+        return findOneBy(Criteria.where("user_id").is(userId)
+            .and("conversation_id").is(conversationId));
     }
     // just to avoid having unambigous methods
     @Override
@@ -56,4 +54,5 @@ interface ParticipantRepositoryInternal {
     Mono<Participant> findById(Long id);
     Flux<Participant> findAllBy(Pageable pageable);
     Flux<Participant> findAllBy(Pageable pageable, Criteria criteria);
+    Mono<Participant> findOneBy(Criteria criteria);
 }

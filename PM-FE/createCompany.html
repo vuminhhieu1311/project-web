@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Job</title>
+    <link rel="icon" href="resources/images/j.svg">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="./resources/css/reusable.css">
+    <link rel="stylesheet" href="./resources/css/style-createCompany.css">
+    <link rel="stylesheet" href="./vendors/css/grid.css">
+    <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="header">
+        <div id="left-header">
+            <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
+        </div>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <button data-close-button class="close-button"><i class="fas fa-long-arrow-alt-left"></i></button>
+                <input class="search-input" type="text" placeholder="Search">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div id="overlay"></div>
+        <div id="right-header">
+            <nav id="nav-menu">
+                <div data-modal-target="#modal" class="menu-icons">
+                    <div class="material-icons md-24">
+                        search
+                    </div>
+                    <h6>Search</h6>
+                </div>
+
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        home
+                    </div>
+                    <h6>Home</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        people
+                    </div>
+                    <h6>My Network</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        work
+                    </div>
+                    <h6>Jobs</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        message
+                    </div>
+                    <h6>Messaging</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        notifications
+                    </div>
+                    <h6>Notifications</h6>
+                </div>
+
+                <div class=" menu-icons dropbtn" onclick="menuToggle()" id="personal-icon">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
+                    </div>
+                    <div>
+                        <h6>Me <i class="fas fa-caret-down"></i></h6>
+                    </div>
+                </div>
+                
+                <!-- user account dropdown menu -->
+                <div class="dropdown-menu">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
+                        <h3>Hieu Vu Minh <br> <span>Student at Hanoi University of Science and Technology</span></h3>
+                    </div>
+                    <div class="setting-list">
+                        <ul>
+                            <li><i class="fas fa-user-circle"></i><a href="#">View Profile</a></li>
+                            <li><i class="fas fa-edit"></i><a href="#">Edit Profile</a></li>
+                            <li><i class="fas fa-users-cog"></i><a href="#">Account Settings</a></li>
+                            <li><i class="fas fa-sign-out-alt"></i><a href="#">Sign Out</a></li>                        
+                        </ul>
+                    </div>     
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div id="main__left">
+            <div id="main__basic__info">
+                <h2>Let’s get started with a few details about your business</h2>
+                <form id="main__basic__info__form">
+                    <label for="name">Name *</label></br>
+                    <input type="text" id="name" name="name" required></br>
+                    <label for="website">Website *</label></br>
+                    <input type="url" id="website" name="website" required></br>
+                    <label for="companySize">Company size *</label></br>
+                    <input type="text" id="companySize" name="companySize" required></br>
+                    <label for="companyType">Company type *</label></br>
+                    <input type="text" id="companyType" name="companyType" required></br>
+                    <label for="tagLine">Tag line *</label></br>
+                    <input type="text" id="tagLine" name="tagLine" required></br>
+                    <label for="logo">Logo *</label></br>
+                    <input type="file" id="logo" name="logo" accept="image/*" required></br>
+                    <label for="background">Background *</label></br>
+                    <input type="file" id="background" name="background" accept="image/*" required></br>
+                    <div id="term__agree">
+                        <div><input type="checkbox" id="term" name="term" required></div>
+                        <div for="term">I verify that I am an authorized representative of this organization 
+                        and have the right to act on its behalf in the creation and management of this page.
+                         The organization and I agree to the additional terms for Pages.</div>
+                    </div>
+                    
+                    <button type="submit">Create company</button>
+                </form>
+                <div id="filter__jobtitle">
+                </div>
+            </div>
+        </div>
+
+        <div id="main__right">
+            <div id="review">Review</div>
+            <div class="main-content-div" id="basic-info-div">
+                <div id="background-avatar">
+                    <img src="./resources/images/4853433.jpg" style="height: 200px;width: 100%;">
+                </div>
+
+                <div id="main-avatar">
+                    <img src="./resources/images/user.svg" style="height: 90px;width: 90px;">
+                </div>
+
+                <div id="info">
+                    <div id="company-info">
+                        <h1>Name</h1>
+                        <p>Slogan</p>
+                        <span>Address</span>
+                        <span>Followers</span>
+                        <a href="#">Employees</a>
+                    </div>
+                </div>
+
+                <div id="basic-info-follow">
+                    <i class="fas fa-plus"></i>Follow
+                </div>
+
+                <div id="basic-info-nav">
+                    <div><a href="#">Home</a></div>
+                    <div><a href="#about">About</a></div>
+                    <div><a href="#post">Posts</a></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="./resources/js/reusable.js"></script>
+    <script type="text/javascript" src="./resources/js/main_create_company.js"></script>
+
+
+</body>
+
+</html>

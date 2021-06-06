@@ -5,20 +5,14 @@ import com.company.pm.common.web.errors.BadRequestAlertException;
 import com.company.pm.uploadservice.domain.services.CloudinaryService;
 import com.company.pm.userservice.domain.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.codec.multipart.FilePart;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 import springfox.documentation.annotations.ApiIgnore;
 
-import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -34,10 +28,10 @@ public class UploadController {
     private final UserService userService;
     
     @PostMapping(
-        path = "/bg",
+        path = "/users/background",
         consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
-    public Mono<Map> uploadBgImg(
+    public Mono<Map> uploadBgImgOfUser(
         @RequestPart("bgImg") Mono<FilePart> file,
         @ApiIgnore ServerWebExchange exchange
     ) {
@@ -47,13 +41,53 @@ public class UploadController {
                     return userService.getUserFromAuthentication((AbstractAuthenticationToken) principal)
                         .flatMap(user -> file.ofType(FilePart.class)
                             .flatMap(FileUtils::readBytesContent)
-                            .map(bytes -> {
-                                try {
-                                    return cloudinaryService.uploadBgImg(user.getId(), bytes);
-                                } catch (IOException e) {
-                                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-                                }
-                            })
+                            .flatMap(bytes -> cloudinaryService.uploadBgImgOfUser(user.getId(), bytes))
+                        );
+                } else {
+                    return Mono.error(new BadRequestAlertException("Invalid user", "user", "principalinvalid"));
+                }
+            });
+    }
+    
+    @PostMapping(
+        path = "/companies/{companyId}/admin/logo",
+        consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    public Mono<Map> uploadLogoImgOfCompany(
+        @PathVariable("companyId") Long companyId,
+        @RequestPart("logo") Mono<FilePart> file,
+        @ApiIgnore ServerWebExchange exchange
+    ) {
+        return exchange.getPrincipal()
+            .flatMap(principal -> {
+                if (principal instanceof AbstractAuthenticationToken) {
+                    return userService.getUserFromAuthentication((AbstractAuthenticationToken) principal)
+                        .flatMap(user -> file.ofType(FilePart.class)
+                            .flatMap(FileUtils::readBytesContent)
+                            .flatMap(bytes -> cloudinaryService.uploadLogoImgOfCompany(user.getId(), companyId, bytes))
+                        );
+                } else {
+                    return Mono.error(new BadRequestAlertException("Invalid user", "user", "principalinvalid"));
+                }
+            });
+    }
+    
+    @PostMapping(
+        path = "/companies/{companyId}/admin/background",
+        consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
+    public Mono<Map> uploadBgImgOfCompany(
+        @PathVariable("companyId") Long companyId,
+        @RequestPart("bgImg") Mono<FilePart> file,
+        @ApiIgnore ServerWebExchange exchange
+    ) {
+        return exchange.getPrincipal()
+            .flatMap(principal -> {
+                if (principal instanceof AbstractAuthenticationToken) {
+                    return userService.getUserFromAuthentication((AbstractAuthenticationToken) principal)
+                        .flatMap(user -> file.ofType(FilePart.class)
+                            .flatMap(FileUtils::readBytesContent)
+                            .flatMap(bytes -> cloudinaryService.uploadBgImgOfCompany(user.getId(), companyId, bytes))
                         );
                 } else {
                     return Mono.error(new BadRequestAlertException("Invalid user", "user", "principalinvalid"));

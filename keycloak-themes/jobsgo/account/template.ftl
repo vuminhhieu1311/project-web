@@ -22,7 +22,7 @@
         <body>
             <header id="header">
                 <div id="left-header">
-                    <a href="#"><img class="logo" src="${url.resourcesPath}/images/Logo_official.png" alt="logo"/></a>
+                    <a href="http://localhost:9002"><img class="logo" src="${url.resourcesPath}/images/Logo_official.png" alt="logo"/></a>
                 </div>
                 <div id="overlay"></div>
                 <div id="right-header">
@@ -40,7 +40,7 @@
                         <div class="dropdown-menu">
                             <div class="profile">
                                 <img id="dropdown-avatar" src="${url.resourcesPath}/images/avatar.png" alt="avatar">
-                                <h3>${account.username!''} <br> <span>Student at Hanoi University of Science and Technology</span></h3>
+                                <h3>${account.username!''} <br> <span></span></h3>
                             </div>
                             <div class="setting-list">
                                 <ul>

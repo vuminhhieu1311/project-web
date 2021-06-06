@@ -14,4 +14,11 @@ export const account = {
     GET: 'jobsgo/account/get'
 };
 
+export const conversations = {
+    GET: 'jobsgo/conversations/get'
+};
+
+export const participants = {
+    GET: 'jobsgo/participants/get'
+};
 

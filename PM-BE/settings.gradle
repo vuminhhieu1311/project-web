@@ -12,8 +12,9 @@ include 'pm-upload-service'
 include 'pm-user-service'
 include 'pm-personal-service'
 include 'pm-social-service'
-
 include 'pm-chat-service'
+include 'pm-interaction-service'
+include 'pm-realtime-service'
 
 include 'pm-company-service'
 

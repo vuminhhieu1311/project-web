@@ -3,6 +3,8 @@ import { css } from '../../../core/components/css-tag';
 export const searchbarStyle = css`
     .modal-header {
         display: flex;
+        width: 100%;
+        background-color: white;
     }
 
     .close-button {
@@ -19,7 +21,7 @@ export const searchbarStyle = css`
     }
     
     .search-input {
-        width: 87%;
+        width: 100%;
         padding-left: 10px;
         padding-right: 40px;
         border-radius: 20px;
@@ -38,8 +40,9 @@ export const searchbarStyle = css`
         font-size: 1.3rem;
         color: hsl(203, 49%, 23%, 0.95);
         border: none;
-        margin-left: -18%;
-        margin-top: 3%;
+        margin-top: 9px;
+        margin-bottom: auto;
+        right: 50px;
         background: none;
     }
     

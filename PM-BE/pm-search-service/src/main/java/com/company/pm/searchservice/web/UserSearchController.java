@@ -29,7 +29,7 @@ public class UserSearchController {
     private final UserSearchService userSearchService;
     
     @GetMapping(path = "/{query}")
-    public Mono<CollectionModel<EntityModel<UserSearch>>> getSearchResult(
+    public Mono<CollectionModel<EntityModel<UserSearch>>> getUserSearchResult(
         @PathVariable("query") String query,
         @ApiIgnore ServerWebExchange exchange
     ) {

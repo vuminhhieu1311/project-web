@@ -150,3 +150,109 @@ body{
     margin-left: 20px;
     cursor: pointer;
   }
+
+  #overlay__apply{
+    position: fixed;
+    background-color: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+  }
+
+  #popup__apply{
+    background-color: white;
+    position: fixed;
+    top: 130px;
+    left:50%;
+    transform: translateX(-50%);
+    height: 450px;
+    border: 1px solid black;
+    width: 500px;
+    border-radius: 8px;
+    z-index: 10;  
+  }
+
+  .show__apply{
+    display: block;
+  }
+
+  #popup__apply__header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid black;
+  }
+
+  #popup__apply__header__close{
+    padding: 2px 5px 2px 5px;
+    border-radius: 50%;
+  }
+
+  #popup__apply__header__close:hover{
+    background-color: rgb(177, 176, 176);
+  }
+
+  #popup__apply__header__text{
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  #popup__apply__form{
+    position: relative;
+    height: max-content;
+    padding: 10px;
+  }
+
+  .contact__info__input{
+    width: 460px;
+    outline: none;
+    height: 30px;
+    font-size: 15dpx;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(206, 205, 205);
+  }
+
+  #cv{
+    margin: 10px;
+  }
+
+  #popup__apply__form button{
+    position: absolute;
+    right: 20px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    background-color: royalblue;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+
+  #popup__apply__form__contactinfo__basic{
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  #popup__apply__form__contactinfo__basic img{
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+  }
+
+  #form__contactinfo__basic__name{
+    font-weight: bold; 
+  }
+
+  #form__contactinfo__basic__position{
+    font-size: 12px;
+  }
+
+  #form__contactinfo__basic__location{
+    font-size: 12px;
+  }

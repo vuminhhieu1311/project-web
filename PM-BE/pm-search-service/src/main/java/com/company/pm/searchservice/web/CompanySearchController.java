@@ -29,7 +29,7 @@ public class CompanySearchController {
     private final CompanySearchService companySearchService;
     
     @GetMapping(path = "/{query}")
-    public Mono<CollectionModel<EntityModel<CompanySearch>>> getSearchResults(
+    public Mono<CollectionModel<EntityModel<CompanySearch>>> getCompanySearchResults(
         @PathVariable("query") String query,
         @ApiIgnore ServerWebExchange exchange
     ) {

@@ -1,8 +1,10 @@
+
 import { css } from '../../core/components/css-tag';
 
 export const profileStyle = css`
     :host {
-        color: black;
+        font-size: 1rem;
+        color: #5a5a5a;
     }
 
     main {
@@ -14,7 +16,7 @@ export const profileStyle = css`
     
     #main-content {
         margin-top: 0;
-        width: 800px;
+        width: 840px;
         height: auto;
         display: flex;
         flex-direction: column;
@@ -25,15 +27,34 @@ export const profileStyle = css`
     }
     
     .main-content-div {
-        width: 780px;
-        border:0.5px solid gray;
+        width: 97%;
+        border: 0.1px solid #c7cfd4;
         border-radius: 10px;
         border-collapse: separate;
         padding: 1px;
         margin-bottom: 20px;
         background-color: white;
     }
+
+    #basic-info-follow{
+        background: linear-gradient(
+            135deg
+            , #1e4157f2 0%, #1597bb 100%);
+        width: max-content;
+        padding: 8px 15px;
+        font-size: 18px;
+        font-weight: bold;
+        color:rgb(245, 245, 245);
+        border-radius: 30px;
+        margin: 10px;
+        margin-left: 20px;
+        cursor: pointer;
+    }
     
+    #basic-info-follow i{
+        margin-right: 5px;
+        font-size: 15px;
+    }
     
     #background-avatar {
         position: relative;
@@ -73,17 +94,20 @@ export const profileStyle = css`
     }
     
     #main-avatar {
-        margin-top: -50px;
+        margin-top: -11%;
         background-color:transparent;
         position: relative;
     }
     
     #main-avatar img {
         display: block;
+        height: 150px;
+        width: 150px;
         background-color: white;
-        border: 1px solid black;
+        border: 1px solid #1597bb;
         border-radius: 50%;
         margin-left: 20px;
+        cursor: pointer;
     }
     
     #main-avatar a {
@@ -115,30 +139,50 @@ export const profileStyle = css`
         border-bottom-left-radius: 25px;
         border-bottom-right-radius: 25px;
     }
+
+    #workplace {
+        margin-top: 10px;
+    }
     
-    #info div {
-        width: 50%;
-        padding: 0 20px;
+    #info #personal-info {
+        width: 70%;
+        padding: 0 20px 10px 20px;
+    }
+
+    #info #work-place {
+        width: 30%;
     }
     
     #workplace a {
         font-weight: bold;
-        color: black;
+        color: #265077;
         text-decoration: none;
+        line-height: 30px
+    }
+
+    .profile-text {
+        line-height: 20px;
+        padding: 22px;
     }
     
     #workplace a:hover {
-        color: blue;
+        color: #1597bb;
         text-decoration: underline;
+    }
+
+    .light {
+        font-weight: lighter;
     }
     
     #contact-info {
         cursor: pointer;
-        color: blue;
+        color: #265077;
+
     }
     
     #contact-info:hover {
         text-decoration: underline;
+        color: #1597bb;
     }
     
     /*-------------------------------------------------*/
@@ -147,7 +191,7 @@ export const profileStyle = css`
         padding: 20px;
         background-color: transparent;
         width:100%;
-        border-bottom: 0.2px solid gray;
+        border-bottom: 0.1px solid #c7cfd4;
     }
     .education {
         margin: 20px;
@@ -159,11 +203,16 @@ export const profileStyle = css`
     .education__logo {
         display: inline-block;
         height: 100px;
-        width: 70px;
+        width: 100px;
     }
     
     .education__info {
         margin-left: 20px;
+    }
+
+    .education__info h4 {
+        font-weight: lighter;
+        line-height: 20px;
     }
     
     #experience > div {
@@ -220,4 +269,24 @@ export const profileStyle = css`
         }
     }
 
+    .skill__list, .certification__list, .workExperience__list, 
+        .project__list, .publication__list{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background-color: white;
+        }
+
+    h3{
+        cursor: pointer;
+    }
+
+    .education {
+        .education__list, .interest__list {
+            margin: 20px;
+            background-color: white;
+            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
 `;

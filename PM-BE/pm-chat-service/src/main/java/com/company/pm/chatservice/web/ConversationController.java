@@ -105,4 +105,25 @@ public class ConversationController {
                 }
             });
     }
+    
+    @GetMapping(
+        path = "/{participantId}/receipts"
+    )
+    public Mono<EntityModel<Conversation>> getOrCreateConversation(
+        @PathVariable("participantId") String participantId,
+        @ApiIgnore ServerWebExchange exchange
+    ) {
+        return exchange.getPrincipal()
+            .flatMap(principal -> {
+                if (principal instanceof AbstractAuthenticationToken) {
+                    return userService.getUserFromAuthentication((AbstractAuthenticationToken) principal)
+                        .flatMap(user -> conversationService.getOrCreateOneToOneConversation(user.getId(), participantId)
+                            .flatMap(conversation -> assembler.toModel(conversation, exchange)
+                            )
+                        );
+                } else {
+                    return Mono.error(new BadRequestAlertException("Invalid user", "user", "principalinvalid"));
+                }
+            });
+    }
 }

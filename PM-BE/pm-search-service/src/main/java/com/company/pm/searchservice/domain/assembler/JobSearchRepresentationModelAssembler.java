@@ -29,6 +29,6 @@ public class JobSearchRepresentationModelAssembler
     
     @Override
     protected WebFluxBuilder initLinkBuilder(ServerWebExchange exchange) {
-        return linkTo(methodOn(JobSearchController.class).getSearchResults(exchange), exchange);
+        return linkTo(methodOn(JobSearchController.class).getJobSearchResults(exchange), exchange);
     }
 }

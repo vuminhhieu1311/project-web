@@ -8,7 +8,8 @@ export const authReducer = (state = initialState.account, action) => {
             
             return {
                 ...state,
-                username: account.username,
+                userId: account.id,
+                username: account.login,
                 email: account.email
             };
         case types.auth.LOGIN_SUCCESS:

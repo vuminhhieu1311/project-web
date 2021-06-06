@@ -35,7 +35,7 @@ public class CompanySearchRepresentationModelAssembler
         Map<String, String> attributes = exchange.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         assert attributes != null;
         
-        return linkTo(methodOn(CompanySearchController.class).getSearchResults(
+        return linkTo(methodOn(CompanySearchController.class).getCompanySearchResults(
             attributes.get("query"), exchange
         ), exchange);
     }

@@ -35,7 +35,7 @@ public class UserSearchRepresentationModelAssembler
         Map<String, String> attributes = exchange.getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
         assert attributes != null;
         
-        return linkTo(methodOn(UserSearchController.class).getSearchResult(
+        return linkTo(methodOn(UserSearchController.class).getUserSearchResult(
             attributes.get("query"), exchange
         ), exchange);
     }

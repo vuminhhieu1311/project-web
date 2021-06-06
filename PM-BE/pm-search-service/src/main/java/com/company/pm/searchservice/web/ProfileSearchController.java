@@ -29,7 +29,7 @@ public class ProfileSearchController {
     private final PersonalProfileSearchService profileSearchService;
     
     @GetMapping(path = "/{query}")
-    public Mono<CollectionModel<EntityModel<PersonalProfileSearch>>> getSearchResults(
+    public Mono<CollectionModel<EntityModel<PersonalProfileSearch>>> getProfileSearchResults(
         @PathVariable("query") String query,
         @ApiIgnore ServerWebExchange exchange
     ) {

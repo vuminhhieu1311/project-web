@@ -18,6 +18,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -84,5 +86,30 @@ public class ConversationService {
                 
                 return conversationRepository.save(conversation);
             });
+    }
+    
+    @Transactional
+    public Mono<Conversation> getOrCreateOneToOneConversation(String userId, String participantId) {
+        String id1, id2;
+        if (userId.compareTo(participantId) > 0) {
+            id1 = userId;
+            id2 = participantId;
+        } else {
+            id1 = participantId;
+            id2 = userId;
+        }
+        
+        return conversationRepository.findOneToOneChat(id1, id2)
+            .switchIfEmpty(createConversationByUser(userId, new ConversationDTO(id1 + "-" + id2))
+                .flatMap(conversation -> {
+                    if (userId.compareTo(participantId) > 0) {
+                       conversation.setCreatorId(userId + "-" + participantId);
+                    } else {
+                       conversation.setCreatorId(participantId + "-" + userId);
+                    }
+                    
+                    return conversationRepository.save(conversation);
+                })
+            );
     }
 }

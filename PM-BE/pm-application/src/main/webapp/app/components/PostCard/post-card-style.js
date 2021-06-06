@@ -12,6 +12,7 @@ export const postCardStyle = css`
         border-radius: 8px;
         padding: 10px 10px 0px 10px;
         background-color: white;
+        width: 730px;
     }
     
     .news-card>div{
@@ -24,7 +25,7 @@ export const postCardStyle = css`
     }
 
     .recruit-info img {
-        height: 400px;
+        height: 350px;
         width: 100%;
     }
 
@@ -36,6 +37,7 @@ export const postCardStyle = css`
 
     .news-react{
         background-color: red white;
+        margin-bottom: 0 !important;
     }
 
     #poster-avatar{
@@ -66,6 +68,7 @@ export const postCardStyle = css`
         width: 100%;
         display: flex;
         border-top: 0.5px solid rgb(201, 201, 201);
+
     }
 
     .react-icon {
@@ -81,6 +84,7 @@ export const postCardStyle = css`
 
     .react-icon i {
         margin-right: 5px;
+        font-weight: bold;
     }
 
     .react-icon:hover {
@@ -90,6 +94,82 @@ export const postCardStyle = css`
 
     .react-icon:active {
         color: #265077;
-        font-weight: bold;
+        
+    }
+
+    /*Comment======================================*/
+    .comment{
+        background-color: whitesmoke;
+        padding: 10px;
+        margin-top: 0 !important;
+        display: none;
+        border-top: 0.5px solid rgb(201, 201, 201);
+    }
+
+    .display-comment{
+        display: block;
+    }
+
+    .news-header{
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .edit{
+        display:flex;
+        flex-direction: column;
+        margin-left: auto;
+    }
+
+    .edit-icon{
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .edit-icon:hover{
+        background-color: whitesmoke;
+    }
+
+    .edit-icon i{
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #dropdown-edit{
+        position: absolute;
+        background-color: white;
+        margin-top: 32px;
+        border: 0.1px solid #c7cfd4;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    #dropdown-edit div{
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    #dropdown-edit div:hover{
+        background-color: whitesmoke;
+    }
+
+    #dropdown-edit::before {
+        content: '';
+        position: absolute;
+        top: -7%;
+        right: 78%;
+        width: 13px;
+        height: 13px;
+        background-color: #fff;
+        transform: rotate(45deg);
+        border-left: 0.1px solid #c7cfd4;
+        border-top: 0.1px solid #c7cfd4;
     }
 `;

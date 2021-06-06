@@ -31,4 +31,6 @@ public class CompanyDTO {
     private final String logoUrl;
     
     private final String tagline;
+    
+    private final String bgImageUrl;
 }

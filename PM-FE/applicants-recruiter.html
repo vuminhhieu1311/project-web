@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Job</title>
+    <link rel="icon" href="resources/images/j.svg">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="./resources/css/reusable.css">
+    <link rel="stylesheet" href="./resources/css/style_applicants_recruiter.css">
+    <link rel="stylesheet" href="./vendors/css/grid.css">
+    <script src="https://kit.fontawesome.com/9b7bd019f1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="header">
+        <div id="left-header">
+            <a href="#"><img class="logo" src="./resources/images/Logo_official.png" alt="" /></a>
+        </div>
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <button data-close-button class="close-button"><i class="fas fa-long-arrow-alt-left"></i></button>
+                <input class="search-input" type="text" placeholder="Search">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div id="overlay"></div>
+        <div id="right-header">
+            <nav id="nav-menu">
+                <div data-modal-target="#modal" class="menu-icons">
+                    <div class="material-icons md-24">
+                        search
+                    </div>
+                    <h6>Search</h6>
+                </div>
+
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        home
+                    </div>
+                    <h6>Home</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        people
+                    </div>
+                    <h6>My Network</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        work
+                    </div>
+                    <h6>Jobs</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        message
+                    </div>
+                    <h6>Messaging</h6>
+                </div>
+                <div class="menu-icons">
+                    <div class="material-icons md-24">
+                        notifications
+                    </div>
+                    <h6>Notifications</h6>
+                </div>
+
+                <div class=" menu-icons dropbtn" onclick="menuToggle()" id="personal-icon">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
+                    </div>
+                    <div>
+                        <h6>Me <i class="fas fa-caret-down"></i></h6>
+                    </div>
+                </div>
+                
+                <!-- user account dropdown menu -->
+                <div class="dropdown-menu">
+                    <div class="profile">
+                        <img src="./resources//images//avatar.png" alt="">
+                        <h3>Hieu Vu Minh <br> <span>Student at Hanoi University of Science and Technology</span></h3>
+                    </div>
+                    <div class="setting-list">
+                        <ul>
+                            <li><i class="fas fa-user-circle"></i><a href="#">View Profile</a></li>
+                            <li><i class="fas fa-edit"></i><a href="#">Edit Profile</a></li>
+                            <li><i class="fas fa-users-cog"></i><a href="#">Account Settings</a></li>
+                            <li><i class="fas fa-sign-out-alt"></i><a href="#">Sign Out</a></li>                        
+                        </ul>
+                    </div>     
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div id="main__left">
+            <div id="filter">
+                <div id="custom__filter">
+                    Custom filter 
+                    <i class="fas fa-caret-down"></i> 
+                </div>
+                <div id="filter__jobtitle">
+                    <form>
+                        <label for="jobtitle">Job title</label></br>
+                        <select id="jobtitle" name="jobtitle">
+                            <option value="example1">Example 1</option>
+                            <option value="example2">Example 2</option>
+                        </select>
+                    </form>
+                </div>
+                <div id="filter__location">
+                    <form>
+                        <label for="location">Location</label></br>
+                        <select id="location" name="location">
+                            <option value="example1">Example 1</option>
+                            <option value="example2">Example 2</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="main__right">
+            <div id="applicants__list">
+                <div id="applicants__amount">100 applicants</div>
+                <div id="applicants__brief__card">
+                    <div id="applicants__brief__card__header">
+                        <div id="applicants__brief__card__header__avatar">
+                            <img src="https://pm1.narvii.com/6350/a48a0c1dd5862d96617443ea5be846a445fe0cc8_hq.jpg" style="height: 50px; width: 50px;border-radius: 50%;">
+                        </div>
+                        <div id="applicants__brief__card__header__name">
+                            <h3>ABS</h3>
+                            <p id="email">Email</p>
+                            <p id="location">Location</p>
+                        </div>
+
+                        <div id="applicants__brief__card__header__button">
+                            <button>Save</button>
+                            <button>Hide</button>
+                        </div>
+                    </div>
+
+                    <div class="applicants__brief__card__info">
+                        <div class="applicants__brief__card__info__title">
+                            Current
+                        </div>
+
+                        <div class="applicants__brief__card__info__detail">
+                            Student <span class="duration"><i class="fab fa-jira"></i>2018 - now</span>
+                        </div>
+
+                        <div class="applicants__brief__card__info__title">
+                            Education
+                        </div>
+
+                        <div class="applicants__brief__card__info__detail">
+                            HUST <span class="duration"><i class="fab fa-jira"></i>2018 - now</span>
+                        </div>
+
+                        <div class="applicants__brief__card__info__title">
+                            Job title
+                        </div>
+
+                        <div class="applicants__brief__card__info__detail">
+                            Web developer 
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="applicants__brief__card">
+                    <div id="applicants__brief__card__header">
+                        <div id="applicants__brief__card__header__avatar">
+                            <img src="https://pm1.narvii.com/6350/a48a0c1dd5862d96617443ea5be846a445fe0cc8_hq.jpg" style="height: 50px; width: 50px;border-radius: 50%;">
+                        </div>
+                        <div id="applicants__brief__card__header__name">
+                            <h3>ABS</h3>
+                            <p id="email">Email</p>
+                            <p id="location">Location</p>
+                        </div>
+
+                        <div id="applicants__brief__card__header__button">
+                            <button>Save</button>
+                            <button>Hide</button>
+                        </div>
+                    </div>
+
+                    <div class="applicants__brief__card__info">
+                        <div class="applicants__brief__card__info__title">
+                            Current
+                        </div>
+
+                        <div class="applicants__brief__card__info__detail">
+                            Student <span class="duration"><i class="fab fa-jira"></i>2018 - now</span>
+                        </div>
+
+                        <div class="applicants__brief__card__info__title">
+                            Education
+                        </div>
+
+                        <div class="applicants__brief__card__info__detail">
+                            HUST <span class="duration"><i class="fab fa-jira"></i>2018 - now</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="applicants__brief__card">
+                    <div id="applicants__brief__card__header">
+                        <div id="applicants__brief__card__header__avatar">
+                            <img src="https://pm1.narvii.com/6350/a48a0c1dd5862d96617443ea5be846a445fe0cc8_hq.jpg" style="height: 50px; width: 50px;border-radius: 50%;">
+                        </div>
+                        <div id="applicants__brief__card__header__name">
+                            <h3>ABS</h3>
+                            <p id="email">Email</p>
+                            <p id="location">Location</p>
+                        </div>
+
+                        <div id="applicants__brief__card__header__button">
+                            <button>Save</button>
+                            <button>Hide</button>
+                        </div>
+                    </div>
+
+                    <div class="applicants__brief__card__info">
+                        <div class="applicants__brief__card__info__title">
+                            Current
+                        </div>
+
+                        <div class="applicants__brief__card__info__detail">
+                            Student <span class="duration"><i class="fab fa-jira"></i>2018 - now</span>
+                        </div>
+
+                        <div class="applicants__brief__card__info__title">
+                            Education
+                        </div>
+
+                        <div class="applicants__brief__card__info__detail">
+                            HUST <span class="duration"><i class="fab fa-jira"></i>2018 - now</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript" src="./resources/js/reusable.js"></script>
+    <script type="text/javascript" src="./resources/js/main_search_job.js"></script>
+
+</body>
+
+</html>

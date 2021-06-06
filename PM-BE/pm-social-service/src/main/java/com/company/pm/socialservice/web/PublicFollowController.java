@@ -1,5 +1,7 @@
 package com.company.pm.socialservice.web;
 
+import com.company.pm.companyservice.domain.assembler.PublicCompanyRepresentationModelAssembler;
+import com.company.pm.domain.companyservice.Company;
 import com.company.pm.socialservice.domain.services.FollowService;
 import com.company.pm.userservice.domain.assembler.PublicUserRepresentationModelAssembler;
 import com.company.pm.userservice.domain.services.dto.UserDTO;
@@ -27,13 +29,15 @@ public class PublicFollowController {
     
     private final PublicUserRepresentationModelAssembler userAssembler;
     
+    private final PublicCompanyRepresentationModelAssembler companyAssembler;
+    
     private final FollowService followService;
     
     @GetMapping(
         path = "/users/{id}/followers",
         produces = MediaTypes.HAL_JSON_VALUE
     )
-    public Mono<CollectionModel<EntityModel<UserDTO>>> getPublicFollowers(
+    public Mono<CollectionModel<EntityModel<UserDTO>>> getPublicFollowersOfUser(
         @PathVariable("id") String userId,
         @ApiIgnore ServerWebExchange exchange
     ) {
@@ -43,10 +47,23 @@ public class PublicFollowController {
     }
     
     @GetMapping(
+        path = "/users/{id}/followings/companies",
+        produces = MediaTypes.HAL_JSON_VALUE
+    )
+    public Mono<CollectionModel<EntityModel<Company>>> getPublicCompanyFollowingsOfUser(
+        @PathVariable("id") String userId,
+        @ApiIgnore ServerWebExchange exchange
+    ) {
+        Flux<Company> followingFlux = followService.getFollowingCompanyByUser(userId);
+        
+        return companyAssembler.toCollectionModel(followingFlux, exchange);
+    }
+    
+    @GetMapping(
         path = "/users/{id}/followings",
         produces = MediaTypes.HAL_JSON_VALUE
     )
-    public Mono<CollectionModel<EntityModel<UserDTO>>> getPublicFollowings(
+    public Mono<CollectionModel<EntityModel<UserDTO>>> getPublicFollowingsOfUser(
         @PathVariable("id") String userId,
         @ApiIgnore ServerWebExchange exchange
     ) {
@@ -56,12 +73,17 @@ public class PublicFollowController {
     }
     
     @GetMapping(path = "/users/{id}/followers/count")
-    public Mono<Long> countPublicFollowers(@PathVariable("id") String userId) {
+    public Mono<Long> countPublicFollowersOfUser(@PathVariable("id") String userId) {
         return followService.countFollowersByUser(userId);
     }
     
     @GetMapping(path = "/users/{id}/followings/count")
-    public Mono<Long> countPublicFollowings(@PathVariable("id") String userId) {
+    public Mono<Long> countPublicFollowingsOfUser(@PathVariable("id") String userId) {
         return followService.countFollowingsByUser(userId);
+    }
+    
+    @GetMapping(path = "/companies/{id}/followers/count")
+    public Mono<Long> countPublicFollowersOfCompany(@PathVariable("id") Long companyId) {
+        return followService.countFollowersOfCompany(companyId);
     }
 }

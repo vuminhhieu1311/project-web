@@ -44,6 +44,11 @@ spring:
     url: r2dbc:mysql://localhost:3306/personal_management?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
     username: user
     password: test
+  rsocket:
+    server:
+      port: 8000
+      mapping-path: /rsocket
+      transport: websocket
   thymeleaf:
     cache: false
   sleuth:

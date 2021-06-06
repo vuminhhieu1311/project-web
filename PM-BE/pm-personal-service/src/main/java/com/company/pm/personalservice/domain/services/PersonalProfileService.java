@@ -51,6 +51,7 @@ public class PersonalProfileService {
                      PersonalProfile profile = mapper.profileDtoToProfile(profileDTO);
                      profile.setUser(user);
                      profile.setUserId(user.getId());
+                     log.debug("profile: {}", profile);
     
                      return profileRepository.findByUser(userId)
                          .switchIfEmpty(profileRepository.save(profile))
@@ -115,32 +116,26 @@ public class PersonalProfileService {
      * <p>
      * This is scheduled to get fired everyday, at 02:00 (am).
      */
-    @Scheduled(cron = "0 0 2 * * ?")
+    @Scheduled(cron = "0 0 2 * * ?", zone = "Asia/Ho_Chi_Minh")
     public void syncProfileSearch() {
         syncProfileSearchReactively().blockLast();
     }
     
     @Transactional
     public Flux<PersonalProfileSearch> syncProfileSearchReactively() {
-        return profileRepository.findAll()
-            .flatMap(this::updateProfileSearch);
+        return profileSearchRepository.deleteAll()
+            .thenMany(profileRepository.findAll()
+                .flatMap(this::updateProfileSearch)
+            );
     }
     
     private Mono<PersonalProfileSearch> updateProfileSearch(PersonalProfile profile) {
-        return profileSearchRepository.findById(profile.getId())
-            .flatMap(profileSearch -> {
-                profileSearch.setHeadline(profile.getHeadline());
-                profileSearch.setFirstName(profile.getUser().getFirstName());
-                profileSearch.setLastName(profile.getUser().getLastName());
-                
-                return profileSearchRepository.save(profileSearch);
-            })
-            .switchIfEmpty(profileSearchRepository.save(new PersonalProfileSearch(
-                profile.getId(),
-                profile.getHeadline(),
-                profile.getUser().getFirstName(),
-                profile.getUser().getLastName()
-            )))
+        return profileSearchRepository.save(new PersonalProfileSearch(
+            profile.getId(),
+            profile.getHeadline(),
+            profile.getUser().getFirstName(),
+            profile.getUser().getLastName()
+        ))
             .doOnNext(saved -> log.debug("Saved profile to elasticsearch: {}", saved));
     }
 }

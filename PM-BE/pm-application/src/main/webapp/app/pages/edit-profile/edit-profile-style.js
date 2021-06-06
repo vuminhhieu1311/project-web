@@ -3,6 +3,7 @@ import { css } from '../../core/components/css-tag';
 export const editProfileStyle = css`
     :host {
         font-size: 1rem;
+        color: #5a5a5a;
     }
 
     .container {
@@ -89,7 +90,6 @@ export const editProfileStyle = css`
 
     .sidemenu {
         background-color: transparent;
-        margin-left: 6%;
     }
 
     .sidemenu nav a {
@@ -116,6 +116,10 @@ export const editProfileStyle = css`
 
     .setting-title {
         margin-left: 10px;
+    }
+
+    .account-info {
+        padding-right: 5%;
     }
 
     .account-info .profile {
@@ -178,4 +182,31 @@ export const editProfileStyle = css`
         background: linear-gradient(135deg, #1597bb 0%, #203949f2 100%);
         transform: scale(1.2);
     }
+
+    .app-link {
+        color: #265077;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 500;
+        transition: 0.5s;
+        font-size: 20px;
+        padding-bottom: 20px;
+        width: 150px;
+        padding-left: 10px;
+    }
+    
+    .app-link:hover {
+        color: #2d6187;
+        background-color: #d8e3e7;
+    }
+
+    i {
+        color: #265077;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 500;
+        transition: 0.5s;
+    }
+
+    
 `;

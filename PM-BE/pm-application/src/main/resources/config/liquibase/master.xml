@@ -31,6 +31,11 @@
     <include file="config/liquibase/changelog/20210520141101_added_entity_Message.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210520141102_added_entity_Conversation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210522103844_added_entity_Participant.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210524011024_added_entity_Post.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210524011025_added_entity_Comment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210524011026_added_entity_Like.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210524140844_added_entity_CommentLike.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210526045433_added_entity_Attachment.xml" relativeToChangelogFile="false"/>
 
     <include file="config/liquibase/changelog/20210409181924_added_entity_constraints_Certification.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210409181925_added_entity_constraints_Skill.xml" relativeToChangelogFile="false"/>
@@ -41,12 +46,20 @@
     <include file="config/liquibase/changelog/20210409181926_added_entity_constraints_WorkExperience.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210409181927_added_entity_constraints_Education.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210409205620_added_entity_constraints_PersonalProfile.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210509170340_added_entity_columns_PersonalProfile.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210510203215_added_entity_columns_Skill.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20210510214620_added_entity_columns_WorkExperience.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210517043000_added_entity_constraints_Job.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210517042959_added_entity_constraints_Company.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210520141101_added_entity_constraints_Message.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210520141102_added_entity_constraints_Conversation.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20210522103844_added_entity_constraints_Participant.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210524011024_added_entity_constraints_Post.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210524011025_added_entity_constraints_Comment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210524011026_added_entity_constraints_Like.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210524140844_added_entity_constraints_CommentLike.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210526045433_added_entity_constraints_Attachment.xml" relativeToChangelogFile="false"/>
+
+    <include file="config/liquibase/changelog/20210509170340_added_entity_columns_PersonalProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210510203215_added_entity_columns_Skill.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210510214620_added_entity_columns_WorkExperience.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210526183130_added_entity_columns_Company.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210531012830_removed_entity_constraint_Participant.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

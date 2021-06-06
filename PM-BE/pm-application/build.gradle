@@ -27,6 +27,8 @@ dependencies {
     implementation project(':pm-company-service')
     implementation project(':pm-search-service')
     implementation project(':pm-chat-service')
+    implementation project(':pm-interaction-service')
+    implementation project(':pm-realtime-service')
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 

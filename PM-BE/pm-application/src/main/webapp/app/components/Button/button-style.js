@@ -81,4 +81,27 @@ export const buttonStyle = css`
         transform: scale(1.1);
         color: #fff;
     }
+
+    .custom-btn {
+        width: 30%;
+        height: 10%;
+        font-weight: 500;
+        text-align: center;
+        padding: 5px;
+        border-radius: 7px;
+        margin-top: 3%;
+        transition: all 0.3s;
+        font-size: 16px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        border: none;
+        background: linear-gradient(135deg, #1e4157f2 0%, #1597bb 100%);
+        color: #fff;
+        padding: 10px
+    }
+
+    .custom-btn:hover,
+    .custom-btn:active {
+        background: linear-gradient(135deg, #1597bb 0%, #265077 100%);
+    }
 `;

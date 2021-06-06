@@ -149,6 +149,10 @@ recruitDetailTemplate.innerHTML=`
         margin: 8px;
     }
 
+    #popup__apply{
+        background-color: aqua;
+    }
+
 </style>
 
     <div id="recruit__info">
@@ -159,7 +163,7 @@ recruitDetailTemplate.innerHTML=`
                 <span><slot name="address"/></span>
                 <span><slot name="time"/></span>
                 <div id="recruit__info__web__feature">
-                    <div>Apply</div>
+                    <div id="recruit__info__web__feature__apply">Apply</div>
                     <div>Save</div>
                 </div>
             </div>
@@ -213,6 +217,19 @@ class recruitDetailCard extends HTMLElement{
     }
     connectedCallback(){
         console.log('connectedcallback-recruit');
+        /*=====================================================================================================*/
+        let apply = this.shadowRoot.getElementById("recruit__info__web__feature__apply");
+        let applyForm = document.getElementById("overlay__apply");
+        let closeApply = document.getElementById("popup__apply__header__close");
+
+        apply.addEventListener("click",()=>{
+            applyForm.style.display="block";
+            console.log(applyForm);
+        })
+
+        closeApply.addEventListener("click",()=>{
+            applyForm.style.display="none";
+        })
     }
 }
 
@@ -232,3 +249,6 @@ createdAtDrop.addEventListener("click", ()=>{
     let overlayCreatedAtDrop = document.getElementById("overlay__createdat");
     overlayCreatedAtDrop.classList.toggle("overlay");
 })
+
+
+/*=========================================================*/

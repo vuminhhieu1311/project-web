@@ -18,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Instant;
 import java.util.Date;
 
 @Service
@@ -70,7 +71,8 @@ public class JobService {
                     job.setPoster(user);
                     job.setPosterId(user.getId());
                     job.setActivated(true);
-                    job.setCreatedAt(new Date().toInstant());
+                    job.setCreatedAt(Instant.now());
+                    job.setClosedAt(Instant.EPOCH);
                     
                     return jobRepository.save(job)
                         .flatMap(saved -> saveJobSearch(saved).thenReturn(saved));
@@ -99,17 +101,24 @@ public class JobService {
                 if (update.getActivated() != null) {
                     if (!update.getActivated() && job.getActivated()) {
                         job.setActivated(false);
-                        job.setClosedAt(new Date().toInstant());
+                        job.setClosedAt(Instant.now());
                     } else if (update.getActivated() && !job.getActivated()) {
                         job.setActivated(true);
-                        job.setCreatedAt(new Date().toInstant());
+                        job.setCreatedAt(Instant.now());
                     } else {
                         return Mono.error(new BadRequestAlertException("Invalid action", ENTITY_NAME, "actioninvalid"));
                     }
                 }
                 
                 return jobRepository.save(job)
-                    .flatMap(saved -> saveJobSearch(saved).thenReturn(saved));
+                    .flatMap(saved -> companyRepository.findByAdminAndId(userId, saved.getCompanyId())
+                        .flatMap(company -> {
+                            saved.setCompany(company);
+                            
+                            return jobSearchRepository.save(jobToJobSearch(saved))
+                                .thenReturn(saved);
+                        })
+                    );
             });
     }
     
@@ -125,30 +134,22 @@ public class JobService {
      * <p>
      * This is scheduled to get fired everyday, at 02:00 (am).
      */
-    @Scheduled(cron = "0 0 2 * * ?")
+    @Scheduled(cron = "0 0 2 * * ?", zone = "Asia/Ho_Chi_Minh")
     public void syncJobSearch() {
         syncJobSearchReactively().blockLast();
     }
     
     @Transactional
     public Flux<JobSearch> syncJobSearchReactively() {
-        return jobRepository.findAll()
-            .flatMap(this::saveJobSearch);
+        return jobSearchRepository.deleteAll()
+            .thenMany(jobRepository.findAll()
+                .flatMap(this::saveJobSearch)
+            );
     }
     
     @Transactional
     public Mono<JobSearch> saveJobSearch(Job job) {
-        return jobSearchRepository.findById(job.getId())
-            .flatMap(jobSearch -> {
-                jobSearch.setTitle(job.getTitle());
-                jobSearch.setCompany(job.getCompany().getName());
-                jobSearch.setLocation(job.getLocation());
-                jobSearch.setJobType(job.getJobType());
-                jobSearch.setCreatedAt(job.getCreatedAt());
-                
-                return jobSearchRepository.save(jobSearch);
-            })
-            .switchIfEmpty(jobSearchRepository.save(jobToJobSearch(job)));
+        return jobSearchRepository.save(jobToJobSearch(job));
     }
     
     private JobSearch jobToJobSearch(Job job) {

@@ -22,8 +22,7 @@ class Button extends MaleficComponent {
     render() {
         return html`
             ${commonStyles}
-            
-            <a class="${this.btnClass}" href="#">
+            <a class="${this.btnClass}">
                 <slot></slot>
             </a>
         `;

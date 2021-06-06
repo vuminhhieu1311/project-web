@@ -44,4 +44,5 @@ interface WorkExperienceRepositoryInternal {
     Mono<WorkExperience> findById(Long id);
     Flux<WorkExperience> findAllBy(Pageable pageable);
     Flux<WorkExperience> findAllBy(Pageable pageable, Criteria criteria);
+    Mono<WorkExperience> findOneBy(Criteria criteria);
 }

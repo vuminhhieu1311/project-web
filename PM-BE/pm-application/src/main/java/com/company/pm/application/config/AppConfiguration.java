@@ -5,7 +5,9 @@ import com.company.pm.common.config.ApplicationProperties;
 import com.company.pm.common.config.CommonConfiguration;
 import com.company.pm.common.config.WebConfigurer;
 import com.company.pm.companyservice.main.config.CompanyServiceConfiguration;
+import com.company.pm.interactionservice.main.config.InteractionServiceConfiguration;
 import com.company.pm.personalservice.main.config.PersonalServiceConfiguration;
+import com.company.pm.realtimeservice.main.config.RealtimeServiceConfiguration;
 import com.company.pm.searchservice.main.SearchServiceConfiguration;
 import com.company.pm.security.config.SecurityConfiguration;
 import com.company.pm.socialservice.main.config.SocialServiceConfiguration;
@@ -28,8 +30,10 @@ import org.springframework.context.annotation.Import;
     PersonalServiceConfiguration.class,
     SocialServiceConfiguration.class,
     ChatServiceConfiguration.class,
+    InteractionServiceConfiguration.class,
     CompanyServiceConfiguration.class,
-    SearchServiceConfiguration.class
+    SearchServiceConfiguration.class,
+    RealtimeServiceConfiguration.class
 })
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
 public class AppConfiguration {

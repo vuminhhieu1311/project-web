@@ -79,6 +79,6 @@ export const contactInfoStyle = css`
         left: 10px;
         font-weight: bold;
         font-size: 16px;
-        color: blue;
+        color: #265077;
     }
 `;

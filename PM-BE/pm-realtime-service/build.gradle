@@ -1,0 +1,10 @@
+dependencies {
+    api project(':pm-chat-service')
+    api project(':pm-interaction-service')
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}

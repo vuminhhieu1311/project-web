@@ -6,11 +6,17 @@ import { headerStyle } from './header-style';
 import '../../Dropdown/Dropdown';
 import '../../Modal/SearchBar/SearchBar';
 import '../../Dropdown/ProfileMenu/ProfileMenu';
+import getProfile from '../../../api/getProfile';
+import '../../Dropdown/CompanyMenu/CompanyMenu';
+import { transformImage } from '../../../shared/utils/url-utils';
+import '../../../routes/Link';
 
 class Header extends MaleficComponent {
     static get properties() {
         return {
-            showModal: {type: Boolean}
+            showModal: {type: Boolean},
+            profile: {type: Object},
+            imgAvt: {type: String}
         };
     }
     
@@ -30,11 +36,20 @@ class Header extends MaleficComponent {
     closeModal() {
         this.showModal = false;
     }
-    
+
+    async connectedCallback() {
+        super.connectedCallback()
+        getProfile()
+        .then(res => {
+            this.profile = res;
+            this.imgAvt = res.user.imageUrl;
+        })
+        .catch(e => console.log(e));
+    }
+
     render() {
         return html`
             ${commonStyles}
-            
             <header id="header">
                 <div id="left-header">
                     <a href="/"><img class="logo" src="content/images/Logo_official.png" alt="Logo" /></a>
@@ -51,50 +66,77 @@ class Header extends MaleficComponent {
                         </div>
             
                         <div class="menu-icons">
-                            <div class="material-icons md-24">
-                                home
-                            </div>
-                            <h6>Home</h6>
+                            <app-link href="/">
+                                <div class="material-icons md-24">
+                                    home
+                                </div>
+                                <h6>Home</h6>
+                            </app-link>
+                        </div>
+
+                        <div class="menu-icons">
+                            <app-link>
+                                <div class="material-icons md-24">
+                                    work
+                                </div>
+                                <h6>Jobs</h6>
+                            </app-link>
                         </div>
                         <div class="menu-icons">
-                            <div class="material-icons md-24">
-                                people
-                            </div>
-                            <h6>My Network</h6>
+                            <app-link href="/chat">
+                                <div class="material-icons md-24">
+                                    message
+                                </div>
+                                <h6>Messaging</h6>
+                            </app-link>
                         </div>
-                        <div class="menu-icons">
-                            <div class="material-icons md-24">
-                                work
+
+                        <app-dropdown>
+                            <div class="menu-icons" slot="toggle">
+                                <div class="material-icons md-24">
+                                <i class="fas fa-building"></i>
+                                </div>
+                                <div>
+                                    <h6>Company <i class="fas fa-caret-down"></i></h6>
+                                </div>
                             </div>
-                            <h6>Jobs</h6>
-                        </div>
-                        <div class="menu-icons">
-                            <div class="material-icons md-24">
-                                message
-                            </div>
-                            <h6>Messaging</h6>
-                        </div>
-                        <div class="menu-icons">
-                            <div class="material-icons md-24">
-                                notifications
-                            </div>
-                            <h6>Notifications</h6>
-                        </div>
+                            ${this.profile && this.profile.user ?
+                                html`<app-company-menu
+                                    avtImg="${this.imgAvt ? transformImage(this.imgAvt, 'w_200,c_fill,ar_1:1,g_auto,r_max,b_rgb:262c35') : 'content/images/avatar.png'}"
+                                    firstName="${this.profile.user.firstName}"
+                                    lastName="${this.profile.user.lastName}"
+                                    title="${this.profile.headline}"
+                                    id="${this.profile.userId}"
+                                    slot="menu-item">
+                                </app-company-menu>` : null
+                            }
+                        </app-dropdown>
                         
                         <app-dropdown>
                             <div class="menu-icons" slot="toggle">
                                 <div class="profile">
-                                    <img src="content/images/avatar.png" alt="Avatar">
+                                    ${this.imgAvt ?
+                                        html`
+                                            <img src="${transformImage(this.imgAvt, 'w_200,c_fill,ar_1:1,g_auto,r_max,b_rgb:262c35')}" alt="Avatar">
+                                        ` : html`<img src="content/images/avatar.png">`
+                                    }
                                 </div>
                                 <div>
                                     <h6>Me <i class="fas fa-caret-down"></i></h6>
                                 </div>
                             </div>
-                            <app-profile-menu
-                                username="admin"
-                                title="Student at Hanoi University of Science and Technology"
-                                slot="menu-item">
-                            </app-profile-menu>
+                            ${this.profile && this.profile.user ?
+                                html`
+                                    <app-profile-menu
+                                        avtImg="${this.imgAvt ? transformImage(this.imgAvt, 'w_200,c_fill,ar_1:1,g_auto,r_max,b_rgb:262c35') : 'content/images/avatar.png'}"
+                                        firstName="${this.profile.user.firstName}"
+                                        lastName="${this.profile.user.lastName}"
+                                        title="${this.profile.headline}"
+                                        id="${this.profile.userId}"
+                                        slot="menu-item">
+                                    </app-profile-menu>
+                                ` : null
+                            }
                         </app-dropdown>
                     </nav>
                 </div>

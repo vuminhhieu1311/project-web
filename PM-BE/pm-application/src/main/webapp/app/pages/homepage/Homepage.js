@@ -8,45 +8,75 @@ import '../../components/layouts/Footer/Footer';
 import '../../components/Button/Button';
 import '../../components/PostCard/PostCard';
 import '../../components/Modal/UploadPost/UploadPost';
+import getProfile from '../../api/getProfile';
+import { transformImage } from '../../shared/utils/url-utils';
+import getNewsFeed from '../../api/getNewsFeed';
 
 class Homepage extends MaleficComponent {
     static get styles() {
         return [homepageStyle];
     }
-    
+
+    static get properties() {
+        return {
+            showModal: { type: Boolean },
+            profile: { type: Object },
+            imgAvt: { type: String },
+            postList: {type: Array}
+        };
+    }
+
     constructor() {
         super();
         window.addEventListener('beforeunload', () => {
             window.scrollTo(0, 0);
         });
         this.showModal = false;
-    }
-
-    static get properties() {
-        return {
-            showModal: {type: Boolean}
-        };
+        this.postList = [];
     }
 
     handleToggleModal() {
         this.showModal = !this.showModal;
     }
-    
+
     closeModal() {
         this.showModal = false;
     }
-    
+
+    async connectedCallback() {
+        super.connectedCallback()
+        getProfile()
+            .then(res => {
+                this.profile = res;
+                this.imgAvt = res.user.imageUrl;
+                // console.log(res.user.imageUrl)
+            })
+            .catch(e => console.log(e));
+
+        getNewsFeed()
+            .then(res => {
+                this.postList = res._embedded ? res._embedded.postList : [];
+            })
+            .catch(e => console.log(e));
+    }
+
+
     render() {
         return html`
             ${commonStyles}
             <app-header></app-header>
-            <app-upload-post .show="${this.showModal}" @close-modal="${this.closeModal}"></app-upload-post>
+            <app-upload-post .show="${this.showModal}" @close-modal="${this.closeModal}" 
+                placeHolder="Type something" 
+                typePost="Upload your post"
+                placeHolderImage="./content/images/avatar.png">
+                
+                </app-upload-post>
             <main class="main">
                 <div class="main__content news">
                     <div class="status">
                         <div class="status__post">
                             <div class="post__avatar">
-                                <img src="content/images/engineering2.jpeg">
+                                <img src="${this.imgAvt ? transformImage(this.imgAvt, 'w_200,c_fill,ar_1:1,g_auto,r_max,b_rgb:262c35') : 'content/images/avatar.png'}">
                             </div>
                             <div class="post__text" @click="${this.handleToggleModal}">
                                 <div>Start A Post</div>
@@ -81,22 +111,17 @@ class Homepage extends MaleficComponent {
                     </div>
         
                     <div class="news__content">
+                        ${this.postList.slice(0).reverse().map((e) => {
+                            return html`
                         <post-card
-                            accountImg="content/images/engineering2.jpeg"
-                            accountName="Vu Minh Hieu";
-                            numFollowers = 10000
-                            time = '3hr'
-                            postText = 'This is my first post'
-                            postImg = 'content/images/engineering2.jpeg'
-                        ></post-card>
-                        <post-card
-                            accountImg="content/images/avatar.png"
-                            accountName="Vu Minh Hieu";
-                            numFollowers = 900
-                            time = '5w'
-                            postText = 'This is my second post'
-                            postImg = 'content/images/engineering2.jpeg'
-                        ></post-card>
+                        accountName="${e.author.firstName} ${e.author.lastName}"
+                        accountImg="${e.author.imageUrl ? transformImage(e.author.imageUrl, 'w_200,c_fill,ar_1:1,g_auto,r_max,b_rgb:262c35') : 'content/images/avatar.png'}"
+                        numFollowers=10
+                        time="5w"
+                        postText="${e.content}"
+                        postId="${e.id}">    
+                        </post-card>
+                        `})}
                     </div>
                 </div>
         

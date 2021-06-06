@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Remove unique constraint user_id column of entity Participant.
+    -->
+    <changeSet id="20210531012830-3" author="HT">
+        <dropForeignKeyConstraint baseTableName="participants"
+                                  constraintName="fk_participants__user_id"/>
+        <dropUniqueConstraint tableName="participants"
+                              constraintName="ux_participants__user_id"/>
+
+    </changeSet>
+</databaseChangeLog>

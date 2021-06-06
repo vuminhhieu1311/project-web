@@ -47,6 +47,12 @@ spring:
     password:
   thymeleaf:
     cache: true
+  rsocket:
+    server:
+      port: 8000
+      mapping-path: /rsocket
+      fragment-size: 16384
+      transport: websocket
   sleuth:
     sampler:
       probability: 1 # report 100% of traces

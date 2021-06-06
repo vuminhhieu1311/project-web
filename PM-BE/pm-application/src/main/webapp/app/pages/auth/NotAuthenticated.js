@@ -1,10 +1,18 @@
 import MaleficComponent from '../../core/components/MaleficComponent';
-import { getLoginUrl } from '../../shared/utils/url-utils';
+import { html } from '../../core/components/malefic-html';
+
+import '../intro/Intro';
 
 class NotAuthenticated extends MaleficComponent {
-    connectedCallback() {
-        super.connectedCallback();
-        location.href = getLoginUrl();
+    constructor() {
+        super();
+        history.pushState(null, null, '/');
+    }
+    
+    render() {
+        return html`
+            <app-intro></app-intro>
+        `;
     }
 }
 

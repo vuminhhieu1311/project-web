@@ -24,6 +24,7 @@ class App extends router(MaleficComponent) {
     
     constructor() {
         super();
+        this.props = {};
         this.route = '';
         this.params = {};
         this.query = {};
@@ -33,21 +34,23 @@ class App extends router(MaleficComponent) {
     }
     
     router(route, params, query, data, component, resolve) {
-        this.route = route;
-        this.params = params;
-        this.query = query;
-        this.data = data;
+        this.props = {
+            route,
+            params,
+            query,
+            data
+        };
         this.component = component;
         this.resolve = resolve;
-    
-        if (data.title) {
-            document.getElementsByTagName('title')[0].innerHTML = data.title;
-        }
     }
     
     render() {
         return html`
-            <app-outlet activeroute=${this.component} .resolve="${this.resolve}"></app-outlet>
+            <app-outlet
+                props=${JSON.stringify(this.props)}
+                activeroute=${this.component}
+                .resolve="${this.resolve}"
+            ></app-outlet>
         `;
     }
 }

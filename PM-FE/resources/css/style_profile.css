@@ -225,9 +225,16 @@ main{
     margin: 20px;
     background-color: white;
     display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
+.education__card{
+    margin: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
 .education__logo{
     display: inline-block;
     height: 100px;
@@ -347,11 +354,12 @@ aside > div{
 /*-------------------------------*/
 .interest{
     display: flex;
+    flex-direction: column;
 }
 
 .interest__page{
-    margin: 20px;
-    width: 100%;
+    margin: 10px 20px 10px 20px;
+    width: 90%;
     background-color: white; 
 }
 
@@ -638,3 +646,33 @@ footer {
 }
 
 
+.publication__list__card li{
+    margin: 10px;
+}
+
+.experience__card{
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    gap: 10px;
+}
+
+.experience__card__time{
+    text-align: right;
+    margin-bottom: 10px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.skill__card__list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.skill__card__list div{
+    margin: 10px;
+}
+
+.skill__card__list i{
+    font-size: 10px;
+    margin: 10px;
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Comment.
+    -->
+    <changeSet id="20210524011025-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="company_id"
+                                 baseTableName="comments"
+                                 constraintName="fk_comments__company_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="companies"/>
+
+        <addForeignKeyConstraint baseColumnNames="parent_comment_id"
+                                 baseTableName="comments"
+                                 constraintName="fk_comments__parent_comment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="comments"/>
+
+        <addForeignKeyConstraint baseColumnNames="post_id"
+                                 baseTableName="comments"
+                                 constraintName="fk_comments__post_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="posts"/>
+
+        <addForeignKeyConstraint baseColumnNames="author_id"
+                                 baseTableName="comments"
+                                 constraintName="fk_comments__author_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users"/>
+    </changeSet>
+</databaseChangeLog>

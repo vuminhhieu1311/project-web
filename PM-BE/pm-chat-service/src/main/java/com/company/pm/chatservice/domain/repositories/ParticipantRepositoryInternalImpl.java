@@ -74,6 +74,11 @@ class ParticipantRepositoryInternalImpl implements ParticipantRepositoryInternal
         return createQuery(pageable, criteria).all();
     }
     
+    @Override
+    public Mono<Participant> findOneBy(Criteria criteria) {
+        return createQuery(null, criteria).one();
+    }
+    
     RowsFetchSpec<Participant> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = ParticipantSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
         columns.addAll(UserSqlHelper.getColumns(userTable, "user"));

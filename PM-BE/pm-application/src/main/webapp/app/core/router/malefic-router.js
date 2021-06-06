@@ -104,7 +104,8 @@ export function outlet(base) {
         static get properties() {
             return {
                 activeRoute: {type: String, reflect: true, attribute: 'activeroute'},
-                resolve: {type: Function}
+                resolve: {type: Function},
+                props: {type: Object}
             };
         }
         
@@ -116,12 +117,14 @@ export function outlet(base) {
         
         outlet() {
             const component = this.activeRoute;
+            const props = JSON.parse(this.props);
     
             while (this.firstChild) {
                 this.removeChild(this.firstChild);
             }
             const updateView = () => {
                 const view = document.createElement(component);
+                view.setAttribute('props', JSON.stringify(props));
                 this.appendChild(view);
             };
     
@@ -132,4 +135,16 @@ export function outlet(base) {
             }
         }
     };
+}
+
+export function withRouter(base) {
+    return class extends base {
+        connectedCallback() {
+            super.connectedCallback();
+            const props = JSON.parse(this.getAttribute('props'));
+            this.params = props.params;
+            this.query = props.query;
+            this.data = props.data;
+        }
+    }
 }

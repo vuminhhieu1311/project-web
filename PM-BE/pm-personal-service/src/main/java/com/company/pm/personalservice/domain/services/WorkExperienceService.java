@@ -76,48 +76,47 @@ public class WorkExperienceService {
     @Transactional
     public Mono<WorkExperience> updateExpByProfile(String userId, Long expId, WorkExperienceDTO experienceDTO) {
         return getExpByProfile(userId, expId)
-            .flatMap(experience -> {
-                PersonalProfile profile = experience.getPersonalProfile();
-    
-                try {
-                    WorkExperience update = mapper.workExpDTOToWorkExp(experienceDTO);
-    
-                    if (experienceDTO.getIndustry() != null) {
-                        profile.setIndustry(experienceDTO.getIndustry());
+            .flatMap(experience -> profileRepository.findByUser(userId)
+                .flatMap(profile -> {
+                    try {
+                        WorkExperience update = mapper.workExpDTOToWorkExp(experienceDTO);
+        
+                        if (experienceDTO.getIndustry() != null) {
+                            profile.setIndustry(experienceDTO.getIndustry());
+                        }
+                        if (experienceDTO.getHeadline() != null) {
+                            profile.setHeadline(experienceDTO.getHeadline());
+                        }
+        
+                        if (update.getTitle() != null) {
+                            experience.setTitle(update.getTitle());
+                        }
+                        if (update.getEmploymentType() != null) {
+                            experience.setEmploymentType(update.getEmploymentType());
+                        }
+                        if (update.getCompany() != null) {
+                            experience.setCompany(update.getCompany());
+                        }
+                        if (update.getLocation() != null) {
+                            experience.setLocation(update.getLocation());
+                        }
+                        if (update.getStartDate() != null) {
+                            experience.setStartDate(update.getStartDate());
+                        }
+                        if (update.getEndDate() != null) {
+                            experience.setEndDate(update.getEndDate());
+                        }
+        
+                        return profileRepository.save(profile)
+                            .flatMap(savedProfile -> {
+                                experience.setPersonalProfile(savedProfile);
+                
+                                return experienceRepository.save(experience);
+                            });
+                    } catch (ParseException e) {
+                        return Mono.error(new BadRequestAlertException(e.getMessage(), ENTITY_NAME, "dateinvalid"));
                     }
-                    if (experienceDTO.getHeadline() != null) {
-                        profile.setHeadline(experienceDTO.getHeadline());
-                    }
-                    
-                    if (update.getTitle() != null) {
-                        experience.setTitle(update.getTitle());
-                    }
-                    if (update.getEmploymentType() != null) {
-                        experience.setEmploymentType(update.getEmploymentType());
-                    }
-                    if (update.getCompany() != null) {
-                        experience.setCompany(update.getCompany());
-                    }
-                    if (update.getLocation() != null) {
-                        experience.setLocation(update.getLocation());
-                    }
-                    if (update.getStartDate() != null) {
-                        experience.setStartDate(update.getStartDate());
-                    }
-                    if (update.getEndDate() != null) {
-                        experience.setEndDate(update.getEndDate());
-                    }
-    
-                    return profileRepository.save(profile)
-                        .flatMap(savedProfile -> {
-                            experience.setPersonalProfile(savedProfile);
-    
-                            return experienceRepository.save(experience);
-                        });
-                } catch (ParseException e) {
-                    return Mono.error(new BadRequestAlertException(e.getMessage(), ENTITY_NAME, "dateinvalid"));
-                }
-            });
+                }));
     }
     
     @Transactional

@@ -6,34 +6,58 @@ export const headerStyle = css`
     }
 
     header {
-        height: 60px;
+        height: 100px;
         width: 100%;
         position: fixed;
         top: 0;
         display: flex;
+        height: 70px;
         border-bottom: 0.5px solid gray;
         z-index: 10;
-        background: linear-gradient(to right, #1e4157f2, #2d6187);
+        background: linear-gradient(135deg,#1e4157f2 0%,#2193b0 100%);
     }
     
     .logo {
+        /* width: 200px; */
         height: 90%;
         float: left;
         margin-top: 1%;
     }
     
     #left-header {
-        flex: 1 0 350px;
+        width: 300px;
         position: relative;
         display: flex;
+        padding-left: 10px;
+    }
+    
+    #left-header > img{
+        display: none;
     }
     
     #right-header {
-        margin-top: -1%;
+        /*background-color: aquamarine;*/
+        /*margin-top: -1%;
         flex: 0 0 auto;
-        display: flex;
+        display: flex;*/
+        margin-left: auto;
     }
     
+    
+    @media (max-width:800px) {
+        #left-header{
+            width: 90px;
+        }
+    
+        #left-header a{
+            display: none;
+        }
+    
+        #left-header > img{
+            display: block;
+            margin: auto;
+        }
+    }
     #nav-menu {
         height: 100%;
         align-items: center;
@@ -78,7 +102,7 @@ export const headerStyle = css`
         width: 100%;
         text-align: center;
         color: #f4f4f4;
-        font-size: 70%;
+        font-size: 10px;
     }
     
     .menu-icons img {

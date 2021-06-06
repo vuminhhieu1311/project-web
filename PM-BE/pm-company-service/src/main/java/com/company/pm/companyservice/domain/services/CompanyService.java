@@ -63,7 +63,9 @@ public class CompanyService {
                     company.setAdminId(user.getId());
     
                     return companyRepository.save(company)
-                        .flatMap(saved -> companySearchRepository.save(new CompanySearch(saved.getId(), saved.getName()))
+                        .flatMap(saved -> companySearchRepository.save(
+                            new CompanySearch(saved.getId(), saved.getName(), saved.getLogoUrl())
+                         )
                             .thenReturn(saved)
                         );
                 } catch (NumberFormatException e) {
@@ -100,9 +102,14 @@ public class CompanyService {
                     if (update.getTagline() != null) {
                         company.setTagline(update.getTagline());
                     }
+                    if (update.getBgImageUrl() != null) {
+                        company.setBgImageUrl(update.getBgImageUrl());
+                    }
                     
                     return companyRepository.save(company)
-                        .flatMap(saved -> companySearchRepository.save(new CompanySearch(saved.getId(), saved.getName()))
+                        .flatMap(saved -> companySearchRepository.save(
+                            new CompanySearch(saved.getId(), saved.getName(), saved.getLogoUrl())
+                         )
                             .thenReturn(saved)
                         );
                 } catch (NumberFormatException e) {
@@ -123,22 +130,17 @@ public class CompanyService {
      * <p>
      * This is scheduled to get fired everyday, at 02:00 (am).
      */
-    @Scheduled(cron = "0 0 2 * * ?")
+    @Scheduled(cron = "0 0 2 * * ?", zone = "Asia/Ho_Chi_Minh")
     public void syncCompanySearch() {
         syncCompanySearchReactively().blockLast();
     }
     
     @Transactional
     public Flux<CompanySearch> syncCompanySearchReactively() {
-        return companyRepository.findAll()
-            .flatMap(company -> companySearchRepository.findById(company.getId())
-                .flatMap(companySearch -> {
-                    companySearch.setName(company.getName());
-                    
-                    return companySearchRepository.save(companySearch);
-                })
-                .switchIfEmpty(companySearchRepository.save(
-                    new CompanySearch(company.getId(), company.getName()))
+        return companySearchRepository.deleteAll()
+            .thenMany(companyRepository.findAll()
+                .flatMap(company -> companySearchRepository.save(
+                    new CompanySearch(company.getId(), company.getName(), company.getLogoUrl()))
                 )
             );
     }

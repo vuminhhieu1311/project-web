@@ -1,6 +1,8 @@
 package com.company.pm.socialservice.web;
 
 import com.company.pm.common.web.errors.BadRequestAlertException;
+import com.company.pm.companyservice.domain.assembler.PublicCompanyRepresentationModelAssembler;
+import com.company.pm.domain.companyservice.Company;
 import com.company.pm.domain.socialservice.Follow;
 import com.company.pm.socialservice.domain.services.FollowService;
 import com.company.pm.socialservice.domain.services.dto.FollowDTO;
@@ -39,6 +41,8 @@ public class FollowController {
     
     private final PublicUserRepresentationModelAssembler userAssembler;
     
+    private final PublicCompanyRepresentationModelAssembler companyAssembler;
+    
     private final FollowService followService;
     
     private final UserService userService;
@@ -47,7 +51,7 @@ public class FollowController {
         path = "/followers",
         produces = MediaTypes.HAL_JSON_VALUE
     )
-    public Mono<CollectionModel<EntityModel<UserDTO>>> getFollowers(
+    public Mono<CollectionModel<EntityModel<UserDTO>>> getFollowersOfUser(
         @ApiIgnore ServerWebExchange exchange
     ) {
         return exchange.getPrincipal()
@@ -69,7 +73,7 @@ public class FollowController {
         path = "/followings",
         produces = MediaTypes.HAL_JSON_VALUE
     )
-    public Mono<CollectionModel<EntityModel<UserDTO>>> getFollowings(
+    public Mono<CollectionModel<EntityModel<UserDTO>>> getFollowingsOfUser(
         @ApiIgnore ServerWebExchange exchange
     ) {
         return exchange.getPrincipal()
@@ -87,8 +91,53 @@ public class FollowController {
             });
     }
     
+    @GetMapping(
+        path = "/companies/{id}/followers",
+        produces = MediaTypes.HAL_JSON_VALUE
+    )
+    public Mono<CollectionModel<EntityModel<UserDTO>>> getFollowersOfCompany(
+        @PathVariable("id") Long companyId,
+        @ApiIgnore ServerWebExchange exchange
+    ) {
+        return exchange.getPrincipal()
+            .flatMap(principal -> {
+                if (principal instanceof AbstractAuthenticationToken) {
+                    return userService.getUserFromAuthentication((AbstractAuthenticationToken) principal)
+                        .flatMap(user -> {
+                            Flux<UserDTO> followerFlux = followService.getFollowersOfCompany(user.getId(), companyId);
+                            
+                            return userAssembler.toCollectionModel(followerFlux, exchange);
+                        });
+                } else {
+                    return Mono.error(new BadRequestAlertException("Invalid user", "user", "principalinvalid"));
+                }
+            });
+    }
+    
+    @GetMapping(
+        path = "/followings/companies",
+        produces = MediaTypes.HAL_JSON_VALUE
+    )
+    public Mono<CollectionModel<EntityModel<Company>>> getFollowingsCompanyOfUser(
+        @ApiIgnore ServerWebExchange exchange
+    ) {
+        return exchange.getPrincipal()
+            .flatMap(principal -> {
+                if (principal instanceof AbstractAuthenticationToken) {
+                    return userService.getUserFromAuthentication((AbstractAuthenticationToken) principal)
+                        .flatMap(user -> {
+                            Flux<Company> followingFlux = followService.getFollowingCompanyByUser(user.getId());
+                            
+                            return companyAssembler.toCollectionModel(followingFlux, exchange);
+                        });
+                } else {
+                    return Mono.error(new BadRequestAlertException("Invalid user", "user", "principalinvalid"));
+                }
+            });
+    }
+    
     @GetMapping(path = "/followers/count")
-    public Mono<Long> countFollowers(@ApiIgnore ServerWebExchange exchange) {
+    public Mono<Long> countFollowersOfUser(@ApiIgnore ServerWebExchange exchange) {
         return exchange.getPrincipal()
             .flatMap(principal -> {
                 if (principal instanceof AbstractAuthenticationToken) {
@@ -101,7 +150,7 @@ public class FollowController {
     }
     
     @GetMapping(path = "/followings/count")
-    public Mono<Long> countFollowings(@ApiIgnore ServerWebExchange exchange) {
+    public Mono<Long> countFollowingsOfUser(@ApiIgnore ServerWebExchange exchange) {
         return exchange.getPrincipal()
             .flatMap(principal -> {
                 if (principal instanceof AbstractAuthenticationToken) {

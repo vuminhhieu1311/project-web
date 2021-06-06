@@ -42,6 +42,8 @@ public class UserService {
     
     private final AuthorityRepository authorityRepository;
     
+    private final MediaService mediaService;
+    
     @Transactional
     public Mono<Void> updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
         return SecurityUtils
@@ -56,7 +58,11 @@ public class UserService {
                 }
                 
                 user.setLangKey(langKey);
-                user.setImageUrl(imageUrl);
+                if (user.getImageUrl() != null) {
+                    user.setImageUrl(imageUrl);
+                } else {
+                    user.setImageUrl(mediaService.getAvatarImgOfUser(user.getId()));
+                }
                 
                 return saveUser(user);
             })
@@ -133,6 +139,9 @@ public class UserService {
         }
         
         User user = getUser(attributes);
+        if (user.getImageUrl() == null) {
+            user.setImageUrl(mediaService.getAvatarImgOfUser(user.getId()));
+        }
         user.setAuthorities(
             authToken
                 .getAuthorities()
@@ -274,7 +283,7 @@ public class UserService {
     
     private Mono<User> saveUserSearch(User user) {
         return userSearchRepository.save(
-            new UserSearch(user.getId(), user.getFirstName(), user.getLastName())
+            new UserSearch(user.getId(), user.getFirstName(), user.getLastName(), user.getImageUrl())
         ).thenReturn(user);
     }
     
@@ -290,21 +299,16 @@ public class UserService {
     
     @Transactional
     public Flux<UserSearch> syncUserSearchReactively() {
-        return userRepository.findAll()
-            .flatMap(this::updateUserSearch);
+        return userSearchRepository.deleteAll()
+            .thenMany(userRepository.findAll()
+                .flatMap(this::updateUserSearch)
+            );
     }
     
     private Mono<UserSearch> updateUserSearch(User user) {
-        return userSearchRepository.findById(user.getId())
-            .flatMap(userSearch -> {
-                userSearch.setFirstName(user.getFirstName());
-                userSearch.setLastName(user.getLastName());
-                
-                return userSearchRepository.save(userSearch);
-            })
-            .switchIfEmpty(userSearchRepository.save(
-                new UserSearch(user.getId(), user.getFirstName(), user.getLastName())
-            ))
+        return userSearchRepository.save(
+            new UserSearch(user.getId(), user.getFirstName(), user.getLastName(), user.getImageUrl())
+        )
             .doOnNext(saved -> log.debug("Saved user to elasticsearch: {}", saved));
     }
 }

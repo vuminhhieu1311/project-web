@@ -5,9 +5,9 @@ import { commonStyles } from '../../shared/styles/common-styles';
 
 import '../../components/layouts/Header/Header';
 import '../../components/layouts/footer/SmallFooter';
-import '../../components/my-account/MyAccount';
-import '../../components/my-account/ChangePass';
-import '../../components/Modal/UploadAvatar/UploadAvatar'
+import '../../components/my-profile-info/PersonalInfo';
+import '../../components/my-profile-info/ChangePass';
+import '../../components/Modal/UploadAvatar/UploadBackground'
 
 class AccountSetting extends MaleficComponent {
     constructor() {

@@ -58,8 +58,8 @@ module.exports = options =>
                     changeOrigin: options.tls,
                 },
                 {
-                    context: ['/websocket'],
-                    target: `ws${options.tls ? 's' : ''}://127.0.0.1:8080`,
+                    context: ['/rsocket'],
+                    target: `ws${options.tls ? 's' : ''}://127.0.0.1:8000`,
                     ws: true
                 }
             ],

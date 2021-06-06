@@ -67,7 +67,12 @@ class WorkExperienceRepositoryInternalImpl implements WorkExperienceRepositoryIn
     public Flux<WorkExperience> findAllBy(Pageable pageable, Criteria criteria) {
         return createQuery(pageable, criteria).all();
     }
-
+    
+    @Override
+    public Mono<WorkExperience> findOneBy(Criteria criteria) {
+        return createQuery(null, criteria).one();
+    }
+    
     RowsFetchSpec<WorkExperience> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = WorkExperienceSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
         columns.addAll(PersonalProfileSqlHelper.getColumns(personalProfileTable, "personalProfile"));

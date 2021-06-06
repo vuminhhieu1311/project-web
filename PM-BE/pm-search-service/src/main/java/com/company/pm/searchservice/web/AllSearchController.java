@@ -22,7 +22,7 @@ public class AllSearchController {
     private final AllSearchService searchService;
     
     @GetMapping(path = "/{query}")
-    public Mono<List<SearchHit>> getSearchResults(
+    public Mono<List<SearchHit>> getAllSearchResults(
         @PathVariable("query") String query,
         Pageable pageable
     ) {

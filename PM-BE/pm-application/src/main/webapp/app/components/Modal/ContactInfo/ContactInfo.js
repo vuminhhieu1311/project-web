@@ -6,14 +6,16 @@ import { contactInfoStyle } from './contact-info-style';
 class ContactInfo extends MaleficComponent {
     static get properties() {
         return {
-            show: {type: Boolean}
+            show: { type: Boolean },
+            id: { type: String },
+            email: { type: String },
         };
     }
-    
+
     static get styles() {
         return [contactInfoStyle];
     }
-    
+
     handleCloseModal() {
         this.show = false;
         const event = new CustomEvent('close-modal', {
@@ -23,7 +25,7 @@ class ContactInfo extends MaleficComponent {
         });
         this.dispatchEvent(event);
     }
-    
+
     render() {
         return html`
             ${commonStyles}
@@ -42,7 +44,7 @@ class ContactInfo extends MaleficComponent {
                             contacts
                         </div>
                         <h3>Link profile</h3>
-                        <a href="#">Link to profile in linkedIn</a>
+                        <a href="#">http://localhost:9002/profile/${this.id}</a>
         
                     </div>
         
@@ -51,7 +53,7 @@ class ContactInfo extends MaleficComponent {
                             email
                         </div>
                         <h3>Link email</h3>
-                        <a href="mailto: abc@example.com">abc@example.com</a>
+                        <a href="mailto: ${this.email}">${this.email}</a>
                     </div>
                 </div>
             </div>

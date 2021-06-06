@@ -29,7 +29,7 @@ public class JobSearchController {
     private final JobSearchService jobSearchService;
     
     @GetMapping
-    public Mono<CollectionModel<EntityModel<JobSearch>>> getSearchResults(
+    public Mono<CollectionModel<EntityModel<JobSearch>>> getJobSearchResults(
         @ApiIgnore ServerWebExchange exchange
     ) {
         MultiValueMap<String, String> queryParams = exchange.getRequest().getQueryParams();

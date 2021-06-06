@@ -4,11 +4,13 @@ import { searchbarStyle } from './searchbar-style';
 
 import '../Modal';
 import { commonStyles } from '../../../shared/styles/common-styles';
+import '../../../routes/Link';
 
 class SearchBar extends MaleficComponent {
     static get properties() {
         return {
-            show: {type: Boolean}
+            show: {type: Boolean},
+            query: {type: String}
         };
     }
     
@@ -25,6 +27,11 @@ class SearchBar extends MaleficComponent {
         });
         this.dispatchEvent(event);
     }
+
+    getQuery() {
+        this.query = this.shadowRoot.querySelector(".search-input").value;
+        console.log(this.query);
+    }
     
     render() {
         return html`
@@ -33,8 +40,8 @@ class SearchBar extends MaleficComponent {
             <app-modal .show="${this.show}">
                 <div class="modal-header">
                     <button class="close-button" @click="${this.handleCloseModal}"><i class="fas fa-long-arrow-alt-left"></i></button>
-                    <input class="search-input" type="text" placeholder="Search">
-                    <i class="fas fa-search"></i>
+                        <input class="search-input" type="text" placeholder="Search" @keyup=${this.getQuery}>
+                        <a href="general-search/${this.query}"><i class="fas fa-search"></i></a>
                 </div>
             </app-modal>
         `;

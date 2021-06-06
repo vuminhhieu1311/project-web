@@ -24,4 +24,7 @@ public class CompanySearch implements Serializable {
     
     @Field(type = FieldType.Search_As_You_Type)
     private String name;
+    
+    @Field(type = FieldType.Text, name = "logo_url")
+    private String logoUrl;
 }

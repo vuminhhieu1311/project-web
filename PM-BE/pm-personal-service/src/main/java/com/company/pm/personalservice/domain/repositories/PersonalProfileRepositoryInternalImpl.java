@@ -61,6 +61,11 @@ class PersonalProfileRepositoryInternalImpl implements PersonalProfileRepository
         return createQuery(pageable, criteria).all();
     }
     
+    @Override
+    public Mono<PersonalProfile> findOneBy(Criteria criteria) {
+        return createQuery(null, criteria).one();
+    }
+    
     RowsFetchSpec<PersonalProfile> createQuery(Pageable pageable, Criteria criteria) {
         List<Expression> columns = PersonalProfileSqlHelper.getColumns(entityTable, EntityManager.ENTITY_ALIAS);
         columns.addAll(UserSqlHelper.getColumns(userTable, "user"));

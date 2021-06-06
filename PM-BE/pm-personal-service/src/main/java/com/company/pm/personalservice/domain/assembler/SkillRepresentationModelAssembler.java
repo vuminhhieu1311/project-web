@@ -3,6 +3,7 @@ package com.company.pm.personalservice.domain.assembler;
 import com.company.pm.common.assembler.SimpleIdentifiableReactiveRepresentationModelAssembler;
 import com.company.pm.domain.personalservice.Skill;
 import com.company.pm.personalservice.web.SkillController;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
@@ -19,6 +20,11 @@ public class SkillRepresentationModelAssembler
     @Override
     protected String getCollectionName() {
         return "skills";
+    }
+    
+    @Override
+    protected String getEntityId(EntityModel<Skill> resource) {
+        return resource.getContent().getId().toString();
     }
     
     @Override

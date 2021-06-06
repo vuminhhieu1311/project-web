@@ -62,6 +62,19 @@ export const profileMenuStyle = css`
         text-decoration: underline;
         color: #2d6187;
     }
+
+    .app-link {
+        color: #265077;
+        text-decoration: none;
+        display: inline-block;
+        font-weight: 500;
+        transition: 0.5s;
+    }
+    
+    .app-link:hover {
+        text-decoration: underline;
+        color: #2d6187;
+    }
     
     .dropdown-btn {
         background: none;

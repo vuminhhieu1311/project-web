@@ -1,12 +1,13 @@
 package com.company.pm.personalservice.domain.repositories;
 
-import com.company.pm.domain.personalservice.Certification;
 import com.company.pm.domain.personalservice.PersonalProfile;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.data.relational.core.query.Criteria;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -23,8 +24,9 @@ public interface PersonalProfileRepository extends R2dbcRepository<PersonalProfi
     @Override
     Mono<PersonalProfile> findById(Long id);
     
-    @Query("SELECT * FROM personal_profiles entity WHERE entity.user_id = :userId")
-    Mono<PersonalProfile> findByUser(String userId);
+    default Mono<PersonalProfile> findByUser(String userId) {
+        return findOneBy(Criteria.where("user_id").is(userId));
+    }
     
     @Override
     <S extends PersonalProfile> Mono<S> save(S entity);
@@ -39,4 +41,5 @@ interface PersonalProfileRepositoryInternal {
     Mono<PersonalProfile> findById(Long id);
     Flux<PersonalProfile> findAllBy(Pageable pageable);
     Flux<PersonalProfile> findAllBy(Pageable pageable, Criteria criteria);
+    Mono<PersonalProfile> findOneBy(Criteria criteria);
 }

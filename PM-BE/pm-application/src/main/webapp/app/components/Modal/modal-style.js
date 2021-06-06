@@ -5,15 +5,20 @@ export const modalStyle = css`
         z-index: 10000;
         background-color: #fff;
         position: fixed;
-        top: 12%;
-        left: 25%;
+        top: 70px;
+        left:50%;
+        right: 50%;
         width: 50%;
-        max-width: 50%;
+        min-width: 500px;
         transition: 200ms ease-in-out;
-        transform: scale(0);
+        transform: translateX(-50%);
         padding: 10px 15px;
+        display: none;
+        max-height: calc(130vh - 210px);
+        overflow-y: auto;
     }
     .active {
-        transform: scale(1);
+        display: block;
     }
 `;
+
